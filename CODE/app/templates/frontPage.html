@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!--------------------------------- 
+        |   fancy pants styling section   |
+        ----------------------------------->
+
+        <!-- stylesheets -->
+         <link rel="stylesheet" href="/app/static/CSS/mainPage.css">
+         <link rel="stylesheet" href="/app/static/CSS/navBar.css">
+         <link rel="stylesheet" href="/app/static/CSS/headerButton.css">
+
+        <!-- javascript import -->
+        <script src="/app/static/JAVASCRIPT/sidenav.js"></script>
+
+        <title>
+            Counter Attempt
+        </title>
+
+    </head>
+    
+    <body>
+        <div id="mySidenav" class="sidenav">
+            <div class="navTop">
+                <button type="button">
+                    edit
+                </button>
+                <button type="button">
+                    add
+                </button>
+            </div>
+            <div class="container">
+                <p class="blockTop">
+                    Project Overview
+                </p>
+                <div class="scroll">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#60; &#60;</a>
+                    <a href="#">
+                        <div class="split1">
+                            <p class="navHeading" >
+                            Project 1
+                            </p>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 5
+                            </p>
+                            <p>
+                                pictures: 2
+                            </p>
+                            <p>
+                                last edited: 12/12/2012
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="container">
+                <p class="blockTop">
+                    Project Overview
+                </p>
+                <div class="scroll">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#60; &#60;</a>
+                    <a href="#">
+                        <div class="split1">
+                            <p class="navHeading" >
+                            Project 1
+                            </p>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 5
+                            </p>
+                            <p>
+                                pictures: 2
+                            </p>
+                            <p>
+                                last edited: 12/12/2012
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+        <span class="openNav" onclick="openNav()">&#60; &#60;</span>
+
+
+        <!-- Add all page content inside this div -->
+        <div id="main">
+            <div class="header">
+                <h1>
+                    Project Title
+                </h1>
+                <div>
+                    <button>
+                        add new counter
+                    </button>
+                    <button>
+                        edit layout
+                    </button>
+                    <button>
+                        add image
+                    </button>
+                    <div class="dropdown">
+                        Workspace Settings
+                        <div class="dropdownContent">
+                            Theme 1
+                        </div>
+                        <div class="dropdownContent">
+                            Theme 2
+                        </div>
+                        <div class="dropdownContent">
+                            Theme 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="counterArea">
+                
+            </div>
+
+        </div> 
+
+    </body>
+
+</html>
