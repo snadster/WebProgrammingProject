@@ -9,10 +9,16 @@
         <!-- stylesheets -->
          <link rel="stylesheet" href="/CODE/app/static/CSS/mainPage.css">
          <link rel="stylesheet" href="/CODE/app/static/CSS/navBar.css">
-         <link rel="stylesheet" href="/CODE/app/static/CSS/headerButton.css">
+         <link rel="stylesheet" href="/CODE/app/static/CSS/tabs.css">
+
+        <!-- themes -->
+         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
+         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
 
         <!-- javascript import -->
         <script src="/CODE/app/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="/CODE/app/static/JAVASCRIPT/tabs.js"></script>
+
         <title>
             Counter Attempt
         </title>
@@ -113,34 +119,45 @@
                 <h1>
                     Project Title
                 </h1>
-                <div>
+                <div class="twoBut">
                     <button>
                         add new counter
                     </button>
-                    <button>
-                        edit layout
-                    </button>
-                    <button>
-                        add image
-                    </button>
                     <div class="dropdown">
-                        Workspace Settings
-                        <div class="dropdownContent">
-                            Theme 1
-                        </div>
-                        <div class="dropdownContent">
-                            Theme 2
-                        </div>
-                        <div class="dropdownContent">
-                            Theme 3
-                        </div>
+                        <button class="dropbtn">
+                            Workspace Settings
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div> 
                     </div>
                 </div>
             </div>
-            
-            <div class="counterArea">
-                
+
+            <div class="tab">
+                <button class="tablinks active" onclick="openCity(event, 'Home')">Home</button>
+                <button class="tablinks" onclick="openCity(event, 'Counter')">Counter</button>
             </div>
+
+            <!-- Tab content -->
+            <div id="Home" class="tabcontent" style="display: block;">
+                <h3>Overview</h3>
+                <p>here we add actual text for whats happening</p>
+                <div>
+                    
+                </div>
+            </div>
+
+            <div id="Counter" class="tabcontent">
+                <h3>Counter 1</h3>
+                <p>actual counters here.</p>
+                <div>
+
+                </div>
+            </div>
+            
 
         </div> 
 

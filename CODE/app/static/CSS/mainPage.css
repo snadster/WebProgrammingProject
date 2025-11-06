@@ -1,6 +1,7 @@
 body
 {
     background-color: #46170c;
+    padding: 0;
 }
 
 @media screen and (max-height: 450px) 
@@ -36,7 +37,10 @@ body
 
 #main div 
 {
-    margin: 2px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 5px;
 }
 
 .openNav
@@ -54,6 +58,7 @@ body
     flex-grow: 1;
     display: flex;
     align-items: center;
+    flex-direction: row;
     justify-content:space-between;
     padding: 0;
 
@@ -63,21 +68,18 @@ body
 
 .header h1 
 {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     font-size: 60px;
     margin-left: 40px;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.header div 
+.twoBut
 {
-    /* border: 1px solid purple; */
-    /* width: 50%; */
+    width: 300px;
     display: flex;
-
-    justify-content:space-between;
-
+    justify-content: space-evenly;
 }
 
 .header button 
@@ -106,51 +108,57 @@ body
 
 .dropdown 
 {
-    position: relative;
-    height: fit-content;
-    margin: 2px;
-
-    border-radius: 10px;
-    border: 2px outset #44221d;
-    background-color: #8b6758;
-    box-shadow: 0px 2px 2px;
+  position: relative;
 }
 
-.dropdownContent 
+/* Style the dropdown button */
+.dropbtn 
+{
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown content */
+.dropdown-content 
 {
   display: none;
   position: absolute;
-  top: 20px;
-  background-color: #c59478d3;
-  min-width: 100px;
+  background-color: #f9f9f9;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  opacity: 0;
 }
 
-.dropdown:hover .dropdownContent 
+/* Links inside dropdown content */
+.dropdown-content a 
+{
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover 
+{
+  background-color: #f1f1f1
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content 
 {
   display: block;
-  border: 2px solid #3a1d19;
-  background-color: #805e50;
-  opacity: 100%;
 }
-
-.dropdown:active
-{
-    border: 2px solid #3a1d19;
-    background-color: #5f463c;
-}
-
 
 /*
     counter area
 */
-.counterArea
+/* .counterArea, .mainHome
 {
+
     background-color: #785046;
-    flex-grow: 9;
+    height: 100%;
+    width: 100%;
 
     border: 2px solid black;
     box-shadow: 0px 2px 2px;
-}
+} */
