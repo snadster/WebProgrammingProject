@@ -1,0 +1,474 @@
+/*
+    main page
+*/
+
+body
+{
+    padding: 0;
+}
+
+@media screen and (max-height: 450px) 
+{
+}
+@media screen and (max-width: 300px)
+{
+    /*
+        for some reason won't work, 
+        i suppose thats par for the course.
+        anywho. clocking out for tonight
+    */
+}
+
+#main 
+{
+    /* border: 1px solid red; */
+    height: 90vh;
+    max-height: 100vh;
+    max-width: 100vw;
+    padding-top: 1%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    padding-right: 2%;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#main div 
+{
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 5px;
+}
+
+.openNav
+{
+    border-bottom-width: 2px;
+    border-bottom-style: outset;
+    font-size: 18px;
+}
+
+/*
+    header
+*/
+.header 
+{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content:space-between;
+
+    padding: 0;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    box-shadow: 0px 2px 2px;
+}
+
+.header h1 
+{
+    /* border: 1px solid red; */
+    font-size: 60px;
+    margin-left: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.twoBut
+{
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header button 
+{
+    /* border: 1px solid blue; */
+    height: fit-content;
+    margin: 2px;
+
+    border-radius: 10px;
+    border-bottom-width: 2px;
+    border-bottom-style: outset;
+    box-shadow: 0px 2px 2px;
+}
+
+.header button:hover
+{
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.header button:active
+{
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.dropdown 
+{
+  position: relative;
+}
+
+/* Style the dropdown button */
+.dropbtn 
+{
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown content */
+.dropdown-content 
+{
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside dropdown content */
+.dropdown-content a 
+{
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content 
+{
+  display: block;
+}
+
+
+/*
+    tabs
+*/
+
+ /* Style the tab */
+.tab 
+{
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button 
+{
+  float: left;
+  outline: none;
+  cursor: pointer;
+
+  padding: 14px 16px;
+  transition: 0.3s;
+
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* Create an active/current tablink class */
+.tab button.active 
+{
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+/* Style the tab content */
+.tabcontent 
+{
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  flex-grow: 9;
+  height: 100%;
+
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  box-shadow: 0px 2px 2px;
+} 
+
+
+/*
+    navbar
+*/
+
+
+html, body 
+{
+    height: 100%;
+    overflow-y: hidden;
+    margin: 0;
+}
+ 
+ /* The side navigation menu */
+.sidenav 
+{
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    top: 0; /* Stay at the top */
+    left: 0;
+
+    filter: drop-shadow(5px 0px 2px rgba(0, 0, 0, 0.422));
+
+    z-index: 1; /* Stay on top */
+
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: scroll;
+    padding-top: 40px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a 
+{
+    padding: 8px;
+    text-decoration: none;
+    color: #002807;
+
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover 
+{   /*changed from color to background color*/
+}
+
+.sidenav a:active
+{
+    border-bottom-width: 2px;
+    border-bottom-style: outset;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main 
+{
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) 
+{
+    .sidenav
+    {
+        padding-top: 20px;
+    }
+
+    .sidenav .closebtn
+    {
+        top: 0px;
+    }
+
+    .navHeading 
+    {
+        font-size: 15px;
+    }
+
+    .navDesc
+    {
+        font-size: 10px;
+    }
+
+    .navTop
+    {
+        grid-template-columns: 20px 20px;
+        column-gap: 5px;
+    }
+
+    .navTop div 
+    {
+        font-size: 9px;
+    }
+} 
+
+
+/* Position and style close button */
+.sidenav .closebtn 
+{
+    border-bottom-width: 1px;
+    border-bottom-style: outset;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 0px;
+
+    font-size: 20px;
+    font-weight: 900;
+}
+
+
+/****************
+    top bar
+*****************/
+.navTop
+{
+    /* border: 1px solid yellow; */
+    position: absolute;
+
+    height: fit-content;
+    top: 0px;
+    left: 0px;
+
+    display: grid;
+    grid-template-columns: 40px 40px;
+    column-gap: 5px;
+
+    padding: 5px;
+    margin: 5px;
+}
+
+
+.navTop button
+{
+    border-bottom-width: 2px;
+    border-bottom-style: outset;
+
+    padding: 2px;
+    border-radius: 8px;
+    text-align: center;
+
+    /* font-size: 20px; */
+}
+
+.navTop button:hover
+{
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.navTop button:active
+{
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+
+/*
+    individual blocks
+*/
+
+.blockTop
+{
+    /* border: 1px solid rgb(255, 0, 157); */
+    /* border: 2px outset #9e9875; */
+
+    padding-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    /* margin: 5px; */
+
+    color: rgb(9, 37, 15);
+    font-size: 30px;
+}
+
+.container
+{
+    /* border: 1px solid rgb(255, 0, 0); */
+    border-bottom-width: 2px;
+    border-bottom-style: outset;
+
+    height: fit-content;
+    max-height: 300px;
+
+    margin: 5px;
+}
+
+.scroll
+{
+    /* border: 1px solid blue; */
+    height: fit-content;
+    max-height: 240px;
+    overflow-y: scroll;
+
+    padding: 3px;
+}
+
+.scroll a 
+{
+    /* border: 1px solid red; */
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-radius: 10px;
+
+    margin-bottom: 5px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+}
+
+.navHeading
+{
+    /* border: 1px solid green; */
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    font-size: 18px;
+
+    padding-left: 5px;
+    padding-top: 3px;
+    padding-right: 0px;
+    margin: 0;
+}
+
+.navDesc
+{
+    /* border: 1px solid yellow; */
+    margin: 0;
+    height: 40px;
+
+    font-size: 12px;
+}
+
+.split1
+{
+    display: inline-block;
+    margin: 4px;
+
+    flex-grow: 3;
+}
+
+.split2
+{
+    display: flex;
+    flex-direction: column;
+    border-width: 2px;
+    border-style: inset;
+    margin: 2px;
+
+    width: 30%;
+    flex-grow: 1;
+}
+
+.split2 p 
+{
+    /* border: 1px solid red; */
+
+    margin: 0px;
+    
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.details
+{
+    border-bottom-width: 2px;
+    border-bottom-style: outset;
+}
+
+/***************
+    community
+****************/
+.comDesc
+{
+    font-size: 10px;
+}

@@ -1,150 +1,57 @@
-html, body 
-{
-    height: 100%;
-    overflow-y: hidden;
-    margin: 0;
-}
- 
+
+
  /* The side navigation menu */
 .sidenav 
 {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    top: 0; /* Stay at the top */
-    left: 0;
-
-    background-color: #383a2b;
-    filter: drop-shadow(5px 0px 2px rgba(0, 0, 0, 0.422));
-
-    z-index: 1; /* Stay on top */
-
-    overflow-x: hidden; /* Disable horizontal scroll */
-    overflow-y: scroll;
-    padding-top: 40px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  background-color:  #fdf5d1;
 }
 
 /* The navigation menu links */
 .sidenav a 
 {
-    padding: 8px;
-    text-decoration: none;
-    color: #002807;
-    background-color: #5e9255;
-
-    display: block;
-    transition: 0.3s;
+  background-color: #f8e596;
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover 
-{
-    color: #f1f1f1;
+{   /*changed from color to background color*/
+    background-color: #fbefbb;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main 
+.sidenav a:active
 {
-    transition: margin-left .5s;
-    padding: 20px;
+    background-color: #f8e596;
+    border-color: #f8e596;
 }
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) 
-{
-    .sidenav
-    {
-        padding-top: 20px;
-    }
-
-    .sidenav .closebtn
-    {
-        top: 0px;
-    }
-
-    .navHeading 
-    {
-        font-size: 15px;
-    }
-
-    .navDesc
-    {
-        font-size: 10px;
-    }
-
-    .navTop
-    {
-        grid-template-columns: 20px 20px;
-        column-gap: 5px;
-    }
-
-    .navTop div 
-    {
-        font-size: 9px;
-    }
-} 
-
 
 /* Position and style close button */
 .sidenav .closebtn 
 {
-    border: 1px outset #7d7956;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    border-radius: 0px;
+    border-color: #f4dc72;
 
-    background-color: #7d7956;
-
-    font-size: 20px;
-    font-weight: 900;
+    background-color: #f8e596;
 }
 
 
 /****************
     top bar
 *****************/
-.navTop
-{
-    /* border: 1px solid yellow; */
-    position: absolute;
-
-    height: fit-content;
-    top: 0px;
-    left: 0px;
-
-    display: grid;
-    grid-template-columns: 40px 40px;
-    column-gap: 5px;
-
-    padding: 5px;
-    margin: 5px;
-}
-
-
 .navTop button
 {
-    border: 2px outset #716e4e;
-    background-color: #7d7956;
-
-    padding: 2px;
-    border-radius: 8px;
-    text-align: center;
-
-    /* font-size: 20px; */
+    border-color: #f4dc72;
+    background-color: #f8e596;
 }
 
 .navTop button:hover
 {
-    border: 2px solid #6c694b;
-    background-color: #646144;
+    border-color: #f4dc72;
+    background-color: #f8e596;
 }
 
 .navTop button:active
 {
-    border: 1px solid #4d4b36;
-    background-color: #5f5c41;
+    border-color: #f4dc72;
+    background-color: #f4dc72;
 }
 
 
@@ -156,103 +63,38 @@ html, body
 {
     /* border: 1px solid rgb(255, 0, 157); */
     /* border: 2px outset #9e9875; */
-    background-color: #716e4e;
-
-    padding-left: 10px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    /* margin: 5px; */
-
-    color: rgb(9, 37, 15);
-    font-size: 30px;
+    background-color: #f8e596;
 }
 
 .container
 {
     /* border: 1px solid rgb(255, 0, 0); */
-    border: 2px outset #54513e;
-    background-color: #9e9875;
-
-    height: fit-content;
-    max-height: 300px;
-
-    margin: 5px;
-}
-
-.scroll
-{
-    /* border: 1px solid blue; */
-    height: fit-content;
-    max-height: 240px;
-    overflow-y: scroll;
-
-    padding: 3px;
+    border-color: #f4dc72;
+    background-color: #fbefbb;
 }
 
 .scroll a 
 {
     /* border: 1px solid red; */
-    border: 2px solid rgb(9, 37, 15);
-    border-radius: 10px;
-
-    margin-bottom: 5px;
-    padding: 0;
-
-    display: flex;
-    align-items: center;
+    border-color: #f4dc72;
 }
 
 .navHeading
 {
     /* border: 1px solid green; */
-    border-bottom: 2px solid black;
-    font-size: 18px;
-
-    padding-left: 5px;
-    padding-top: 3px;
-    padding-right: 0px;
-    margin: 0;
-}
-
-.navDesc
-{
-    /* border: 1px solid yellow; */
-    margin: 0;
-    height: 40px;
-
-    font-size: 12px;
-}
-
-.split1
-{
-    display: inline-block;
-    margin: 4px;
-
-    flex-grow: 3;
+    border-bottom-color: #f4dc72;
 }
 
 .split2
 {
-    display: flex;
-    flex-direction: column;
-    border: 2px inset black;
-    margin: 2px;
-
-    width: 30%;
-    flex-grow: 1;
-}
-
-.split2 p 
-{
-    /* border: 1px solid red; */
-
-    margin: 0px;
-    
-    font-size: 10px;
-    font-weight: 600;
+    border-color: #f4dc72;
 }
 
 .details
 {
-    border-bottom: 2px outset black;
+    border-bottom-color: #f4dc72;
 }
+
+/***************
+    community
+****************/

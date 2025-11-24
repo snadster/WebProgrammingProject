@@ -8,14 +8,17 @@ app = Flask(__name__)
 def theme():
     theme = request.cookies.get("theme", "fall")
     if theme == "light":
-        return render_template("app.html",
-                            navBarTheme = "/app/static/CSS/navBarLight.css",
-                            mainTheme = "/app/static/CSS/mainPageLight.css")
-    if theme == "fall":
-        return render_template("app.html",
-                            navBarTheme = "/app/static/CSS/navBar.css",
-                            mainTheme = "/app/static/CSS/mainPage.css")
+        return render_template("frontPage.html",
+                            navBarTheme = "/static/CSS/mainPageLight.css",
+                            mainTheme = "/static/CSS/navBarLight.css",
+                            theme = "Pastel Theme")
+    else:
+        return render_template("frontPage.html",
+                            navBarTheme = "/static/CSS/navBarFall.css",
+                            mainTheme = "/static/CSS/mainPageFall.css",
+                            theme = "Fall Theme")
 
+# change from switch to selected theme if want more than two themes
 
 @app.route("/clicked")
 def theme2():

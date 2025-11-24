@@ -16,22 +16,20 @@
         ----------------------------------->
 
         <!-- stylesheets -->
-         <!-- <link rel="stylesheet" href="{{mainTheme}}">
-         <link rel="stylesheet" href="{{navBarTheme}}"> -->
-         <link rel="stylesheet" href="app/static/CSS/defaults.css">
-         <link rel="stylesheet" href="app/static/CSS/mainPageFall.css">
          <link rel="stylesheet" href="app/static/CSS/navBarFall.css">
+         <link rel="stylesheet" href="app/static/CSS/defaults.css">
+         <link rel="stylesheet" href="app/static/CSS/devNotes.css">
 
         <!-- themes -->
          <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
          <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
 
         <!-- javascript import -->
-        <script src="/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="/static/JAVASCRIPT/tabs.js"></script>
+        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="app/static/JAVASCRIPT/tabs.js"></script>
 
         <title>
-            Counter Attempt
+            Development Notes
         </title>
 
     </head>
@@ -146,7 +144,7 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()">&#60; &#60;
                     </a> -->
-                    <a href="#">
+                    <a href="/app/templates/DevNotes.html">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Development Notes
@@ -208,53 +206,45 @@
             main page
         ---------------->
         <div id="main">
-            <div class="header">
-                <h1>
-                    Project Title
-                </h1>
-                <div class="twoBut">
-                    <button>
-                        add new counter
-                    </button>
-                    <div class="theme">
-                        <a href="/clicked">
-                            <button class="themeBtn">
-                                {{theme}}
-                            </button>
-                        </a>
-                       
-                        <!-- <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>  -->
-                    </div>
+                        <h1>
+                Development notes
+            </h1>
+            <p>
+                Here you'll find current updates on the app! If you have 
+                any bugs, please let us know by writing an email detailing 
+                your problem, at loopLet@hotmail.com
+            </p>
+
+            <h2>
+                Future news!
+            </h2>
+            <div class="futureNews">
+                <div class="news">
+                    <p>
+                        We're working on the "Inspiration" page!
+                    </p>
+                    <p>
+                        as of [date here]
+                    </p>
                 </div>
             </div>
 
-            <div class="tab">
-                <button class="tablinks active" onclick="openCity(event, 'Home')">Home</button>
-                <button class="tablinks" onclick="openCity(event, 'Counter')">Counter</button>
-            </div>
-
-            <!-- Tab content -->
-            <div id="Home" class="tabcontent" style="display: block;">
-                <h3>Overview</h3>
-                <p>here we add actual text for whats happening</p>
-                <div>
-                    
+            <h2>
+                Bug fixes
+            </h2>
+            <p>
+                Every bug report will be fixed and the fix listed here.
+            </p>
+            <div class="bugFixes">
+                <div class="bug">
+                    <p>
+                        we fixed the bug!
+                    </p>
+                    <p>
+                        as of [date here]
+                    </p>
                 </div>
             </div>
-
-            <div id="Counter" class="tabcontent">
-                <h3>Counter 1</h3>
-                <p>actual counters here.</p>
-                <div>
-
-                </div>
-            </div>
-            
-
         </div> 
 
     </body>

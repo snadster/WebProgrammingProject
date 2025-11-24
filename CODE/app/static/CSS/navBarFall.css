@@ -1,0 +1,94 @@
+
+ 
+ /* The side navigation menu */
+.sidenav 
+{
+    background-color: #383a2b;
+}
+
+/* The navigation menu links */
+.sidenav a 
+{
+    color: #002807;
+    background-color: #5e9255;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover 
+{
+    color: #f1f1f1;
+}
+
+/* Position and style close button */
+.sidenav .closebtn 
+{
+    border-color: #7d7956;
+
+    background-color: #7d7956;
+}
+
+
+/****************
+    top bar
+*****************/
+
+.navTop button
+{
+    border-color: #716e4e;
+    background-color: #7d7956;
+}
+
+.navTop button:hover
+{
+    border-color: #6c694b;
+    background-color: #646144;
+}
+
+.navTop button:active
+{
+    border-color: #4d4b36;
+    background-color: #5f5c41;
+}
+
+
+/*
+    individual blocks
+*/
+
+.blockTop
+{
+    /* border: 1px solid rgb(255, 0, 157); */
+    /* border: 2px outset #9e9875; */
+    background-color: #716e4e;
+
+    color: rgb(9, 37, 15);
+}
+
+.container
+{
+    /* border: 1px solid rgb(255, 0, 0); */
+    border-color: #54513e;
+    background-color: #9e9875;
+}
+
+.scroll a 
+{
+    /* border: 1px solid red; */
+    border-color: rgb(9, 37, 15);
+}
+
+.navHeading
+{
+    /* border: 1px solid green; */
+    border-bottom-color: black;
+}
+
+.split2
+{
+    border-color: black;
+}
+
+.details
+{
+    border-bottom-color: black;
+}

@@ -27,8 +27,8 @@
          <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
 
         <!-- javascript import -->
-        <script src="/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="/static/JAVASCRIPT/tabs.js"></script>
+        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="app/static/JAVASCRIPT/tabs.js"></script>
 
         <title>
             Counter Attempt
@@ -51,10 +51,10 @@
                     Project Overview
                 </h1>
                 <div class="scroll">
-                    <a  aria-label="Close Sidebar"
+                    <button  aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()">&#60; &#60;
-                    </a>
+                        onclick="closeNav()"> &#60; &#60;
+                </button>
                     <a href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
@@ -146,7 +146,7 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()">&#60; &#60;
                     </a> -->
-                    <a href="#">
+                    <a href="/app/templates/DevNotes.html">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Development Notes
@@ -201,7 +201,7 @@
         </div>
 
         <!-- Use any element to open the sidenav -->
-        <span class="openNav" onclick="openNav()">&#60; &#60;</span>
+        <button class="openNav" onclick="openNav()">&#60; &#60;</button>
 
 
         <!-------------- 

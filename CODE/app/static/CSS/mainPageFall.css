@@ -1,0 +1,74 @@
+body 
+{
+  background-color: #46170c;
+}
+
+#main 
+{
+    /* border: 1px solid red; */
+    background-color: #46170c;
+}
+
+.openNav
+{
+    background-color:  #8b6758;
+    border-color: black;
+}
+
+/*
+    header
+*/
+.header 
+{
+    background-color: #592c26;
+    border-color: black;
+}
+
+.header button 
+{
+    border-color: #44221d;
+    background-color: #8b6758;
+}
+
+.header button:hover
+{
+    border: 2px solid #3a1d19;
+    background-color: #805e50;
+}
+
+.header button:active
+{
+    border: 2px solid #3a1d19;
+    background-color: #5f463c;
+}
+
+/*
+    tabs
+*/
+
+
+/* Style the buttons that are used to open the tab content */
+.tab button 
+{
+  border-color: #3a1d19;
+  background-color: #70707056;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover 
+{
+  background-color: #4848485e;
+}
+
+/* Create an active/current tablink class */
+.tab button.active 
+{
+  background-color: #dadada5e;
+}
+
+/* Style the tab content */
+.tabcontent 
+{
+  background-color: #785046;
+  border-color: black;
+} 
