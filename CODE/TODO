@@ -5,3 +5,10 @@ MVP
 - remove layout possibly (check how hard to do)
 - add note option with built layout (for optimum data scraping)
 - find way to keep navBar always on every page
+- make the acessibility bulletproof 
+- !! make auto generating code for displaying items for:
+  - color palettes
+  - projects
+  - dev notes
+  - archive
+    - steal the projects one but filter by archived==True

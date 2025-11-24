@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- 
+        TODO:
+            - make a deafult page for the main page
+            - make a way to show the correct project when
+              choosing a given project
+        
+        
+        
+        -->
+        <!--------------------------------- 
+        |   fancy pants styling section   |
+        ----------------------------------->
+
+        <!-- stylesheets -->
+         <link rel="stylesheet" href="app/static/CSS/navBarFall.css">
+         <link rel="stylesheet" href="app/static/CSS/defaults.css">
+         <link rel="stylesheet" href="app/static/CSS/colorPalettes.css">
+
+        <!-- themes -->
+         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
+         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
+
+        <!-- javascript import -->
+        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="app/static/JAVASCRIPT/tabs.js"></script>
+
+        <title>
+            Color Palettes
+        </title>
+
+    </head>
+    
+    <body alt="a geometric circle based color splash background. There's a button 
+                at the top left to open the side navigation bar.">
+        <div id="mySidenav" class="sidenav">
+            <div class="navTop">
+                <button type="button">
+                    edit
+                </button>
+                <button type="button">
+                    add
+                </button>
+            </div>
+            <div class="container">
+                <h1 class="blockTop">
+                    Project Overview
+                </h1>
+                <div class="scroll">
+                    <button aria-label="Close Sidebar"
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()">&#60; &#60;
+                </button>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Project 1
+                            </h3>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 5
+                            </p>
+                            <p>
+                                pictures: 2
+                            </p>
+                            <p>
+                                last edited: 12/12/2012
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Project 2
+                            </h3>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 7
+                            </p>
+                            <p>
+                                pictures: 1
+                            </p>
+                            <p>
+                                last edited: 16/12/2021
+                            </p>
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Project 3
+                            </h3>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 1
+                            </p>
+                            <p>
+                                pictures: 5
+                            </p>
+                            <p>
+                                last edited: 1/1/2001
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-------------
+                Community
+            --------------->
+            <div class="container">
+                <h1 class="blockTop">
+                    Community
+                </h1>
+                <div class="scroll">
+                    <!-- <a 
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()">&#60; &#60;
+                    </a> -->
+                    <a href="/CODE/DevNotes.html">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Development Notes
+                            </h3>
+                            <p class="comDesc">
+                                have a bug? report it here!
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Color Pallettes
+                            </h3>
+                            <p class="comDesc">
+                                Look at your saved palettes!
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Archive
+                            </h3>
+                            <p class="comDesc">
+                                Your old projects, nostalgia extreme
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Inspiration!
+                            </h3>
+                            <p class="comDesc">
+                                Community board! Interact with other crafters.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Store!
+                            </h3>
+                            <p class="comDesc">
+                                Need an extra spool of yarn? Our linked affiliates can provide!
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+
+
+        <!-----------------------------------------------------------------------------
+            main page
+        ------------------------------------------------------------------------------->
+        <div id="main">
+            <h1>
+                Color Palettes!
+            </h1>
+
+            <div class="contain">
+                <!-- here we could use {{}} to get the name of the color displayed in it -->
+                <!-- this was so pretty until i had to add <p> inside the divs. sorry-->
+                <div class="fullPalette">
+                    <h3>
+                        Palette Title
+                    </h3>
+                    <div class="palette" alt="a color palette">
+                        <div class="color" style="background-color: blueviolet;">
+                            <p>
+                                Color1
+                            </p>
+                        </div>
+                        <div class="color" style="background-color: rgb(226, 110, 43);">
+                            <p>
+                                Color2
+                            </p>
+                        </div>
+                        <div class="color" style="background-color: rgb(214, 226, 43);">
+                            <p>
+                                Color3
+                            </p>
+                        </div>
+                        <div class="color" style="background-color: rgb(43, 226, 49);">
+                            <p>
+                                Color4
+                            </p>
+                        </div>
+                        <div class="color" style="background-color: rgb(43, 198, 226);">
+                            <p>
+                                Color5
+                            </p>
+                        </div>
+                        <div class="color" style="background-color: rgb(43, 52, 226);">
+                            <p>
+                                Color6
+                            </p>
+                        </div>
+                        <div class="color" style="background-color: rgb(226, 43, 150);">
+                            <p>
+                                Color7
+                            </p>
+                        </div>
+                        <div class="color" style="background-color: rgb(226, 43, 43);">
+                            <p>
+                                Color8
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="palette" alt="a color palette">
+                    <div class="color" style="background-color: blueviolet;">
+                        <p>
+                            Color1
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 110, 43);">
+                        <p>
+                            Color2
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(214, 226, 43);">
+                        <p>
+                            Color3
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 226, 49);">
+                        <p>
+                            Color4
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 198, 226);">
+                        <p>
+                            Color5
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 52, 226);">
+                        <p>
+                            Color6
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 150);">
+                        <p>
+                            Color7
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 43);">
+                        <p>
+                            Color8
+                        </p>
+                    </div>
+                </div>
+
+                <div class="palette" alt="a color palette">
+                    <div class="color" style="background-color: blueviolet;">
+                        <p>
+                            Color1
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 110, 43);">
+                        <p>
+                            Color2
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(214, 226, 43);">
+                        <p>
+                            Color3
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 226, 49);">
+                        <p>
+                            Color4
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 198, 226);">
+                        <p>
+                            Color5
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 52, 226);">
+                        <p>
+                            Color6
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 150);">
+                        <p>
+                            Color7
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 43);">
+                        <p>
+                            Color8
+                        </p>
+                    </div>
+                </div>
+
+                <div class="palette" alt="a color palette">
+                    <div class="color" style="background-color: blueviolet;">
+                        <p>
+                            Color1
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 110, 43);">
+                        <p>
+                            Color2
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(214, 226, 43);">
+                        <p>
+                            Color3
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 226, 49);">
+                        <p>
+                            Color4
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 198, 226);">
+                        <p>
+                            Color5
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 52, 226);">
+                        <p>
+                            Color6
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 150);">
+                        <p>
+                            Color7
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 43);">
+                        <p>
+                            Color8
+                        </p>
+                    </div>
+                </div>
+
+                <div class="palette" alt="a color palette">
+                    <div class="color" style="background-color: blueviolet;">
+                        <p>
+                            Color1
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 110, 43);">
+                        <p>
+                            Color2
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(214, 226, 43);">
+                        <p>
+                            Color3
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 226, 49);">
+                        <p>
+                            Color4
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 198, 226);">
+                        <p>
+                            Color5
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(43, 52, 226);">
+                        <p>
+                            Color6
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 150);">
+                        <p>
+                            Color7
+                        </p>
+                    </div>
+                    <div class="color" style="background-color: rgb(226, 43, 43);">
+                        <p>
+                            Color8
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div> 
+
+    </body>
+
+</html>
