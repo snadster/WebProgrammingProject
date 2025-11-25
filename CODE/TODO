@@ -9,6 +9,7 @@ MVP
 - !! make auto generating code for displaying items for:
   - color palettes
   - projects
+    - not only generate a whole page for one project but also add it to the list of projects (what jonathan did)
   - dev notes
   - archive
     - steal the projects one but filter by archived==True

@@ -11,7 +11,7 @@ class Project(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True) #maybe init=false
     user: Mapped[str] = mapped_column(unique=True) # somehow connect to actual user
-    title: Mapped[str] = mapped_column(init=False)
+    title: Mapped[str] = mapped_column()
     archived: Mapped[bool] = mapped_column()
     date: Mapped[str] = mapped_column(init=False) # maybe make dateType + connect to actual date
     counters: Mapped[int] = mapped_column(init=False) #make own class for these

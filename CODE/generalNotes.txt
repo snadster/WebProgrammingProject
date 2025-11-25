@@ -1,0 +1,30 @@
+loopLet project:
+
+Id: unique identifier
+user: user who made the project
+title: user-given title (default: project[int])
+archived: true or none, whether it's archived (done)
+date: date last edited
+counters: how many counters exist (need to make own class)
+hookSize: size of the hook (str or float)
+yarn: what type of yarn (str)
+pattern: what pattern are you using (str or link?)
+palette: color palette used (palette or str (for name of palette))
+
+
+loopLet counter:
+
+Id: unique identifier
+type: (str)  there's like, three types of counters
+value: actual numerical value kept by counter (int)
+loop: int or none (the nr for when it should loop back to 0)
+
+
+loopLet user:
+
+Id: unique identifier
+username: actual username, unique str
+password: password, str (should be hashed but idk how)
+
+
+loopLet 
