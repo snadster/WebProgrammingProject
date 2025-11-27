@@ -13,8 +13,9 @@ class User(db.Model):
     def login(self):
         pass
 
+    count = 0
+
     def save_user(username, password):
-        count = 0
         User.id = count+1
         count = count+1
         User.username = username

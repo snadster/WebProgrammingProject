@@ -13,3 +13,4 @@ MVP
   - dev notes
   - archive
     - steal the projects one but filter by archived==True
+- a counter has to know which project its in

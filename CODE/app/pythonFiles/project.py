@@ -1,9 +1,12 @@
+from __future__ import annotations #magic, fixes problems (changes how python sees code)
 
-from sqlalchemy.orm import Mapped, mapped_column
-from datetime import date # use this to get todays date
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from datetime import date  # use this to get todays date
 
 from main import db
-import counter
+from counter import Counter
+from palette import Palette
+from project_to_palette import project_to_palette_table
 import user
 
 class Project(db.Model):
@@ -11,14 +14,15 @@ class Project(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True) #maybe init=false
     user: Mapped[str] = mapped_column(unique=True) # somehow connect to actual user
-    title: Mapped[str] = mapped_column()
-    archived: Mapped[bool] = mapped_column()
-    date: Mapped[str] = mapped_column(init=False) # maybe make dateType + connect to actual date
-    counters: Mapped[int] = mapped_column(init=False) #make own class for these
-    hookSize: Mapped[float | None] = mapped_column(init=False)
-    yarn: Mapped[str | None] = mapped_column()
-    pattern: Mapped[str | None] = mapped_column()
-    palette: Mapped[str | None] = mapped_column() # for name of? how do this.
+    date: Mapped[date] = mapped_column()
+    title: Mapped[str] = mapped_column(default="New Project")
+    archived: Mapped[bool] = mapped_column(default=False)
+    counters: Mapped[list[Counter]] = relationship(default_factory=list) #relationship is magic
+    hookSize: Mapped[float | None] = mapped_column(default=None)
+    yarn: Mapped[str | None] = mapped_column(default=None)
+    pattern: Mapped[str | None] = mapped_column(default=None)
+    palette: Mapped[list[Palette]] = relationship(secondary=project_to_palette_table,
+                                                  default_factory=list)
 
     @staticmethod 
     # should maybe return something? 

@@ -156,3 +156,56 @@ body
   background-color: #ecbdc4;
   border-color: #e18aaa;
 } 
+
+
+/************
+  counters
+*************/
+
+.counter
+{
+  background-color: #f5dce0;
+}
+
+.numN
+{
+  background-color: #ecbdc4;
+}
+
+.numN:hover
+{
+    background-color: #ecbdc4d6;
+
+    cursor: pointer;
+}
+
+.numN:active
+{
+    background-color: #ecbdc4b1;
+}
+
+.typeN
+{
+  background-color: #ecbdc4;
+}
+
+.plus,
+.minus
+{
+  background-color: #ecbdc4;
+  border-color: #e18aaa;
+}
+
+.plus:hover,
+.minus:hover
+{
+  background-color: #ecbdc4bb;
+  border-color: #e18aaa;
+}
+
+.plus:active,
+.minus:active
+{
+  background-color: #ecbdc48d;
+  border-color: #e18aaa;
+}

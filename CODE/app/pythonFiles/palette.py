@@ -1,11 +1,13 @@
 from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import ForeignKey
+
 
 from main import db
 
 class Palette(db.Model):
     __tablename__ = "palette"
 
-    id: Mapped[int] = mapped_column()
+    id: Mapped[int] = mapped_column(primary_key=True, init=False)
     name: Mapped[str] = mapped_column() # palette title
     color1: Mapped[str | None] = mapped_column()
     color2: Mapped[str | None] = mapped_column()
@@ -15,6 +17,8 @@ class Palette(db.Model):
     color6: Mapped[str | None] = mapped_column()
     color7: Mapped[str | None] = mapped_column()
     color8: Mapped[str | None] = mapped_column()
+    project: Mapped[int | None] = mapped_column(ForeignKey("project.id"))
+
 
     # might be static might not. only god knows tbh.
     def newPalette():
