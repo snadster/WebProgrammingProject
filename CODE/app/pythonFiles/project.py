@@ -18,6 +18,7 @@ class Project(db.Model):
     title: Mapped[str] = mapped_column(default="New Project")
     archived: Mapped[bool] = mapped_column(default=False)
     counters: Mapped[list[Counter]] = relationship(default_factory=list) #relationship is magic
+    notes: Mapped[str | None] = mapped_column(default=None)
     hookSize: Mapped[float | None] = mapped_column(default=None)
     yarn: Mapped[str | None] = mapped_column(default=None)
     pattern: Mapped[str | None] = mapped_column(default=None)

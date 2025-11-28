@@ -2,15 +2,24 @@ fix phone combatability in sidebar.
 
 
 MVP
-- remove layout possibly (check how hard to do)
-- add note option with built layout (for optimum data scraping)
+- finish setting up database
 - find way to keep navBar always on every page
 - make the acessibility bulletproof 
 - !! make auto generating code for displaying items for:
   - color palettes
+    - in pallets
+    - pull them to info page by name from database and display them using auto gen code
   - projects
     - not only generate a whole page for one project but also add it to the list of projects (what jonathan did)
   - dev notes
+    - from a txt document or the like.
   - archive
     - steal the projects one but filter by archived==True
-- a counter has to know which project its in
+  - counters
+    - a counter has to know which project its in
+
+- make code so counters actually work.
+- scrape data from built in info thing
+  - put that somewhere in a database
+- front page / login
+- profile page

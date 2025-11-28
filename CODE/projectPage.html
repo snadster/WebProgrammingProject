@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- 
+        TODO:
+            - make a deafult page for the main page
+            - make a way to show the correct project when
+              choosing a given project
+        
+        
+        
+        -->
+        <!--------------------------------- 
+        |   fancy pants styling section   |
+        ----------------------------------->
+
+        <!-- stylesheets -->
+         <!-- <link rel="stylesheet" href="{{mainTheme}}">
+         <link rel="stylesheet" href="{{navBarTheme}}"> -->
+         <link rel="stylesheet" href="app/static/CSS/defaults.css">
+         <link rel="stylesheet" href="app/static/CSS/mainPageFall.css">
+         <link rel="stylesheet" href="app/static/CSS/navBarFall.css">
+
+         <!-- <link rel="stylesheet" href="app/static/CSS/mainPageLight.css"> -->
+
+        <!-- themes -->
+         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
+         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
+
+        <!-- javascript import -->
+        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="app/static/JAVASCRIPT/tabs.js"></script>
+
+        <title>
+            Counter Attempt
+        </title>
+
+    </head>
+    
+    <body alt="The main project page, with the project title and details,
+                such as hook size and counters in the tab-navigated main area. 
+                There's a button in the top left to open the navigation bar.">
+        <div id="mySidenav" class="sidenav">
+            <div class="navTop">
+                <button aria-label="edit projects list" type="button">
+                    edit
+                </button>
+                <button aria-label="add project" type="button">
+                    add
+                </button>
+                <button aria-label="Log Out" type="button">
+                    log out
+                </button>
+            </div>
+            <div class="container">
+                <h1 class="blockTop">
+                    Project Overview
+                </h1>
+                <div class="scroll">
+                    <button  aria-label="Close Sidebar"
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()"> &#60; &#60;
+                </button>
+                    <a href="/CODE/projectPage.html">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Project 1
+                            </h3>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 5
+                            </p>
+                            <p>
+                                pictures: 2
+                            </p>
+                            <p>
+                                last edited: 12/12/2012
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Project 2
+                            </h3>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 7
+                            </p>
+                            <p>
+                                pictures: 1
+                            </p>
+                            <p>
+                                last edited: 16/12/2021
+                            </p>
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Project 3
+                            </h3>
+                            <p class="navDesc">
+                                little desc here 
+                            </p>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: 1
+                            </p>
+                            <p>
+                                pictures: 5
+                            </p>
+                            <p>
+                                last edited: 1/1/2001
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-------------
+                Community
+            --------------->
+            <div class="container">
+                <h1 class="blockTop">
+                    Community
+                </h1>
+                <div class="scroll">
+                    <!-- <a 
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()">&#60; &#60;
+                    </a> -->
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Profile
+                            </h3>
+                            <p class="comDesc">
+                                Look at your profile
+                            </p>
+                        </div>
+                    </a>
+                    <a href="/CODE/colorPalettes.html">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Color Pallettes
+                            </h3>
+                            <p class="comDesc">
+                                Look at your saved palettes!
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Archive
+                            </h3>
+                            <p class="comDesc">
+                                Your old projects, nostalgia extreme
+                            </p>
+                        </div>
+                    </a>
+                    <a href="DevNotes.html">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Development Notes
+                            </h3>
+                            <p class="comDesc">
+                                have a bug? report it here!
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Inspiration!
+                            </h3>
+                            <p class="comDesc">
+                                Community board! Interact with other crafters.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Store!
+                            </h3>
+                            <p class="comDesc">
+                                Need an extra spool of yarn? Our linked affiliates can provide!
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+
+<!------------------------------------------------------------------------------- 
+            main page
+--------------------------------------------------------------------------------->
+        <div id="main">
+            <div class="header">
+                <h1>
+                    Project Title
+                </h1>
+                <div class="twoBut">
+                    <button>
+                        add new counter
+                    </button>
+                    <div class="theme">
+                        <a href="/clicked">
+                            <button class="themeBtn">
+                                {{theme}}
+                            </button>
+                        </a>
+                       
+                        <!-- <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>  -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <button class="tablinks active" onclick="openCity(event, 'Home')">Home</button>
+                <button class="tablinks" onclick="openCity(event, 'Counter')">Counter</button>
+            </div>
+
+            <!-- Tab content -->
+            <div id="Home" class="tabcontent" style="display: flex;">
+                <div class="flex">
+                    <form method="#">
+                        <fieldset>
+                            <legend>Information</legend> <!-- title in the box of it -->
+                            <div>
+                                <label for="yarn">
+                                    <b>Yarn</b>
+                                </label>
+                                <input class="space" type="text" placeholder="Yarn type / brand" name="yarn">
+
+                                <label for="needle">
+                                    <b>Size</b>
+                                </label>
+                                <input class="space" type="text" placeholder="hook/needle size" name="needle">
+
+                                <label for="project">
+                                    <b>Project Blurb</b>
+                                </label>
+                                <textarea name="project"
+                                rows="4" cols="90" 
+                                ></textarea>
+
+                                <label for="pattern">
+                                    <b>Pattern</b>
+                                </label>
+                                <input class="space" type="text" placeholder="link to pattern (optional)" name="pattern">
+
+                                <label for="ColorPalette">
+                                    <b>Color Palette </b>
+                                </label>
+                                <select name="ColorPalette" class="space">
+                                    <option value="#">option1</option>
+                                </select>
+                                <div class="displayPalette">
+                                    <div class="fullPalette">
+                                        <h3>
+                                            Palette Title
+                                        </h3>
+                                        <div class="palette" alt="a color palette">
+                                            <div class="color" style="background-color: blueviolet;">
+                                                <p>
+                                                    Color1
+                                                </p>
+                                            </div>
+                                            <div class="color" style="background-color: rgb(226, 110, 43);">
+                                                <p>
+                                                    Color2
+                                                </p>
+                                            </div>
+                                            <div class="color" style="background-color: rgb(214, 226, 43);">
+                                                <p>
+                                                    Color3
+                                                </p>
+                                            </div>
+                                            <div class="color" style="background-color: rgb(43, 226, 49);">
+                                                <p>
+                                                    Color4
+                                                </p>
+                                            </div>
+                                            <div class="color" style="background-color: rgb(43, 198, 226);">
+                                                <p>
+                                                    Color5
+                                                </p>
+                                            </div>
+                                            <div class="color" style="background-color: rgb(43, 52, 226);">
+                                                <p>
+                                                    Color6
+                                                </p>
+                                            </div>
+                                            <div class="color" style="background-color: rgb(226, 43, 150);">
+                                                <p>
+                                                    Color7
+                                                </p>
+                                            </div>
+                                            <div class="color" style="background-color: rgb(226, 43, 43);">
+                                                <p>
+                                                    Color8
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="placeholder" type="submit">
+                                    Save
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <form method="#">
+                        <fieldset>
+                            <legend>Notes To Self</legend> <!-- title in the box of it -->
+                                <textarea class="noteSelf" name="notes"
+                                ></textarea>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <!-- COUNTER TAB -->
+            <div id="Counter" class="tabcontent">
+                <div class="flex">
+                    <div class="counter">
+                        <button class="numN">
+                            <!-- MAX counter is 99999 -->
+                            <p>
+                                99999
+                            </p>
+                        </button>
+                        <div class="typeN">
+                            <p>
+                                #ID 
+                            </p>
+                            <button class="burgerMenu" 
+                                alt="menu for individual counter. Click to edit counter.">	
+                                    &equiv;
+                            </button>
+                        </div>
+                        <button type="button" class="minus">
+                            &#65293;
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div> 
+
+    </body>
+
+</html>

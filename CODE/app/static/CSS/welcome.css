@@ -1,0 +1,137 @@
+
+body 
+{
+    padding: 5px;
+    margin: 0;
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "filler content"
+        "footer footer";
+    grid-template-columns: 1fr 3fr;
+}
+
+/* header */
+.header
+{
+    border: 1px solid red;
+    grid-area: header;
+
+    height: 80px;
+
+    padding-left: 50%;
+}
+
+.header img 
+{
+    height: 40px;
+}
+
+
+/* main area */
+.filler 
+{
+    border: 1px solid rgb(0, 255, 0);
+    grid-area: filler;
+}
+
+.content 
+{
+    border: 1px solid rgb(0, 60, 255);
+    grid-area: content;
+}
+
+/* footer */
+.footer
+{
+    border: 1px solid rgb(251, 255, 0);
+    grid-area: footer;
+
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-areas: 
+        "empty1 product company empty2";
+}
+
+.product
+{
+    grid-area: product;
+    
+}
+
+.company
+{
+    grid-area: company;
+}
+
+.empty1
+{
+    border: 1px so*lid red;
+
+    grid-area: empty1;
+}
+
+.empty2
+{
+    /* border: 1px solid red; */
+    grid-area: empty2;
+}
+
+
+
+
+/*
+    tabs
+*/
+
+ /* Style the tab */
+.tab 
+{
+    border: 1px solid pink;
+    overflow: hidden;
+    margin-top: 10px;
+    min-height: 30px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button 
+{
+  float: left;
+  outline: none;
+  cursor: pointer;
+
+  padding: 14px 16px;
+  transition: 0.3s;
+
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* Create an active/current tablink class */
+.tab button.active 
+{
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+/* Style the tab content */
+.tabcontent 
+{
+    display: none;
+    padding: 6px 12px;
+
+    border: 1px solid green;
+
+    height: 80vh;
+    min-height: 550px;
+
+    overflow-y: scroll;
+} 
+
+.flex
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

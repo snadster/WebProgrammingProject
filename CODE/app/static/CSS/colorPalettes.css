@@ -126,7 +126,7 @@ body
     .newPalette:active
     {
         border: 3px outset pink;
-        background-color: rgb(255, 206, 214);
+        background-color: pink;
     }
 
     .fullPalette

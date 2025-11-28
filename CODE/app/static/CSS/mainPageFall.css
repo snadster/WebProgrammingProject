@@ -24,7 +24,7 @@ body
     border-color: black;
 }
 
-.header button 
+.header button
 {
     border-color: #44221d;
     background-color: #8b6758;
@@ -40,6 +40,26 @@ body
 {
     border: 2px solid #3a1d19;
     background-color: #5f463c;
+}
+
+.logOut
+{
+    border-color: #44221d;
+    background-color: #8b6758;
+    box-shadow: 0px 1px 2px black;
+}
+
+.logOut:hover
+{
+    border-color: #44221d;
+    background-color: #7e5e50;
+    box-shadow: 0px 1px 2px black;
+}
+
+.logOut:active
+{
+    border-color: #44221d;
+    background-color: #674d43;
 }
 
 /*
@@ -174,7 +194,8 @@ textarea,
     border-color: #3a1d19;
 }
 
-input[type="text"] 
+input[type="text"],
+select
 {
     background-color:#592c2658;
     border-color: #3a1d19;

@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <!-- 
-        TODO:
-            - make a deafult page for the main page
-            - make a way to show the correct project when
-              choosing a given project
-        
-        
-        
-        -->
         <!--------------------------------- 
         |   fancy pants styling section   |
         ----------------------------------->
@@ -18,312 +8,94 @@
         <!-- stylesheets -->
          <!-- <link rel="stylesheet" href="{{mainTheme}}">
          <link rel="stylesheet" href="{{navBarTheme}}"> -->
-         <link rel="stylesheet" href="app/static/CSS/defaults.css">
-         <link rel="stylesheet" href="app/static/CSS/mainPageFall.css">
-         <link rel="stylesheet" href="app/static/CSS/navBarFall.css">
-
-         <!-- <link rel="stylesheet" href="app/static/CSS/mainPageLight.css"> -->
-
-        <!-- themes -->
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
-         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
+         <link rel="stylesheet" href="/CODE/app/static/CSS/welcome.css">
 
         <!-- javascript import -->
-        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
         <script src="app/static/JAVASCRIPT/tabs.js"></script>
 
         <title>
-            Counter Attempt
+            LoopLet - Counter app
         </title>
 
     </head>
     
-    <body alt="The main project page, with the project title and details,
-                such as hook size and counters in the tab-navigated main area. 
-                There's a button in the top left to open the navigation bar.">
-        <div id="mySidenav" class="sidenav">
-            <div class="navTop">
-                <button type="button">
-                    edit
-                </button>
-                <button type="button">
-                    add
-                </button>
+    <body alt="The front page. Read our FAQ's and login">
+        <!-- header -->
+        <div class="header">
+            <img src="/CODE/infinitePink.jpg">
+        </div>
+
+        <!-- filler -->
+        <div class="filler">
+            <h1>
+                Affiliate
+            </h1>
+            <p>
+                Here's all our sponsors and partners, 
+                so you can check them out and support them!
+                Don't worry, this app is completely free, and 
+                ofcourse that means you never HAVE to click any 
+                links. If you're worried about our finances, 
+                don't be. That's our job.
+            </p>
+            <div>
+                shops
             </div>
-            <div class="container">
-                <h1 class="blockTop">
-                    Project Overview
-                </h1>
-                <div class="scroll">
-                    <button  aria-label="Close Sidebar"
-                        href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()"> &#60; &#60;
-                </button>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 1
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 5
-                            </p>
-                            <p>
-                                pictures: 2
-                            </p>
-                            <p>
-                                last edited: 12/12/2012
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 2
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 7
-                            </p>
-                            <p>
-                                pictures: 1
-                            </p>
-                            <p>
-                                last edited: 16/12/2021
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 3
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 1
-                            </p>
-                            <p>
-                                pictures: 5
-                            </p>
-                            <p>
-                                last edited: 1/1/2001
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-------------
-                Community
-            --------------->
-            <div class="container">
-                <h1 class="blockTop">
-                    Community
-                </h1>
-                <div class="scroll">
-                    <!-- <a 
-                        href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()">&#60; &#60;
-                    </a> -->
-                    <a href="DevNotes.html">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Development Notes
-                            </h3>
-                            <p class="comDesc">
-                                have a bug? report it here!
-                            </p>
-                        </div>
-                    </a>
-                    <a href="/CODE/colorPalettes.html">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Color Pallettes
-                            </h3>
-                            <p class="comDesc">
-                                Look at your saved palettes!
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Archive
-                            </h3>
-                            <p class="comDesc">
-                                Your old projects, nostalgia extreme
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Coming soon: Inspiration!
-                            </h3>
-                            <p class="comDesc">
-                                Community board! Interact with other crafters.
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Coming soon: Store!
-                            </h3>
-                            <p class="comDesc">
-                                Need an extra spool of yarn? Our linked affiliates can provide!
-                            </p>
-                        </div>
-                    </a>
-                </div>
+            <div>
+                The only pop-up add on the site!
             </div>
         </div>
 
-        <!-- Use any element to open the sidenav -->
-        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
-
-
-        <!-------------- 
-            main page
-        ---------------->
-        <div id="main">
-            <div class="header">
-                <h1>
-                    Project Title
-                </h1>
-                <div class="twoBut">
-                    <button>
-                        add new counter
-                    </button>
-                    <div class="theme">
-                        <a href="/clicked">
-                            <button class="themeBtn">
-                                {{theme}}
-                            </button>
-                        </a>
-                       
-                        <!-- <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>  -->
-                    </div>
-                </div>
-            </div>
-
+        <!-- content -->
+        <div class="content">
             <div class="tab">
-                <button class="tablinks active" onclick="openCity(event, 'Home')">Home</button>
-                <button class="tablinks" onclick="openCity(event, 'Counter')">Counter</button>
+                <button class="tablinks active" onclick="openCity(event, 'Welcome')">Welcome</button>
+                <button class="tablinks" onclick="openCity(event, 'FAQ')">FAQ</button>
+                <button class="tablinks" onclick="openCity(event, 'About')">About Us</button>
             </div>
 
             <!-- Tab content -->
-            <div id="Home" class="tabcontent" style="display: flex;">
-                <div class="flex">
-                    <form method="#">
-                        <fieldset>
-                            <legend>Information</legend> <!-- title in the box of it -->
-                            <div>
-                                <label for="yarn">
-                                    <b>Yarn</b>
-                                </label>
-                                <input class="space" type="text" placeholder="Yarn type / brand" name="yarn">
-
-                                <label for="needle">
-                                    <b>Size</b>
-                                </label>
-                                <input class="space" type="text" placeholder="hook/needle size" name="needle">
-
-                                <label for="project">
-                                    <b>Project Blurb</b>
-                                </label>
-                                <textarea name="project"
-                                rows="4" cols="90" 
-                                ></textarea>
-
-                                <label for="pattern">
-                                    <b>Pattern</b>
-                                </label>
-                                <input class="space" type="text" placeholder="link to pattern (optional)" name="pattern">
-
-                                <label for="ColorPalette">
-                                    <b>Color Palette </b>
-                                </label>
-                                <input class="space" type="text" placeholder="Palette Name" name="ColorPalette">
-
-                                <div class="space">
-                                    {{insert color palette here}}
-                                </div>
-
-                                <button class="placeholder" type="submit">
-                                    Save
-                                </button>
-                            </div>
-                        </fieldset>
-                    </form>
-                    <form method="#">
-                        <fieldset>
-                            <legend>Notes To Self</legend> <!-- title in the box of it -->
-                                <textarea class="noteSelf" name="notes"
-                                ></textarea>
-                        </fieldset>
-                    </form>
-                </div>
+            <div id="Welcome" class="tabcontent" style="display: flex;">
+                welcome
             </div>
 
-            <!-- COUNTER TAB -->
-            <div id="Counter" class="tabcontent">
-                <div class="flex">
-                    <div class="counter">
-                        <button class="numN">
-                            <!-- MAX counter is 99999 -->
-                            <p>
-                                99999
-                            </p>
-                        </button>
-                        <div class="typeN">
-                            <p>
-                                #ID 
-                            </p>
-                            <button class="burgerMenu" 
-                                alt="menu for individual counter. Click to edit counter.">	
-                                    &equiv;
-                            </button>
-                        </div>
-                        <button type="button" class="minus">
-                            &#65293;
-                        </button>
-                    </div>
-                </div>
+            <div id="FAQ" class="tabcontent">
+                faq
             </div>
-            
 
-        </div> 
+            <div id="About" class="tabcontent">
+                about
+            </div>
+        </div>
 
+        <!-- footer -->
+        <div class="footer">
+            <div class="empty1"></div>
+            <div class="product"> 
+                <h3>
+                    Product
+                </h3>
+                <p>
+                    FAQ
+                </p>
+                <p>
+                    What IS LoopLet
+                </p>
+            </div>
+            <div class="company">
+                <h3>
+                    Company
+                </h3>
+                <p>
+                    Who are We?
+                </p>
+                <p>
+                    Finances
+                </p>
+            </div>
+            <div class="empty2"></div>
+        </div>
+        
     </body>
 
 </html>
