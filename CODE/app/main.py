@@ -18,9 +18,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 db = SQLAlchemy(app, model_class=Base)
 
 # Setup the database
-# import project
-# import counter
-
+import pythonFiles.counter
+import pythonFiles.palette
+import pythonFiles.project
+import pythonFiles.project_to_palette
+import pythonFiles.user
 
 # for bug fixing
 with app.app_context():

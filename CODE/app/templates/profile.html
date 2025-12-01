@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <!-- 
-        TODO:
-            - make a deafult page for the main page
-            - make a way to show the correct project when
-              choosing a given project
-        
-        
-        
-        -->
         <!--------------------------------- 
         |   fancy pants styling section   |
         ----------------------------------->
 
         <!-- stylesheets -->
-         <link rel="stylesheet" href="static/CSS/navBarFall.css">
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/defaultMainPage.css"> -->
+         <link rel="stylesheet" href="static/CSS/profile.css">
          <link rel="stylesheet" href="static/CSS/defaultNavBar.css">
-         <link rel="stylesheet" href="static/CSS/devNotes.css">
+         <link rel="stylesheet" href="static/CSS/navBarFall.css">
 
-        <!-- themes -->
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
-         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
 
         <!-- javascript import -->
-        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="app/static/JAVASCRIPT/tabs.js"></script>
+        <script src="/CODE/app/static/JAVASCRIPT/sidenav.js"></script>
 
         <title>
-            Development Notes
+            Your Profile
         </title>
 
     </head>
     
-    <body>
+    <body alt="Your profile page. Look at your registered information. Open sidebar using the top left button">
         <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                <button type="button">
+                <button aria-label="edit projects list" type="button">
                     edit
                 </button>
-                <button type="button">
+                <button aria-label="add project" type="button">
                     add
+                </button>
+                <button aria-label="Log Out" type="button">
+                    log out
                 </button>
             </div>
             <div class="container">
@@ -52,9 +40,9 @@
                 <div class="scroll">
                     <button  aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()">&#60; &#60;
+                        onclick="closeNav()"> &#60; &#60;
                 </button>
-                    <a href="/CODE/frontPage.html">
+                    <a href="{{ url_for('project') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Project 1
@@ -79,57 +67,6 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 2
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 7
-                            </p>
-                            <p>
-                                pictures: 1
-                            </p>
-                            <p>
-                                last edited: 16/12/2021
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 3
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 1
-                            </p>
-                            <p>
-                                pictures: 5
-                            </p>
-                            <p>
-                                last edited: 1/1/2001
-                            </p>
-                        </div>
-                    </a>
                 </div>
             </div>
 
@@ -145,13 +82,13 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()">&#60; &#60;
                     </a> -->
-                    <a href="/app/templates/DevNotes.html">
+                    <a href="/profile">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                Development Notes
+                                Profile
                             </h3>
                             <p class="comDesc">
-                                have a bug? report it here!
+                                Look at your profile
                             </p>
                         </div>
                     </a>
@@ -172,6 +109,16 @@
                             </h3>
                             <p class="comDesc">
                                 Your old projects, nostalgia extreme
+                            </p>
+                        </div>
+                    </a>
+                    <a href="DevNotes.html">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Development Notes
+                            </h3>
+                            <p class="comDesc">
+                                have a bug? report it here!
                             </p>
                         </div>
                     </a>
@@ -202,51 +149,43 @@
         <!-- Use any element to open the sidenav -->
         <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
-
-        <!-------------- 
+<!------------------------------------------------------------------------------- 
             main page
-        ---------------->
+--------------------------------------------------------------------------------->
         <div id="main">
-                        <h1>
-                Development notes
-            </h1>
-            <p class="desc">
-                Here you'll find current updates on the app! If you have 
-                any bugs, please let us know by writing an email detailing 
-                your problem, at loopLet@hotmail.com
-            </p>
-
-            <h2>
-                Future news!
-            </h2>
-            <div class="futureNews">
-                <div class="news">
-                    <p>
-                        We're working on the "Inspiration" page!
-                    </p>
-                    <p>
-                        as of [date here]
-                    </p>
-                </div>
+            <div class="letter">
+                <h1 class="handHeading">
+                    Welcome, {{Username}}!
+                </h1>
+                <p class="handWritten">
+                    To start your crafting journey, open the navigation menu on the left! <br>
+                    On this page you'll find any information we have registered from you. Right 
+                    now this page isn't that noteworthy, but we're working on bringing you a 
+                    more personalized experience, to allow you to create a profile that speaks to 
+                    who you are, and lets you share your projects and ideas with the world!
+                    <br>
+                    Hopefully, you'll like this first prototype enough that you'll be willing to stick 
+                    around for when we get the rest up and running!
+                    <br>
+                    All the best,<br>
+                    Your dedicated LoopLet team  &#10084;
+                </p>
             </div>
-
-            <h2>
-                Bug fixes
-            </h2>
-            <p class="desc">
-                Every bug report will be fixed and the fix listed here.
-            </p>
-            <div class="bugFixes">
-                <div class="bug">
-                    <p>
-                        we fixed the bug!
+            <div class="userInfo">
+                <p>
+                    Name: {{Username}} <br> <br>
+                    Email: {{mail}} 
+                    <p class="pswd">
+                        Change Password?
+                    </p> 
+                    <p class="changePswd">
+                        currently un-implemented
                     </p>
-                    <p>
-                        as of [date here]
-                    </p>
-                </div>
+                    
+                </p>
             </div>
-        </div> 
+            
+        </div>
 
     </body>
 

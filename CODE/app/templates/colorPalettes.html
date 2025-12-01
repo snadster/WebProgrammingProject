@@ -16,17 +16,15 @@
         ----------------------------------->
 
         <!-- stylesheets -->
-         <link rel="stylesheet" href="app/static/CSS/navBarFall.css">
-         <link rel="stylesheet" href="app/static/CSS/defaults.css">
-         <link rel="stylesheet" href="app/static/CSS/colorPalettes.css">
-
-        <!-- themes -->
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
-         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
+         <link rel="stylesheet" href="static/CSS/navBarFall.css"> <!-- replace with {{template}} when integrated with flask -->
+         <link rel="stylesheet" href="static/CSS/defaultMainPage.css">
+         <link rel="stylesheet" href="static/CSS/defaultNavBar.css">
+         <link rel="stylesheet" href="static/CSS/colorPalettes.css">
 
         <!-- javascript import -->
         <script src="app/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="app/static/JAVASCRIPT/tabs.js"></script>
+        <script src="app/static/JAVASCRIPT/colorPalettes.js"></script>
+
 
         <title>
             Color Palettes
@@ -54,7 +52,7 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()">&#60; &#60;
                 </button>
-                    <a href="/CODE/frontPage.html">
+                    <a href="/CODE/projectPage.html">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Project 1
@@ -210,8 +208,13 @@
             <h1>
                 Color Palettes!
             </h1>
-
+            <div class="newPalette">
+                    <h3>
+                        New color palette +
+                    </h3>
+            </div>
             <div class="contain">
+                
                 <!-- here we could use {{}} to get the name of the color displayed in it -->
                 <!-- this was so pretty until i had to add <p> inside the divs. sorry-->
                 <div class="fullPalette">
@@ -219,43 +222,52 @@
                         Palette Title
                     </h3>
                     <div class="palette" alt="a color palette">
-                        <div class="color" style="background-color: blueviolet;">
-                            <p>
-                                Color1
+                        <!-- <div class="color">
+                            <input
+                                type="color"
+                                id="background"
+                                value="oklab(50% 0.1 0.1 / 0.5)"
+                                colorspace="display-p3"
+                                alpha />
+                            <label for="background"></label>
+                        </div> -->
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color" >
+                                Color code here
                             </p>
                         </div>
-                        <div class="color" style="background-color: rgb(226, 110, 43);">
-                            <p>
-                                Color2
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color" >
+                                Color code here
                             </p>
                         </div>
-                        <div class="color" style="background-color: rgb(214, 226, 43);">
-                            <p>
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color">
                                 Color3
                             </p>
                         </div>
-                        <div class="color" style="background-color: rgb(43, 226, 49);">
-                            <p>
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color">
                                 Color4
                             </p>
                         </div>
-                        <div class="color" style="background-color: rgb(43, 198, 226);">
-                            <p>
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color">
                                 Color5
                             </p>
                         </div>
-                        <div class="color" style="background-color: rgb(43, 52, 226);">
-                            <p>
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color">
                                 Color6
                             </p>
                         </div>
-                        <div class="color" style="background-color: rgb(226, 43, 150);">
-                            <p>
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color">
                                 Color7
                             </p>
                         </div>
-                        <div class="color" style="background-color: rgb(226, 43, 43);">
-                            <p>
+                        <div onclick="color()" id="colorDiv" class="color">
+                            <p contenteditable id="color">
                                 Color8
                             </p>
                         </div>

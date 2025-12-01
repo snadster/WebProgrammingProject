@@ -8,10 +8,10 @@
         <!-- stylesheets -->
          <!-- <link rel="stylesheet" href="{{mainTheme}}">
          <link rel="stylesheet" href="{{navBarTheme}}"> -->
-         <link rel="stylesheet" href="/static/CSS/welcome.css">
+         <link rel="stylesheet" href="/CODE/app/static/CSS/welcome.css">
 
         <!-- javascript import -->
-        <script src="/static/JAVASCRIPT/tabs.js"></script>
+        <script src="app/static/JAVASCRIPT/tabs.js"></script>
 
         <title>
             LoopLet - Counter app
@@ -34,7 +34,7 @@
             </button>
 
             <div id="id01" class="modal">
-                <form class="modal-content animate" action="/profile" method="post">
+                <form class="modal-content animate" action="/action_page.php" method="post">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <div class="container">
                         <label for="uname"><b>
@@ -72,7 +72,7 @@
             </button>
 
             <div id="id02" class="modal2">
-                <form class="modal2-content animate" action="/register" method="post">
+                <form class="modal2-content animate" action="/action_page.php" method="post">
                     <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <div class="container">
                         <label for="mail"><b>
@@ -80,19 +80,23 @@
                         </label>
                         <input type="text" placeholder="Enter Email" name="mail" required>
 
-                        <label for="username"><b>
+                        <label for="uname"><b>
                             Username</b>
                         </label>
-                        <input type="text" placeholder="Enter Username" name="username" required>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
 
-                        <label for="password">
+                        <label for="psw">
                             <b>Password</b>
                         </label>
-                        <input type="password" placeholder="Enter Password" name="password" required>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
                             
                         <button class="butt" type="submit">
                             Register
                         </button>
+                        <label class="remember">
+                            <input type="checkbox" checked="checked" name="remember"> 
+                            Remember me
+                        </label>
                     </div>
                 </form>
             </div>

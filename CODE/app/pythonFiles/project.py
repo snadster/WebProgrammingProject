@@ -4,10 +4,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date  # use this to get todays date
 
 from main import db
-from counter import Counter
-from palette import Palette
-from project_to_palette import project_to_palette_table
-import user
+from pythonFiles.counter import Counter
+from pythonFiles.palette import Palette
+from pythonFiles.project_to_palette import project_to_palette_table
+import pythonFiles.user
 
 class Project(db.Model):
     __tablename__ = "project"

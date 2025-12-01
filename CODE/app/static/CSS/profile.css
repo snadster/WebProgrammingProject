@@ -1,0 +1,112 @@
+@font-face 
+{
+    font-family: myFont;
+    src: url(/CODE/app/Wonkyneocity-Regular.otf);
+}
+
+body 
+{
+    background-color: rgba(0, 0, 128, 0.313);
+    overflow: hidden;
+}
+
+#main 
+{
+    /* border: 1px solid rgb(0, 255, 17); */
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 100vw;
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    padding-top: 1%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    padding-right: 2%;
+}
+
+.letter
+{
+    /* border: 1px solid red; */
+    position: relative;
+
+    width: 50%;
+    margin-top: 20px;
+    margin-left: 30px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    left: 30%;
+
+    height: 430px;
+    width: 300px;
+
+    rotate: -10deg;
+
+    background-image: url(/CODE/app/IMG/tornPaper.png);
+    background-position: 0;
+    background-size: cover;
+}
+
+.handHeading
+{
+    font-family: myFont;
+    padding-left: 30px;
+    font-size: 19px;
+}
+
+.handWritten
+{
+    /* border: 1px solid yellow; */
+    font-family: myFont;
+    font-size: 19px;
+
+    margin-left: 30px;
+
+    height: 370px;
+    width: 260px;
+
+    overflow: scroll;
+}
+
+.userInfo
+{
+    border: 3px outset rgba(0, 0, 0, 0.795);
+    background-color: rgba(0, 0, 0, 0.121);
+
+    width: 170px;
+    height: 200px;
+    position: relative;
+
+    padding-left: 5px;
+
+    overflow: scroll;
+
+    top: -40%;
+    left: 10px;
+}
+
+.userInfo p
+{
+    font-weight: 800;
+}
+
+.changePswd
+{
+    position: relative;
+    display: none;
+
+    border: 2px inset rgb(255, 174, 0);
+    background-color: rgba(255, 153, 0, 0.763);
+}
+
+.pswd:hover + .changePswd
+{
+    display: inline-block;
+
+    top: -15px;
+    left: 20px;
+    width: 100px;
+}

@@ -5,20 +5,11 @@ from main import db
 class User(db.Model):
     __tablename__ = "user"
 
-    id: Mapped[int] = mapped_column(primary_key=True) #maybe init=false
+    id: Mapped[int] = mapped_column(primary_key=True, init=False) #maybe init=false
     username: Mapped[str] = mapped_column(unique=True)
     password: Mapped[str] = mapped_column()
+    mail: Mapped[str] = mapped_column()
 
-    
-    def login(self):
-        pass
-
-    count = 0
-
-    def save_user(username, password):
-        User.id = count+1
-        count = count+1
-        User.username = username
-        User.password = password
-
-    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

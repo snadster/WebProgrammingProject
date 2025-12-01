@@ -1,10 +1,35 @@
 from datetime import datetime, timedelta
 
-from flask import Flask, make_response, redirect, render_template, request
+from flask import make_response, redirect, render_template, request, url_for
 
-app = Flask(__name__)
+from main import app
+from pythonFiles.user import User
 
 @app.route("/")
+def frontpage():
+    return render_template("frontPage.html")
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html", 
+                           Username = "User.username",
+                           mail = "User.mail",)
+
+@app.route("/project")
+def project():
+    return render_template("projectPage.html")
+
+
+@app.route("/register", methods=["POST"])
+def register():
+    username = request.form["username"]
+    password = request.form["password"]
+    email = request.form["mail"]
+    user = User(username, password, email)
+    user.save()
+    return redirect(url_for("profile"))
+
+
 def theme():
     theme = request.cookies.get("theme", "fall")
     if theme == "light":
