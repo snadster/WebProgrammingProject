@@ -7,9 +7,6 @@
             - make a deafult page for the main page
             - make a way to show the correct project when
               choosing a given project
-        
-        
-        
         -->
         <!--------------------------------- 
         |   fancy pants styling section   |
@@ -20,21 +17,13 @@
          <link rel="stylesheet" href="{{navBarTheme}}">
          <link rel="stylesheet" href="static/CSS/defaultMainPage.css">
          <link rel="stylesheet" href="static/CSS/defaultNavBar.css">
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageFall.css"> -->
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarFall.css"> -->
-
-         <!-- <link rel="stylesheet" href="app/static/CSS/mainPageLight.css"> -->
-
-        <!-- themes -->
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
-         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
 
         <!-- javascript import -->
-        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="app/static/JAVASCRIPT/tabs.js"></script>
+        <script src="/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="/static/JAVASCRIPT/tabs.js"></script>
 
         <title>
-            Counter Attempt
+            {{projectTitle}} - {{projectID}}
         </title>
 
     </head>
@@ -50,8 +39,8 @@
                 <button aria-label="add project" type="button">
                     add
                 </button>
-                <button aria-label="Log Out" type="button">
-                    log out
+                <button aria-label="Log Out" type="button" value="log out" onclick="{{ url_for('frontpage') }}">
+                    
                 </button>
             </div>
             <div class="container">
@@ -63,7 +52,7 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()"> &#60; &#60;
                 </button>
-                    <a href="/CODE/projectPage.html">
+                    <a href="{{ url_for('project') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Project 1
@@ -88,57 +77,6 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 2
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 7
-                            </p>
-                            <p>
-                                pictures: 1
-                            </p>
-                            <p>
-                                last edited: 16/12/2021
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 3
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 1
-                            </p>
-                            <p>
-                                pictures: 5
-                            </p>
-                            <p>
-                                last edited: 1/1/2001
-                            </p>
-                        </div>
-                    </a>
                 </div>
             </div>
 
@@ -154,7 +92,7 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()">&#60; &#60;
                     </a> -->
-                    <a href="#">
+                    <a href="{{ url_for('profile') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Profile
@@ -164,7 +102,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="/CODE/colorPalettes.html">
+                    <a href="{{ url_for('palettes') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Color Pallettes
@@ -234,17 +172,11 @@
                         add new counter
                     </button>
                     <div class="theme">
-                        <a href="/clicked">
+                        <a href="{{ url_for('theme2') }}">
                             <button class="themeBtn">
                                 {{theme}}
                             </button>
                         </a>
-                       
-                        <!-- <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>  -->
                     </div>
                 </div>
             </div>

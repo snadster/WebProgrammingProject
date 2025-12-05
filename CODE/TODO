@@ -3,8 +3,12 @@ fix phone combatability in sidebar.
 
 MVP
 - finish setting up database
+
 - find way to keep navBar always on every page
+  - currenlty just copy-pasting
+
 - make the acessibility bulletproof 
+
 - !! make auto generating code for displaying items for:
   - color palettes
     - in pallets
@@ -19,7 +23,9 @@ MVP
     - a counter has to know which project its in
 
 - make code so counters actually work.
+
 - scrape data from built in info thing
   - put that somewhere in a database
-- front page / login
-- profile page
+
+BUGS
+- User.username somehow doesn't access the db and doesn't get the username.

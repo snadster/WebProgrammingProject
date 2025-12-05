@@ -16,14 +16,14 @@
         ----------------------------------->
 
         <!-- stylesheets -->
-         <link rel="stylesheet" href="static/CSS/navBarFall.css"> <!-- replace with {{template}} when integrated with flask -->
-         <link rel="stylesheet" href="static/CSS/defaultMainPage.css">
-         <link rel="stylesheet" href="static/CSS/defaultNavBar.css">
-         <link rel="stylesheet" href="static/CSS/colorPalettes.css">
+         <link rel="stylesheet" href="/static/CSS/navBarFall.css"> <!-- replace with {{template}} when integrated with flask -->
+         <link rel="stylesheet" href="/static/CSS/defaultMainPage.css">
+         <link rel="stylesheet" href="/static/CSS/defaultNavBar.css">
+         <link rel="stylesheet" href="/static/CSS/colorPalettes.css">
 
         <!-- javascript import -->
-        <script src="app/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="app/static/JAVASCRIPT/colorPalettes.js"></script>
+        <script src="/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="/static/JAVASCRIPT/colorPalettes.js"></script>
 
 
         <title>
@@ -52,7 +52,7 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()">&#60; &#60;
                 </button>
-                    <a href="/CODE/projectPage.html">
+                    <a href="{{ url_for('project') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Project 1
@@ -74,57 +74,6 @@
                             </p>
                             <p>
                                 last edited: 12/12/2012
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 2
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 7
-                            </p>
-                            <p>
-                                pictures: 1
-                            </p>
-                            <p>
-                                last edited: 16/12/2021
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 3
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
-
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 1
-                            </p>
-                            <p>
-                                pictures: 5
-                            </p>
-                            <p>
-                                last edited: 1/1/2001
                             </p>
                         </div>
                     </a>
@@ -208,268 +157,59 @@
             <h1>
                 Color Palettes!
             </h1>
-            <div class="newPalette">
-                    <h3>
-                        New color palette +
-                    </h3>
-            </div>
+            <a class="newPalette" href="{{ url_for('newPalette') }}">
+                <h3>
+                    New color palette +
+                </h3>
+            </a>
             <div class="contain">
                 
-                <!-- here we could use {{}} to get the name of the color displayed in it -->
-                <!-- this was so pretty until i had to add <p> inside the divs. sorry-->
-                <div class="fullPalette">
-                    <h3>
-                        Palette Title
-                    </h3>
-                    <div class="palette" alt="a color palette">
-                        <!-- <div class="color">
-                            <input
-                                type="color"
-                                id="background"
-                                value="oklab(50% 0.1 0.1 / 0.5)"
-                                colorspace="display-p3"
-                                alpha />
-                            <label for="background"></label>
-                        </div> -->
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color" >
-                                Color code here
-                            </p>
-                        </div>
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color" >
-                                Color code here
-                            </p>
-                        </div>
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color">
-                                Color3
-                            </p>
-                        </div>
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color">
-                                Color4
-                            </p>
-                        </div>
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color">
-                                Color5
-                            </p>
-                        </div>
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color">
-                                Color6
-                            </p>
-                        </div>
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color">
-                                Color7
-                            </p>
-                        </div>
-                        <div onclick="color()" id="colorDiv" class="color">
-                            <p contenteditable id="color">
-                                Color8
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
+                <!-- palettes, I apologize for the state of the code.
+                     it likely does not work on account of the 
+                     database not working. alas, we go on
 
+                     hopefully should generate every palette
+                     saved in the database, and run the given
+                     js to make the background color the 
+                     one saved in the attribute. Excited 
+                     to see if this ectually works. I doubt it.
+                -->
+                {% for palettes in palette %}
                 <div class="fullPalette">
                     <h3>
-                        Palette Title
+                        {{ palette.name }}
                     </h3>
                     <div class="palette" alt="a color palette">
-                        <div class="color" style="background-color: blueviolet;">
-                            <p>
-                                Color1
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color1 }}
                         </div>
-                        <div class="color" style="background-color: rgb(226, 110, 43);">
-                            <p>
-                                Color2
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color2 }}
                         </div>
-                        <div class="color" style="background-color: rgb(214, 226, 43);">
-                            <p>
-                                Color3
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color3 }}
                         </div>
-                        <div class="color" style="background-color: rgb(43, 226, 49);">
-                            <p>
-                                Color4
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color4 }}
                         </div>
-                        <div class="color" style="background-color: rgb(43, 198, 226);">
-                            <p>
-                                Color5
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color5 }}
                         </div>
-                        <div class="color" style="background-color: rgb(43, 52, 226);">
-                            <p>
-                                Color6
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color6 }}
                         </div>
-                        <div class="color" style="background-color: rgb(226, 43, 150);">
-                            <p>
-                                Color7
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color7 }}
                         </div>
-                        <div class="color" style="background-color: rgb(226, 43, 43);">
-                            <p>
-                                Color8
-                            </p>
+                        <div id="color" class="color">
+                            {{ palette.color8 }}
                         </div>
                     </div>
                 </div>
-
-                <div class="fullPalette">
-                    <h3>
-                        Palette Title
-                    </h3>
-                    <div class="palette" alt="a color palette">
-                        <div class="color" style="background-color: blueviolet;">
-                            <p>
-                                Color1
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 110, 43);">
-                            <p>
-                                Color2
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(214, 226, 43);">
-                            <p>
-                                Color3
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 226, 49);">
-                            <p>
-                                Color4
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 198, 226);">
-                            <p>
-                                Color5
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 52, 226);">
-                            <p>
-                                Color6
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 43, 150);">
-                            <p>
-                                Color7
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 43, 43);">
-                            <p>
-                                Color8
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="fullPalette">
-                    <h3>
-                        Palette Title
-                    </h3>
-                    <div class="palette" alt="a color palette">
-                        <div class="color" style="background-color: blueviolet;">
-                            <p>
-                                Color1
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 110, 43);">
-                            <p>
-                                Color2
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(214, 226, 43);">
-                            <p>
-                                Color3
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 226, 49);">
-                            <p>
-                                Color4
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 198, 226);">
-                            <p>
-                                Color5
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 52, 226);">
-                            <p>
-                                Color6
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 43, 150);">
-                            <p>
-                                Color7
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 43, 43);">
-                            <p>
-                                Color8
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="fullPalette">
-                    <h3>
-                        Palette Title
-                    </h3>
-                    <div class="palette" alt="a color palette">
-                        <div class="color" style="background-color: blueviolet;">
-                            <p>
-                                Color1
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 110, 43);">
-                            <p>
-                                Color2
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(214, 226, 43);">
-                            <p>
-                                Color3
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 226, 49);">
-                            <p>
-                                Color4
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 198, 226);">
-                            <p>
-                                Color5
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(43, 52, 226);">
-                            <p>
-                                Color6
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 43, 150);">
-                            <p>
-                                Color7
-                            </p>
-                        </div>
-                        <div class="color" style="background-color: rgb(226, 43, 43);">
-                            <p>
-                                Color8
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
         </div> 
 
     </body>
-
 </html>

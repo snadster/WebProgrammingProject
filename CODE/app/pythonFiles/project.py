@@ -12,12 +12,12 @@ import pythonFiles.user
 class Project(db.Model):
     __tablename__ = "project"
 
-    id: Mapped[int] = mapped_column(primary_key=True) #maybe init=false
+    id: Mapped[int] = mapped_column(primary_key=True, init=False) #maybe init=false
     user: Mapped[str] = mapped_column(unique=True) # somehow connect to actual user
     date: Mapped[date] = mapped_column()
     title: Mapped[str] = mapped_column(default="New Project")
     archived: Mapped[bool] = mapped_column(default=False)
-    counters: Mapped[list[Counter]] = relationship(default_factory=list) #relationship is magic
+    counters: Mapped[list[Counter]] = relationship(default_factory=list) #relationship is magic, this one connects a table of counters to a project
     notes: Mapped[str | None] = mapped_column(default=None)
     hookSize: Mapped[float | None] = mapped_column(default=None)
     yarn: Mapped[str | None] = mapped_column(default=None)
@@ -29,6 +29,8 @@ class Project(db.Model):
     # should maybe return something? 
     # is for creating a new project in the database
     def newProject(user):
+        # this is plain wrong but idk how to fix.
+        # FIX
         counter = 0
         Project.id = counter+1
         count = count+1
@@ -52,5 +54,4 @@ class Project(db.Model):
 
 #########################
 ## things we maybe need:
-## - what do we do with the rest of it I'm dumb 
 ## - addCounter() here or elsewhere? currently in counter

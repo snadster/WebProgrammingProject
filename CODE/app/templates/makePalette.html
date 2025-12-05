@@ -16,19 +16,7 @@
         ----------------------------------->
 
         <!-- stylesheets -->
-         <!-- <link rel="stylesheet" href="app/static/CSS/navBarFall.css"> -->
-         <!-- <link rel="stylesheet" href="app/static/CSS/defaults.css"> -->
          <link rel="stylesheet" href="static/CSS/colorPalettes.css">
-
-        <!-- themes -->
-         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
-         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
-
-        <!-- javascript import -->
-        <!-- <script src="app/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="app/static/JAVASCRIPT/tabs.js"></script> -->
-        <!-- <script src="app/static/JAVASCRIPT/colorPalettes.js"></script> -->
-
 
         <title>
             Color Palette Maker
@@ -36,8 +24,9 @@
 
     </head>
     
-    <body alt="a geometric circle based color splash background. There's a button 
-                at the top left to open the side navigation bar.">
+    <body alt="a geometric circle based color splash background. 
+                Here you can make your own color palette. There's
+                a palette mock-up on the screen.">
         <h1>
             Color Palette Maker
         </h1>
@@ -53,13 +42,16 @@
             type it in manually in the lower right corner of the 
             pop-up
         </p>
+        <!-- method=post so we throw the data somewhere. 
+             still need to grab the data and put it in a databae -->
         <form method="post">
             <div class="fullPalette move">
-                <h3 class="move" contenteditable>
+                <h3 id="name" class="move" contenteditable>
                     Add Title Here
                 </h3>
                 <div class="palette" alt="a color palette">
-                    <div class="color">
+                    <div id="color1" class="color">
+                        <!-- input is kind of HTML magic from forms -->
                         <input
                             type="color"
                             id="background"
@@ -69,7 +61,7 @@
                         <label for="background"></label>
                     </div>
 
-                    <div class="color">
+                    <div id="color2" class="color">
                         <input
                             type="color"
                             id="background"
@@ -79,7 +71,7 @@
                         <label for="background"></label>
                     </div>
 
-                    <div class="color">
+                    <div id="color3" class="color">
                         <input
                             type="color"
                             id="background"
@@ -89,7 +81,7 @@
                         <label for="background"></label>
                     </div>
 
-                    <div class="color">
+                    <div id="color4" class="color">
                         <input
                             type="color"
                             id="background"
@@ -99,7 +91,7 @@
                         <label for="background"></label>
                     </div>
 
-                    <div class="color">
+                    <div id="color5" class="color">
                         <input
                             type="color"
                             id="background"
@@ -109,7 +101,7 @@
                         <label for="background"></label>
                     </div>
 
-                    <div class="color">
+                    <div id="color6" class="color">
                         <input
                             type="color"
                             id="background"
@@ -119,7 +111,7 @@
                         <label for="background"></label>
                     </div>
 
-                    <div class="color">
+                    <div id="color7" class="color">
                         <input
                             type="color"
                             id="background"
@@ -129,7 +121,7 @@
                         <label for="background"></label>
                     </div>
 
-                    <div class="color">
+                    <div id="color8" class="color">
                         <input
                             type="color"
                             id="background"
@@ -144,7 +136,7 @@
             <button class="save" type="submit">
                 Save Palette
             </button>
-            <a>
+            <a href="{{ url_for('palettes') }}">
                 <button class="save" type="button">
                     go back
                 </button>

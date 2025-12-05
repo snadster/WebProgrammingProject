@@ -9,7 +9,7 @@ class Palette(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True, init=False)
     name: Mapped[str] = mapped_column() # palette title
-    color1: Mapped[str | None] = mapped_column()
+    color1: Mapped[str | None] = mapped_column() #hopefully a hex or rgb but idk yet
     color2: Mapped[str | None] = mapped_column()
     color3: Mapped[str | None] = mapped_column()
     color4: Mapped[str | None] = mapped_column()

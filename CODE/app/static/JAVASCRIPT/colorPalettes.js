@@ -1,9 +1,6 @@
 function color()
 {
     // FUNCTIONAL!!!!
-    //.... now only functional for 1 color. wtf.
-    // now need to save in database.
-    // need to send the ID (here color1) as slot and the color as color
     
     var color = document.getElementById("color").innerText
     document.getElementById("colorDiv").style.backgroundColor = color

@@ -29,5 +29,5 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
-# Import the views
-# import app.py # for some reaon can't be resolved
+# Import the views, except its mad at me when i do so
+# import app.py 

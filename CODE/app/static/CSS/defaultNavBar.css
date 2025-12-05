@@ -47,11 +47,6 @@ html, body
     transition: 0.3s;
 }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover 
-{   /*changed from color to background color*/
-}
-
 .sidenav a:active
 {
     border-bottom-width: 2px;
@@ -166,6 +161,13 @@ html, body
 /*
     individual blocks
 */
+
+.space
+{
+    padding-left: 10;
+    padding-top: 5;
+    padding-bottom: 5;
+}
 
 .blockTop
 {

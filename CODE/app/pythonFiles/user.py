@@ -2,6 +2,8 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from main import db
 
+# this should by an large work.
+
 class User(db.Model):
     __tablename__ = "user"
 

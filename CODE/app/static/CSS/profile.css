@@ -1,7 +1,7 @@
 @font-face 
 {
     font-family: myFont;
-    src: url(/CODE/app/Wonkyneocity-Regular.otf);
+    src: url(Wonkyneocity-Regular.otf);
 }
 
 body 
@@ -45,7 +45,7 @@ body
 
     rotate: -10deg;
 
-    background-image: url(/CODE/app/IMG/tornPaper.png);
+    background-image: url(/static/IMG/tornPaper.png);
     background-position: 0;
     background-size: cover;
 }
