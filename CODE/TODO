@@ -15,8 +15,6 @@ MVP
     - pull them to info page by name from database and display them using auto gen code
   - projects
     - not only generate a whole page for one project but also add it to the list of projects (what jonathan did)
-  - dev notes
-    - from a txt document or the like.
   - archive
     - steal the projects one but filter by archived==True
   - counters
@@ -27,5 +25,16 @@ MVP
 - scrape data from built in info thing
   - put that somewhere in a database
 
+- pass on the palette (and the projects) when rendering template
+  - so the autogen code can work
+
+- currently ignoring how to render a palette on a projects page 
+  bc I can't be bothered
+
 BUGS
 - User.username somehow doesn't access the db and doesn't get the username.
+- text in sidebar is pink on dev notes page
+
+
+SCRAPPED
+- we scrapped devNotes

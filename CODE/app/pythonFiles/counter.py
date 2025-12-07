@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
-from main import db
+from pythonFiles.database import db
 
 class Counter(db.Model):
     __tablename__ = "counter"

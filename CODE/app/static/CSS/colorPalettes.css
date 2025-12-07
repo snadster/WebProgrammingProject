@@ -5,6 +5,13 @@ that could've done this.
 I cannot even. Literally.
 */
 
+#main div 
+{
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 5px;
+}
 
 body 
 {
@@ -49,33 +56,35 @@ body
     border: 2px outset rgb(194, 147, 155);
 
     background-color: aliceblue;
-}
 
-.fullPalette h3 
-{
-    /* border: 1px solid red; */
-    position: relative;
-    width: fit-content;
-    margin: 0;
-
-    left: 40%;
-    text-decoration: underline;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
 }
 
 .palette
 {
-    display: flex;
-    justify-content: space-around;
+    /* display: flex;
+    justify-content: space-around; */
     padding: 5px;
 
     /* background-color: aliceblue; */
 
     height: 100px;
+    min-width: 90px;
+
+    font-size: 10px;
 }
 
 .color
 {
     width: 100%;
+}
+
+h3 
+{
+    left: 0;
 }
 
 /* color palette maker */
@@ -121,6 +130,14 @@ body
     text-decoration: underline;
 }
 
+.colo 
+{
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid black; */
+    /* padding: 8px; */
+}
+
 
 /********************
     MEDIA ASPECT 
@@ -130,20 +147,33 @@ body
 {
     .contain
     {
+        border-width: 3px;
+        border-style: inset;
+
         display: grid;
         grid-template-columns: 50% 50%;
 
+        height: 80%;
         width: 99%;
+        overflow: scroll;
     }
 
     .fullPalette
     {
+        border-width: 2px;
+        border-style: outset;
+
         width: 99%;
         max-height: 150px;
     }
 
     .palette
     {
+        display: flex;
+        justify-content: space-around;
+        padding: 5px;
+
+        height: 100px;
         width: 95%;
     }
 
@@ -158,6 +188,17 @@ body
     {
         width: 50%;
     }
+
+    .colo 
+    {
+        width: 100%;
+        height: 100%;
+        /* border: 2px solid black; */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
 /* small screen */
@@ -170,13 +211,40 @@ body
 
     .fullPalette
     {
-        width: 100%;
+        border-width: 2px;
+        border-style: outset;
+        box-sizing: border-box;
+
+        width: 95%;
+    }
+
+    .fullPalette h3 
+    {
+        /* border: 1px solid red; */
+        position: relative;
+        width: fit-content;
+        margin: 0;
+
+        text-decoration: underline;
+    }
+
+    .palette
+    {
+        display: flex;
+        justify-content: space-around;
+        padding: 5px;
+
+        height: 100px;
+        width: 90%;
     }
 
     .color
     {
         width: 100%;
         height: 100%;
+
+        box-sizing: border-box;
+        border: 2px solid black;
     }
 
     /*color palette maker*/
@@ -184,4 +252,13 @@ body
     {
         width: 100%;
     }
+
+    .colo 
+    {
+        width: 100%;
+        height: 100%;
+        /* border: 2px solid black; */
+        /* padding: 8px; */
+    }
 }
+

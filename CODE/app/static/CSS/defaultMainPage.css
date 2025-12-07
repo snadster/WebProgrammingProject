@@ -7,17 +7,6 @@ body
     padding: 0;
 }
 
-@media screen and (max-height: 450px) 
-{
-}
-@media screen and (max-width: 300px)
-{
-    /*
-        for some reason won't work, 
-        i suppose thats par for the course.
-        anywho. clocking out for tonight
-    */
-}
 
 #main 
 {
@@ -483,7 +472,6 @@ input[type="text"]
         width: fit-content;
         margin: 0;
 
-        left: 40%;
         text-decoration: underline;
     }
 
@@ -523,7 +511,6 @@ input[type="text"]
         width: fit-content;
         margin: 0;
 
-        left: 40%;
         text-decoration: underline;
     }
     

@@ -31,17 +31,28 @@
     <body alt="The main project page, with the project title and details,
                 such as hook size and counters in the tab-navigated main area. 
                 There's a button in the top left to open the navigation bar.">
-        <div id="mySidenav" class="sidenav">
+         <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                <button aria-label="edit projects list" type="button">
+                <!-- <button aria-label="edit projects list" type="button">
                     edit
-                </button>
-                <button aria-label="add project" type="button">
+                </button> -->
+                <!-- <button onclick=" {{ url_for('project') }} " aria-label="add project" type="button">
                     add
-                </button>
-                <button aria-label="Log Out" type="button" value="log out" onclick="{{ url_for('frontpage') }}">
-                    
-                </button>
+                </button> -->
+                <!-- NOTE!
+                    button in link is probably not the right way. 
+                    however, I couldn't get it to work with onclick, so.
+                    styling directly to override other styles
+                -->
+                <a 
+                style="background-color: rgba(0, 0, 0, 0.001);
+                       padding: 0;" 
+                href="{{ url_for('logout') }}">
+                    <button aria-label="Log Out" type="button">
+                        log out
+                    </button>
+                </a>
+                
             </div>
             <div class="container">
                 <h1 class="blockTop">
@@ -52,33 +63,37 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()"> &#60; &#60;
                 </button>
-                    <a href="{{ url_for('project') }}">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 1
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
 
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 5
-                            </p>
-                            <p>
-                                pictures: 2
-                            </p>
-                            <p>
-                                last edited: 12/12/2012
-                            </p>
-                        </div>
-                    </a>
-                </div>
+                <!-- for some reason no padding on this
+                     fix later i suppose -->
+                <a class="space" href="{{ url_for('newProject') }}">
+                    New Project +
+                </a>
+
+                {% for projects in project %}
+                <a href="{{ url_for('project') }}">
+                    <div class="split1">
+                        <h3 class="navHeading" >
+                            {{ project.title }}
+                        </h3>
+                    </div>
+
+                    <div class="split2" >
+                        <p class="details">
+                            Details
+                        </p>
+                        <p>
+                            counters: {{ project.counters }}
+                        </p>
+                        <p>
+                            last edited: {{ project.date }}
+                        </p>
+                    </div>
+                </a>
+                {% endfor %}
+
             </div>
+        </div>
 
             <!-------------
                 Community
@@ -122,10 +137,10 @@
                             </p>
                         </div>
                     </a>
-                    <a href="DevNotes.html">
+                    <a href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                Development Notes
+                                Coming Soon: Development Notes!
                             </h3>
                             <p class="comDesc">
                                 have a bug? report it here!
@@ -159,13 +174,14 @@
         <!-- Use any element to open the sidenav -->
         <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
+
 <!------------------------------------------------------------------------------- 
             main page
 --------------------------------------------------------------------------------->
         <div id="main">
             <div class="header">
                 <h1>
-                    Project Title
+                    {{ projectTitle }}
                 </h1>
                 <div class="twoBut">
                     <button>
@@ -189,19 +205,33 @@
             <!-- Tab content -->
             <div id="Home" class="tabcontent" style="display: flex;">
                 <div class="flex">
-                    <form method="#">
+                    <form method="post">
                         <fieldset>
                             <legend>Information</legend> <!-- title in the box of it -->
                             <div>
+                                <label for="title">
+                                    <b>Project Title</b>
+                                </label>
+                                <input name="title" class="space" type="text" placeholder="My Favorite Project!" name="title">
+                                <div>
+                                    {{ projectTitle }}
+                                </div>
+
                                 <label for="yarn">
                                     <b>Yarn</b>
                                 </label>
-                                <input class="space" type="text" placeholder="Yarn type / brand" name="yarn">
+                                <input name="yarn" class="space" type="text" placeholder="Yarn type / brand" name="yarn">
+                                <div>
+                                    {{ yarn }}
+                                </div>
 
                                 <label for="needle">
                                     <b>Size</b>
                                 </label>
                                 <input class="space" type="text" placeholder="hook/needle size" name="needle">
+                                <div>
+                                    {{ hookSize }}
+                                </div>
 
                                 <label for="project">
                                     <b>Project Blurb</b>
@@ -214,17 +244,22 @@
                                     <b>Pattern</b>
                                 </label>
                                 <input class="space" type="text" placeholder="link to pattern (optional)" name="pattern">
+                                <div>
+                                    {{ pattern }}
+                                </div>
 
                                 <label for="ColorPalette">
                                     <b>Color Palette </b>
                                 </label>
                                 <select name="ColorPalette" class="space">
-                                    <option value="#">option1</option>
+                                    {% for palettes in palette %}
+                                    <!-- actually where is this value attribute saved. -->
+                                    <option id="pOption" value="{{ palette.name }}"> {{ palette.name }} </option>
+                                    {% endfor %}
                                 </select>
                                 <div class="displayPalette">
                                     <div class="fullPalette">
-                                        <h3>
-                                            Palette Title
+                                        <h3 id="pTitle">
                                         </h3>
                                         <div class="palette" alt="a color palette">
                                             <div class="color" style="background-color: blueviolet;">
@@ -274,14 +309,20 @@
                                 <button class="placeholder" type="submit">
                                     Save
                                 </button>
+                                <button class="placeholder" type="submit">
+                                    Archive
+                                </button>
                             </div>
                         </fieldset>
                     </form>
                     <form method="#">
                         <fieldset>
                             <legend>Notes To Self</legend> <!-- title in the box of it -->
-                                <textarea class="noteSelf" name="notes"
+                                <textarea name="notes" class="noteSelf" name="notes"
                                 ></textarea>
+                            <button class="placeholder" type="submit">
+                                Save Notes
+                            </button>
                         </fieldset>
                     </form>
                 </div>

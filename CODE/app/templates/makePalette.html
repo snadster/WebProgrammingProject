@@ -45,14 +45,16 @@
         <!-- method=post so we throw the data somewhere. 
              still need to grab the data and put it in a databae -->
         <form method="post">
-            <div class="fullPalette move">
-                <h3 id="name" class="move" contenteditable>
-                    Add Title Here
-                </h3>
+            <div class="fullPalette">
+                <input name="pTitle" id="name" 
+                       type="text"
+                       placeholder="Add Title Here">
+                </input>
                 <div class="palette" alt="a color palette">
-                    <div id="color1" class="color">
+                    <div id="color1" class="colo">
                         <!-- input is kind of HTML magic from forms -->
                         <input
+                            name="color1"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -61,8 +63,9 @@
                         <label for="background"></label>
                     </div>
 
-                    <div id="color2" class="color">
+                    <div id="color2" class="colo">
                         <input
+                            name="color2"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -71,8 +74,9 @@
                         <label for="background"></label>
                     </div>
 
-                    <div id="color3" class="color">
+                    <div id="color3" class="colo">
                         <input
+                            name="color3"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -81,8 +85,9 @@
                         <label for="background"></label>
                     </div>
 
-                    <div id="color4" class="color">
+                    <div id="color4" class="colo">
                         <input
+                            name="color4"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -91,8 +96,9 @@
                         <label for="background"></label>
                     </div>
 
-                    <div id="color5" class="color">
+                    <div id="color5" class="colo">
                         <input
+                            name="color5"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -101,8 +107,9 @@
                         <label for="background"></label>
                     </div>
 
-                    <div id="color6" class="color">
+                    <div id="color6" class="colo">
                         <input
+                            name="color6"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -111,8 +118,9 @@
                         <label for="background"></label>
                     </div>
 
-                    <div id="color7" class="color">
+                    <div id="color7" class="colo">
                         <input
+                            name="color7"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -121,8 +129,9 @@
                         <label for="background"></label>
                     </div>
 
-                    <div id="color8" class="color">
+                    <div id="color8" class="colo">
                         <input
+                            name="color8"
                             type="color"
                             id="background"
                             value="oklab(50% 0.1 0.1 / 0.5)"
@@ -133,7 +142,7 @@
                 </div>
             </div>
 
-            <button class="save" type="submit">
+            <button class="save" type="submit" formaction="{{ url_for('savePalette' )}}">
                 Save Palette
             </button>
             <a href="{{ url_for('palettes') }}">

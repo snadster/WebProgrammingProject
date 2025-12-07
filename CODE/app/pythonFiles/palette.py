@@ -2,7 +2,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import ForeignKey
 
 
-from main import db
+from pythonFiles.database import db
 
 class Palette(db.Model):
     __tablename__ = "palette"
@@ -17,28 +17,10 @@ class Palette(db.Model):
     color6: Mapped[str | None] = mapped_column()
     color7: Mapped[str | None] = mapped_column()
     color8: Mapped[str | None] = mapped_column()
-    project: Mapped[int | None] = mapped_column(ForeignKey("project.id"))
 
+    def deletePalette():
+        pass
 
-    # might be static might not. only god knows tbh.
-    def newPalette():
-        count = 0
-        Palette.id = count +1
-        count = count+1
-        Palette.name = "New Palette"
-        Palette.color1 = None 
-        Palette.color2 = None
-        Palette.color3 = None
-        Palette.color4 = None
-        Palette.color5 = None
-        Palette.color6 = None
-        Palette.color7 = None
-        Palette.color8 = None
-
-    def addColor(slot, color): #slot is the color[int] and color is the hex code
-        Palette.slot = color 
-        return
-
-    def deleteColor(slot):
-        Palette.slot = None
-        return
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

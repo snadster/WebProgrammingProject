@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from sqlalchemy.orm import Mapped, mapped_column
 
-from main import db
+from pythonFiles.database import db # previosuly circular import
 
 # this should by an large work.
 
@@ -15,3 +17,7 @@ class User(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+
+class UnauthorizedError(Exception):
+    pass

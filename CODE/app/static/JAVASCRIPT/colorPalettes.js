@@ -1,18 +1,21 @@
-function color()
-{
-    // FUNCTIONAL!!!!
-    
-    var color = document.getElementById("color").innerText
-    document.getElementById("colorDiv").style.backgroundColor = color
-    if(color == "rgb(0,0,0)")
+function showColors()
+{   // not functional for some fucking reason
+    var colors = document.getElementsByClassName("color");
+    for(let color of colors)
     {
-        document.getElementById("color").style.color = "white"
-    }
-    if(color == "#000000")
-    {
-        document.getElementById("color").style.color = "white"
+        color.style.backgroundColor = color.innerText
+        if(color == "rgb(0,0,0)")
+        {
+            color.style.color = "white";
+        }
+        if(color == "#000000")
+        {
+            color.style.color = "white";
+        }
     }
 }
+
+showColors();
 
 
 // colorPicker.addEventListener("input", updateFirst);

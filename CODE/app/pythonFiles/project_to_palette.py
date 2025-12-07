@@ -1,6 +1,6 @@
 from sqlalchemy import Table, Column, ForeignKey
 
-from main import db
+from pythonFiles.database import db
 
 project_to_palette_table = Table(
     "project_to_palette",

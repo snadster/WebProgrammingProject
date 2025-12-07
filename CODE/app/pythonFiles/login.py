@@ -1,6 +1,6 @@
 from flask_login import LoginManager
 
-from pythonFiles.user import user
+from pythonFiles import user # circular import
 
 login_manager = LoginManager()
 

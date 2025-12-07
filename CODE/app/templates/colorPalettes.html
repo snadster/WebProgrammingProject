@@ -3,12 +3,6 @@
     <head>
 
         <!-- 
-        TODO:
-            - make a deafult page for the main page
-            - make a way to show the correct project when
-              choosing a given project
-        
-        
         
         -->
         <!--------------------------------- 
@@ -23,7 +17,7 @@
 
         <!-- javascript import -->
         <script src="/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="/static/JAVASCRIPT/colorPalettes.js"></script>
+        <script src="/static/JAVASCRIPT/colorPalettes.js" defer></script>
 
 
         <title>
@@ -36,49 +30,67 @@
                 at the top left to open the side navigation bar.">
         <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                <button type="button">
+                <!-- <button aria-label="edit projects list" type="button">
                     edit
-                </button>
-                <button type="button">
+                </button> -->
+                <!-- <button onclick=" {{ url_for('project') }} " aria-label="add project" type="button">
                     add
-                </button>
+                </button> -->
+                <!-- NOTE!
+                    button in link is probably not the right way. 
+                    however, I couldn't get it to work with onclick, so.
+                    styling directly to override other styles
+                -->
+                <a 
+                style="background-color: rgba(0, 0, 0, 0.001);
+                       padding: 0;" 
+                href="{{ url_for('logout') }}">
+                    <button aria-label="Log Out" type="button">
+                        log out
+                    </button>
+                </a>
+                
             </div>
             <div class="container">
                 <h1 class="blockTop">
                     Project Overview
                 </h1>
                 <div class="scroll">
-                    <button aria-label="Close Sidebar"
+                    <button  aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()">&#60; &#60;
+                        onclick="closeNav()"> &#60; &#60;
                 </button>
-                    <a href="{{ url_for('project') }}">
-                        <div class="split1">
-                            <h3 class="navHeading" >
-                                Project 1
-                            </h3>
-                            <p class="navDesc">
-                                little desc here 
-                            </p>
-                        </div>
 
-                        <div class="split2" >
-                            <p class="details">
-                                Details
-                            </p>
-                            <p>
-                                counters: 5
-                            </p>
-                            <p>
-                                pictures: 2
-                            </p>
-                            <p>
-                                last edited: 12/12/2012
-                            </p>
-                        </div>
-                    </a>
-                </div>
+                <!-- for some reason no padding on this
+                     fix later i suppose -->
+                <a class="space" href="{{ url_for('newProject') }}">
+                    New Project +
+                </a>
+
+                {% for projects in project %}
+                <a href="{{ url_for('project') }}">
+                    <div class="split1">
+                        <h3 class="navHeading" >
+                            {{ project.title }}
+                        </h3>
+                    </div>
+
+                    <div class="split2" >
+                        <p class="details">
+                            Details
+                        </p>
+                        <p>
+                            counters: {{ project.counters }}
+                        </p>
+                        <p>
+                            last edited: {{ project.date }}
+                        </p>
+                    </div>
+                </a>
+                {% endfor %}
+
             </div>
+        </div>
 
             <!-------------
                 Community
@@ -92,17 +104,17 @@
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()">&#60; &#60;
                     </a> -->
-                    <a href="/CODE/DevNotes.html">
+                    <a href="{{ url_for('profile') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                Development Notes
+                                Profile
                             </h3>
                             <p class="comDesc">
-                                have a bug? report it here!
+                                Look at your profile
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a href="{{ url_for('palettes') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Color Pallettes
@@ -119,6 +131,16 @@
                             </h3>
                             <p class="comDesc">
                                 Your old projects, nostalgia extreme
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming Soon: Development Notes!
+                            </h3>
+                            <p class="comDesc">
+                                have a bug? report it here!
                             </p>
                         </div>
                     </a>
@@ -149,7 +171,6 @@
         <!-- Use any element to open the sidenav -->
         <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
-
         <!-----------------------------------------------------------------------------
             main page
         ------------------------------------------------------------------------------->
@@ -174,7 +195,7 @@
                      one saved in the attribute. Excited 
                      to see if this ectually works. I doubt it.
                 -->
-                {% for palettes in palette %}
+                {% for palette in palettes %}
                 <div class="fullPalette">
                     <h3>
                         {{ palette.name }}

@@ -23,15 +23,26 @@
     <body alt="Your profile page. Look at your registered information. Open sidebar using the top left button">
         <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                <button aria-label="edit projects list" type="button">
+                <!-- <button aria-label="edit projects list" type="button">
                     edit
-                </button>
-                <button aria-label="add project" type="button">
+                </button> -->
+                <!-- <button onclick=" {{ url_for('project') }} " aria-label="add project" type="button">
                     add
-                </button>
-                <button aria-label="Log Out" type="button">
-                    log out
-                </button>
+                </button> -->
+                <!-- NOTE!
+                    button in link is probably not the right way. 
+                    however, I couldn't get it to work with onclick, so.
+                    styling directly to override other styles
+                -->
+                <a 
+                style="background-color: rgba(0, 0, 0, 0.001);
+                       padding: 0;" 
+                href="{{ url_for('logout') }}">
+                    <button aria-label="Log Out" type="button">
+                        log out
+                    </button>
+                </a>
+                
             </div>
             <div class="container">
                 <h1 class="blockTop">
@@ -45,7 +56,7 @@
 
                 <!-- for some reason no padding on this
                      fix later i suppose -->
-                <a class="space">
+                <a class="space" href="{{ url_for('newProject') }}">
                     New Project +
                 </a>
 
@@ -116,10 +127,10 @@
                             </p>
                         </div>
                     </a>
-                    <a href="{{ url_for('devNotes') }}">
+                    <a href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                Development Notes
+                                Coming Soon: Development Notes!
                             </h3>
                             <p class="comDesc">
                                 have a bug? report it here!

@@ -61,41 +61,6 @@ html, body
     overflow: scroll;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) 
-{
-    .sidenav
-    {
-        padding-top: 20px;
-    }
-
-    .sidenav .closebtn
-    {
-        top: 0px;
-    }
-
-    .navHeading 
-    {
-        font-size: 15px;
-    }
-
-    .navDesc
-    {
-        font-size: 10px;
-    }
-
-    .navTop
-    {
-        grid-template-columns: 20px 20px;
-        column-gap: 5px;
-    }
-
-    .navTop div 
-    {
-        font-size: 9px;
-    }
-} 
-
 
 /* Position and style close button */
 .sidenav .closebtn 
@@ -142,7 +107,9 @@ html, body
     border-radius: 8px;
     text-align: center;
 
-    /* font-size: 20px; */
+    width: 60px;
+
+    font-size: 15px;
 }
 
 .navTop button:hover
@@ -276,3 +243,42 @@ html, body
     border-bottom-width: 2px;
     border-bottom-style: outset;
 }
+
+
+/*******************
+*   MEDIA ASPECT
+********************/
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) 
+{
+    .sidenav
+    {
+        padding-top: 20px;
+    }
+
+    .sidenav .closebtn
+    {
+        top: 0px;
+    }
+
+    .navHeading 
+    {
+        font-size: 15px;
+    }
+
+    .navDesc
+    {
+        font-size: 10px;
+    }
+
+    .navTop
+    {
+        grid-template-columns: 20px 20px;
+        column-gap: 5px;
+    }
+
+    .navTop div 
+    {
+        font-size: 9px;
+    }
+} 
