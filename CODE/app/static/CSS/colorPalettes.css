@@ -19,10 +19,21 @@ body
     padding: 10px;
 }
 
+.flex 
+{
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+
 .contain
 {
     border: 3px inset pink;
-    height: 80%;
+    height: 90%;
     overflow: scroll;
     background-color: rgba(255, 192, 203, 0.694);
 }
@@ -36,7 +47,9 @@ body
     background-color: aliceblue;
     padding-left: 10px;
     padding-right: 10px;
+
     width: fit-content;
+    height: 60px;
 }
 
 .newPalette:hover

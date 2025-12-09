@@ -31,8 +31,21 @@ MVP
 - currently ignoring how to render a palette on a projects page 
   bc I can't be bothered
 
+- make drop down menu when clicking on burger menu for counter.
+  - a drop-down form appears with buttons and input fields.
+  - can select link and loop as radio buttons, they have a value field which is for the ID of the linked counter and the value for the loop.
+
+- catch unique username error
+  - somehow catch the mistake if two ppl with same username
+  - and then somehow tell them
+  - idfk
+
+- delete pallete
+  - ask user for pallette name
+  - pass that to deletePallette view
+  - use remove for the pallette with that name
+
 BUGS
-- User.username somehow doesn't access the db and doesn't get the username.
 - text in sidebar is pink on dev notes page
 
 

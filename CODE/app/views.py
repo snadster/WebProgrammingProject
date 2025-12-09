@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 from flask import make_response, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
@@ -27,7 +27,6 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
         user = User.get_by_username(username)
-        print(username, password, user)
         if user and user.password == password:
             login_user(user)
             return redirect( url_for("profile") )
@@ -61,11 +60,12 @@ def profile():
 #################
 #   PROJECT     #
 #############################################################################
-# project itself (it has a theme cookie)
+# project itself (it has a theme cookie) fuck fix give it project as object goddamnit
 @app.route("/project/<int:projectID>", methods=["GET", "POST"])
-# @login_required
+@login_required
 def project(projectID: int):
     project = db.session.get(Project, projectID)
+    projects = db.session.scalars(select(Project)).all()
     palettes = db.session.scalars(select(Palette)).all()
     counter = db.session.scalars(select(Counter)).all()
     theme = request.cookies.get("theme", "fall")
@@ -83,7 +83,9 @@ def project(projectID: int):
                                 hookSize = project.hookSize,
                                 yarn = project.yarn,
                                 pattern = project.pattern,
-                                Counter = counter)
+                                Counter = counter,
+                                projects = projects,
+                                project = project)
     else:
         return render_template("projectPage.html",
                                 navBarTheme = "/static/CSS/navBarFall.css",
@@ -98,7 +100,9 @@ def project(projectID: int):
                                 hookSize = project.hookSize,
                                 yarn = project.yarn,
                                 pattern = project.pattern,
-                                Counter = counter)
+                                Counter = counter,
+                                projects = projects,
+                                project = project)
 
 # change from switch to selected theme if want more than two themes (for mvp we don't)
 
@@ -117,64 +121,67 @@ def theme2():
 
 # makes a project in the db with default values (html bugs otherwise)
 @app.route('/newProject')
-# @login_required
+@login_required
 def newProject():
-    user = current_user
-    date = datetime.today().strftime('%Y-%m-%d')
+    user = current_user._get_current_object()
+    #date = datetime.today().strftime('%Y-%m-%d')
+    date_ = date.today()
     title = "My New Project!"
     archived = False
-    counters = [None]
+    counters = []
+    notes = ""
     hookSize = None
-    yarn = "none added"
-    pattern = "none added"
+    yarn = None
+    pattern = None
     palette = db.session.scalars(select(Palette)).all()
-    project = Project(user, date, title, archived, 
-                      counters, hookSize, yarn, pattern, palette)
+    print(user, type(user))
+    project = Project(user, date_, title, archived, 
+                      counters, notes, hookSize, yarn, pattern, 
+                      palette)
     project.save()
     # my version of trying to get the project id
     projectID = project.id
-    return redirect(url_for('makeProject'), projectID)
+    return redirect(url_for('makeProject',  projectID=projectID))
 
 
 # gives the user a clean template for a project
-@app.route('/makeProject')
-# @login_required
+@app.route('/makeProject/<int:projectID>')
+@login_required
 def makeProject(projectID: int):
     project = db.session.get(Project, projectID)
-    render_template("projectPage.html",
+    projects = db.session.scalars(select(Project)).all()
+    return render_template("projectPage.html",
                     navBarTheme = "/static/CSS/mainPageFall.css",
                     mainTheme = "/static/CSS/navBarFall.css",
                     theme = "Fall Theme",
                     projectTitle = project.title,
-                    palette = db.session.scalars(select(Palette)).all(),
-                    date = project.date,
+                    palettes = db.session.scalars(select(Palette)).all(),
                     counters = 0,
                     hookSize = "none added",
                     yarn = "none added",
                     pattern = "none added",
-                    Counter = db.session.scalars(select(Counter)).all())
+                    Counter = db.session.scalars(select(Counter)).all(),
+                    projects = projects,
+                    project = project)
 
 
 # save the project to database with user input
-@app.route('/saveProject', methods=['POST'])
-#@login_required
-def saveProject():
-    user = current_user
-    date = datetime.today().strftime('%Y-%m-%d')
-    title = request.form["title"]
-    archived = False
-    counters = 0
-    hookSize = request.form["needle"]
-    yarn = request.form["yarn"]
-    pattern = request.form["pattern"]
-    palette = request.form.get["paletteOp"]
-    project = Project(user, date, title, archived, 
-                      counters, hookSize, yarn, pattern, palette)
-    #project.save() # TODO this is a bug / apparently does not exist
+# make the ID the one it gets from makeProject
+@app.route('/saveProject/<int:projectID>', methods=['POST'])
+@login_required
+def saveProject(projectID: int):
+    project = db.session.get(Project, projectID)
+    project.user = current_user._get_current_object()
+    project.date_ = date.today()
+    project.title = request.form["title"]
+    project.archived = False
+    project.counters = []
+    project.hookSize = request.form.get("needle", default="")
+    project.yarn = request.form.get("yarn", default="")
+    project.pattern = request.form.get("pattern", default="")
+    project.palette = request.form.get("paletteOp", default=[])
     project.save()
-    # my version of trying to get the project id
-    projectID = project.id
-    return redirect(url_for('project'), projectID)
+    return redirect(url_for('project', projectID=projectID))
 
 # @app.route('/saveNotes/<int: projectID>', methods=['POST', 'GET'])
 # def saveNotes():
@@ -193,28 +200,36 @@ def saveProject():
 ##################################################################
 
 @app.route('/newCounter', methods=['POST', 'GET'])
+@login_required
 def newCounter(projectID):
     project = db.session.get(Project, projectID)
     value = 0
     counter = Counter(value, None, None, projectID)
     counter.save()
     project.counters.append(counter)
-    return redirect(url_for('project'), projectID)
+    return redirect(url_for('project',  projectID=projectID))
 
 # add to counter and minus from counter. 
 # Yes they're basically the same code, no I couldn't 
 # as of this moment bother putting them into one function
 @app.route('/upCounter', methods=['POST', 'GET'])
+@login_required
 def upCounter(counterID, projectID):
     counter = db.session.get(Counter, counterID)
     counter.value = counter.value+1
-    return redirect(url_for('project'), projectID)
+    return redirect(url_for('project',  projectID=projectID))
 
 @app.route('/downCounter', methods=['POST', 'GET'])
+@login_required
 def downCounter(counterID, projectID):
     counter = db.session.get(Counter, counterID)
     counter.value = counter.value-1
-    return redirect(url_for('project'), projectID)
+    return redirect(url_for('project', projectID))
+
+# @app.route('/linkCounter', methods=['POST', 'GET'])
+# def linkCounter(counterID, projectID):
+
+#     return redirect(url_for('project'), projectID)
 
 #####################
 # COLOR PALETTES    #
@@ -247,6 +262,17 @@ def savePalette():
     palette.save()
     return redirect(url_for('newPalette'))
 
+@app.route("/deletePalette", methods = ["POST", "GET"])
+@login_required
+def deletePalette():
+    # TODO this is probably a bug. I am tired tho.
+    paletteName = request.form.get('delPal')
+    palettes = db.session.scalars(select(Palette)).all()
+    for pal in palettes:
+        if pal.name == paletteName:
+            pal.deletePalette()
+    return redirect(url_for('palettes'))
+        
 
 
 #########################

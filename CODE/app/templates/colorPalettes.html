@@ -30,12 +30,7 @@
                 at the top left to open the side navigation bar.">
         <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                <!-- <button aria-label="edit projects list" type="button">
-                    edit
-                </button> -->
-                <!-- <button onclick=" " aria-label="add project" type="button">
-                    add
-                </button> -->
+                
                 <!-- NOTE!
                     button in link is probably not the right way. 
                     however, I couldn't get it to work with onclick, so.
@@ -178,11 +173,25 @@
             <h1>
                 Color Palettes!
             </h1>
-            <a class="newPalette" href="{{ url_for('newPalette') }}">
-                <h3>
-                    New color palette +
-                </h3>
-            </a>
+            <div class="flex">
+                <a class="newPalette" href="{{ url_for('newPalette') }}">
+                    <h3>
+                        New color palette +
+                    </h3>
+                </a>
+                <form>
+                    <label for="delPal">
+                        <b>Delete Palette?</b>
+                    </label>
+                    <input name="delPal" style="width: 30%;" 
+                    type="text" placeholder="palette name here" 
+                    name="delPal">
+                    <button formaction="{{ url_for('deletePalette') }}">
+                        delete!
+                    </button>
+                </form>
+            </div>
+            
             <div class="contain">
                 
                 <!-- palettes, I apologize for the state of the code.

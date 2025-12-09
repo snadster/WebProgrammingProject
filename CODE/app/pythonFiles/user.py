@@ -6,7 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from pythonFiles.database import db # previosuly circular import
 
-# this should by an large work.
+# this should by and large work.
 
 class User(db.Model, UserMixin):
     __tablename__ = "user"
@@ -20,7 +20,6 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
-
     @staticmethod
     def get_by_username(username: str) -> User | None:
         return db.session.scalar(select(User).filter_by(username=username))
@@ -28,6 +27,3 @@ class User(db.Model, UserMixin):
     @staticmethod
     def get_by_id(user_id: int) -> User | None:
         return db.session.get(User, user_id)
-
-    class UnauthorizedError(Exception):
-        pass

@@ -31,6 +31,8 @@ login.init_login_manager(app)
 # Import the views, except its mad at me when i do so
 import views
 
+
+#for bugfixing yip
 with app.app_context():
     db.drop_all()
     db.create_all()

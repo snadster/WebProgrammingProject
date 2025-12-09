@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import ForeignKey
+from sqlalchemy import Engine, ForeignKey
+from pythonFiles.database import Base
 
 
 from pythonFiles.database import db
@@ -18,8 +19,10 @@ class Palette(db.Model):
     color7: Mapped[str | None] = mapped_column()
     color8: Mapped[str | None] = mapped_column()
 
-    def deletePalette():
-        pass
+
+#Base.metadata.drop_all(engine, [table], checkfirst=True)
+    def deletePalette(self):
+        Base.metadata.drop_all([self])
 
     def save(self):
         db.session.add(self)
