@@ -38,3 +38,17 @@ BUGS
 
 SCRAPPED
 - we scrapped devNotes
+
+
+NOTE TO SELF:
+
+on projects:
+  hopefully, it should work like this:
+  - user clicks new project, and flask runs /newProject, rendering
+    the template of a new project with default values.
+  - user clicks save on form to save details, and flask runs /saveProject.
+    this redirects to /project/<projectID>, and should now have the 
+    correct information.
+      - POSSIBLE BUG: project will only save if user saves info. However, 
+        user has to save info to give the project a title.
+  - user can now interact with their brand new project.

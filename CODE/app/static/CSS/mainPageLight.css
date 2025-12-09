@@ -72,43 +72,6 @@ body
     background-color: #e18aaa;
 }
 
-.dropdown 
-{
-  
-}
-
-/* Style the dropdown button */
-.dropbtn 
-{
-  
-}
-
-/* Dropdown content */
-.dropdown-content 
-{
-
-  background-color: #efcfd4;
-
-}
-
-/* Links inside dropdown content */
-.dropdown-content a 
-{
-
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover 
-{
-  background-color: #e4a0b7;
-}
-
-/* Show the dropdown content on hover */
-.dropdown:hover .dropdown-content 
-{
-
-}
-
 /*
     counter area
 */

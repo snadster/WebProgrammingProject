@@ -12,14 +12,5 @@ class Counter(db.Model):
     loop: Mapped[int | None] = mapped_column()
     project: Mapped[int] = mapped_column(ForeignKey("project.id")) # the project it belongs to, hopefully
 
-    @staticmethod
-    def addCounter(typ):
-        # this is also plain wrong
-        # FIX
-        count = 0
-        Counter.id = count+1
-        count = count+1
-        Counter.type = typ
-        Counter.value = 0
-        Counter.loop = None
-        
+
+    

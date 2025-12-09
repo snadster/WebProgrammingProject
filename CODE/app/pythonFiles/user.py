@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+from flask_login import UserMixin
+from sqlalchemy import select
 from sqlalchemy.orm import Mapped, mapped_column
 
 from pythonFiles.database import db # previosuly circular import
 
 # this should by an large work.
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = "user"
 
     id: Mapped[int] = mapped_column(primary_key=True, init=False) #maybe init=false
@@ -19,5 +21,13 @@ class User(db.Model):
         db.session.commit()
 
 
-class UnauthorizedError(Exception):
-    pass
+    @staticmethod
+    def get_by_username(username: str) -> User | None:
+        return db.session.scalar(select(User).filter_by(username=username))
+
+    @staticmethod
+    def get_by_id(user_id: int) -> User | None:
+        return db.session.get(User, user_id)
+
+    class UnauthorizedError(Exception):
+        pass

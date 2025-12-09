@@ -18,13 +18,21 @@ class Project(db.Model):
     date: Mapped[date] = mapped_column() #how do this
     title: Mapped[str] = mapped_column(default="New Project")
     archived: Mapped[bool] = mapped_column(default=False)
-    counters: Mapped[list[Counter]] = relationship(default_factory=list) #relationship is magic, this one connects a table of counters to a project
+    counters: Mapped[list[Counter] | None] = relationship(default_factory=list) #relationship is magic, this one connects a table of counters to a project
     notes: Mapped[str | None] = mapped_column(default=None)
     hookSize: Mapped[float | None] = mapped_column(default=None)
     yarn: Mapped[str | None] = mapped_column(default=None)
     pattern: Mapped[str | None] = mapped_column(default=None)
     palette: Mapped[list[Palette]] = relationship(secondary=project_to_palette_table,
                                                   default_factory=list)
+
+#################
+#   Functions   #
+#################
+
+def save(self):
+    db.session.add(self)
+    db.session.commit()
 
 
 #########################
