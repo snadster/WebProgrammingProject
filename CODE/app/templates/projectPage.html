@@ -21,6 +21,7 @@
         <!-- javascript import -->
         <script src="/static/JAVASCRIPT/sidenav.js"></script>
         <script src="/static/JAVASCRIPT/tabs.js"></script>
+        <script src="/static/JAVASCRIPT/checkTab.js"></script>
 
         <title>
             {{projectTitle}} - {{projectID}}
@@ -184,31 +185,24 @@
                     {{ projectTitle }}
                 </h1>
                 <div class="twoBut">
-                    <a href="{{ url_for('newCounter')}}">
-                        <button name="newCount" value="{{projectID}}">
-                            add new counter
+                    <form class="theme">
+                        <button class="themeBtn"
+                        type="submit" formaction="{{ url_for('theme2') }}">
+                            {{theme}}
                         </button>
-                    </a>
-                    
-                    <div class="theme">
-                        <a href="{{ url_for('theme2') }}">
-                            <button class="themeBtn">
-                                {{theme}}
-                            </button>
-                        </a>
-                    </div>
+                    </form>
                 </div>
             </div>
 
             <div class="tab">
-                <button class="tablinks active" onclick="openCity(event, 'Home')">Home</button>
-                <button class="tablinks" onclick="openCity(event, 'Counter')">Counter</button>
+                <button id="home" class="tablinks active" onclick="openCity(event, 'Home')">Home</button>
+                <button id="counter" class="tablinks" onclick="openCity(event, 'Counter')">Counter</button>
             </div>
 
             <!-- Tab content -->
             <div id="Home" class="tabcontent" style="display: flex;">
                 <div class="flex">
-                    <form method="post">
+                    <form class="forms" method="post">
                         <fieldset>
                             <legend>Information</legend> <!-- title in the box of it -->
                             <div>
@@ -219,8 +213,7 @@
                                     <b>Project Title</b>
                                 </label>
                                 <input name="title" class="space" type="text" placeholder="Edit title here" name="title">
-                                
-
+                
                                 <div>
                                     Yarn: {{ yarn }}
                                 </div>
@@ -254,57 +247,6 @@
                                     <option name="paletteOp" id="pOption" value="{{ palette.name }}"> {{ palette.name }} </option>
                                     {% endfor %}
                                 </select>
-                                {% if project.palette != None %}
-                                <div class="displayPalette">
-                                    <div class="fullPalette">
-                                        <h3 id="pTitle">
-                                        </h3>
-                                        <div class="palette" alt="a color palette">
-                                            <div class="color">
-                                                <p>
-                                                    {{ project.palette.color1 }}
-                                                </p>
-                                            </div>
-                                            <div class="color">
-                                                <p>
-                                                    {{ project.palette.color2 }}
-                                                </p>
-                                            </div>
-                                            <div class="color">
-                                                <p>
-                                                    {{ project.palette.color3 }}
-                                                </p>
-                                            </div>
-                                            <div class="color">
-                                                <p>
-                                                    {{ project.palette.color4 }}
-                                                </p>
-                                            </div>
-                                            <div class="color">
-                                                <p>
-                                                    {{ project.palette.color5 }}
-                                                </p>
-                                            </div>
-                                            <div class="color">
-                                                <p>
-                                                    {{ project.palette.color6 }}
-                                                </p>
-                                            </div>
-                                            <div class="color">
-                                                <p>
-                                                    {{ project.palette.color7 }}
-                                                </p>
-                                            </div>
-                                            <div class="color">
-                                                <p>
-                                                   {{ project.palette.color8 }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endif %}
-
                                 <button formaction="{{url_for('saveProject', projectID = project.id)}}" class="placeholder" type="submit">
                                     Save
                                 </button>
@@ -314,7 +256,7 @@
                             </div>
                         </fieldset>
                     </form>
-                    <form method="#">
+                    <form class="forms" method="#">
                         <fieldset>
                             <legend>Notes To Self</legend> <!-- title in the box of it -->
                                 <textarea name="notes" class="noteSelf" name="notes"
@@ -325,16 +267,29 @@
                             </button>
                         </fieldset>
                     </form>
+                    <div>
+                        <p>
+                            obs! remember to save your project before starting
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <!-- COUNTER TAB -->
             <div id="Counter" class="tabcontent">
                 <div class="flex">
-                    {% for counters in Counter %}
-                    <div class="counter">
-                        <form>
-                            <button formaction="{{ url_for('upCounter') }}"
+                    <form class="counter">            
+                        <button formaction="{{ url_for('newCounter', projectID = project.id) }}" 
+                        type="submit" class="newC"> <!-- pass projectID -->
+                            <p>
+                                new counter +
+                            </p>
+                        </button>                   
+                    </form>
+                    {% for counter in counters %}
+                    <form>
+                        <div class="counter">
+                            <button formaction="{{ url_for('upCounter', counterID = counter.id, projectID = project.id) }}"
                             type="submit" class="numN">
                                 <!-- MAX counter is 99999 -->
                                 <p>
@@ -352,24 +307,14 @@
                                         &equiv;
                                 </button>
                             </div>
-                            <button formaction="{{ url_for('downCounter') }}"
+                            <button formaction="{{ url_for('downCounter', counterID = counter.id, projectID = project.id) }}"
                             type="submit" class="minus">
                                 &#65293;
                             </button>
-                            <input type="hidden" value="{{ counter.project }}, {{ counter.id }}">
-                        </form>
-                    </div>
+                            <input type="hidden" value="{{ counter.project }}, {{ counter.id }}"> 
+                        </div>
+                    </form>
                     {% endfor %}
-                    <div class="counter">
-                        <form>
-                            <button formaction="{{ url_for('newCounter') }}" 
-                            type="submit" class="numN" value=""> <!-- pass projectID -->
-                                <p>
-                                    new counter +
-                                </p>
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div> 

@@ -22,7 +22,7 @@ class Palette(db.Model):
 
 #Base.metadata.drop_all(engine, [table], checkfirst=True)
     def deletePalette(self):
-        Base.metadata.drop_all([self])
+        Base.metadata.drop_all(self)
 
     def save(self):
         db.session.add(self)

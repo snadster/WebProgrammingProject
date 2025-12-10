@@ -13,4 +13,6 @@ class Counter(db.Model):
     project: Mapped[int] = mapped_column(ForeignKey("project.id")) # the project it belongs to, hopefully
 
 
-    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

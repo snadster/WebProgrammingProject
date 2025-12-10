@@ -107,6 +107,7 @@ def project(projectID: int):
 # change from switch to selected theme if want more than two themes (for mvp we don't)
 
 @app.route("/clicked")
+@login_required
 def theme2():
     theme = request.cookies.get("theme", "fall")
     response = make_response(redirect('/project'))
@@ -156,11 +157,10 @@ def makeProject(projectID: int):
                     theme = "Fall Theme",
                     projectTitle = project.title,
                     palettes = db.session.scalars(select(Palette)).all(),
-                    counters = 0,
                     hookSize = "none added",
                     yarn = "none added",
                     pattern = "none added",
-                    Counter = db.session.scalars(select(Counter)).all(),
+                    counters = db.session.scalars(select(Counter)).all(),
                     projects = projects,
                     project = project)
 
@@ -199,9 +199,9 @@ def saveProject(projectID: int):
 #   COUNTERS    #
 ##################################################################
 
-@app.route('/newCounter', methods=['POST', 'GET'])
+@app.route('/newCounter/<int:projectID>', methods=['POST', 'GET'])
 @login_required
-def newCounter(projectID):
+def newCounter(projectID: int):
     project = db.session.get(Project, projectID)
     value = 0
     counter = Counter(value, None, None, projectID)
@@ -212,19 +212,27 @@ def newCounter(projectID):
 # add to counter and minus from counter. 
 # Yes they're basically the same code, no I couldn't 
 # as of this moment bother putting them into one function
-@app.route('/upCounter', methods=['POST', 'GET'])
+@app.route('/upCounter/<int:projectID>/<int:counterID>', methods=['POST', 'GET'])
 @login_required
-def upCounter(counterID, projectID):
+def upCounter(counterID: int, projectID: int):
     counter = db.session.get(Counter, counterID)
+    counter.id = counterID
     counter.value = counter.value+1
+    counter.link = None
+    counter.loop = None
+    counter.save()
     return redirect(url_for('project',  projectID=projectID))
 
-@app.route('/downCounter', methods=['POST', 'GET'])
+@app.route('/downCounter/<int:projectID>/<int:counterID>', methods=['POST', 'GET'])
 @login_required
-def downCounter(counterID, projectID):
+def downCounter(counterID: int, projectID: int):
     counter = db.session.get(Counter, counterID)
+    counter.id = counterID
     counter.value = counter.value-1
-    return redirect(url_for('project', projectID))
+    counter.link = None
+    counter.loop = None
+    counter.save()
+    return redirect(url_for('project',  projectID=projectID))
 
 # @app.route('/linkCounter', methods=['POST', 'GET'])
 # def linkCounter(counterID, projectID):
@@ -265,7 +273,7 @@ def savePalette():
 @app.route("/deletePalette", methods = ["POST", "GET"])
 @login_required
 def deletePalette():
-    # TODO this is probably a bug. I am tired tho.
+    # TODO this doesn't work but it also doesn't say why, eh.
     paletteName = request.form.get('delPal')
     palettes = db.session.scalars(select(Palette)).all()
     for pal in palettes:

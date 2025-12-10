@@ -2,38 +2,18 @@ fix phone combatability in sidebar.
 
 
 MVP
-- finish setting up database
-
 - find way to keep navBar always on every page
   - currenlty just copy-pasting
 
 - make the acessibility bulletproof 
 
 - !! make auto generating code for displaying items for:
-  - color palettes
-    - in pallets
-    - pull them to info page by name from database and display them using auto gen code
-  - projects
-    - not only generate a whole page for one project but also add it to the list of projects (what jonathan did)
-  - archive
+  - archive (MAYBE)
     - steal the projects one but filter by archived==True
   - counters
     - a counter has to know which project its in
 
 - make code so counters actually work.
-
-- scrape data from built in info thing
-  - put that somewhere in a database
-
-- pass on the palette (and the projects) when rendering template
-  - so the autogen code can work
-
-- currently ignoring how to render a palette on a projects page 
-  bc I can't be bothered
-
-- make drop down menu when clicking on burger menu for counter.
-  - a drop-down form appears with buttons and input fields.
-  - can select link and loop as radio buttons, they have a value field which is for the ID of the linked counter and the value for the loop.
 
 - catch unique username error
   - somehow catch the mistake if two ppl with same username
@@ -45,12 +25,19 @@ MVP
   - pass that to deletePallette view
   - use remove for the pallette with that name
 
+- add persistence on tabs 
+
 BUGS
 - text in sidebar is pink on dev notes page
+- can't delete counters
+- theme button no longer works (apparently /clicked doesnt exist even tho im looking at it with my eyeballs.)
+- sometimes the theme changes when adding a counter
 
 
 SCRAPPED
 - we scrapped devNotes
+- scrapped displaying the selected color palette in project
+- linked and looped counters
 
 
 NOTE TO SELF:
@@ -65,3 +52,6 @@ on projects:
       - POSSIBLE BUG: project will only save if user saves info. However, 
         user has to save info to give the project a title.
   - user can now interact with their brand new project.
+
+OLD CODE
+display selected color palette

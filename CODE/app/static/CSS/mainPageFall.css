@@ -102,19 +102,22 @@ body
     background-color: #46170c;
 }
 
-.numN
+.numN,
+.newC
 {
     background-color: #78504697;
 }
 
-.numN:hover
+.numN:hover,
+.newC:hover
 {
     background-color: #78504668;
 
     cursor: pointer;
 }
 
-.numN:active
+.numN:active,
+.newC:active
 {
     background-color: #7850463a;
 }
@@ -151,7 +154,7 @@ body
     HOME
 ************/
 
-form 
+.forms
 {
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.596);
     background-color: #85594f;
