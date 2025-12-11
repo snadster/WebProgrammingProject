@@ -26,12 +26,17 @@ MVP
   - use remove for the pallette with that name
 
 - add persistence on tabs 
+  - didn't do this but changed counters to be the main page
+  - problem: counters now change styles when adding counter or reloading.. welp
 
 BUGS
 - text in sidebar is pink on dev notes page
 - can't delete counters
 - theme button no longer works (apparently /clicked doesnt exist even tho im looking at it with my eyeballs.)
-- sometimes the theme changes when adding a counter
+  - sometimes the theme changes when adding a counter
+- adding a new project puts the counters from other projects in it
+- deleting a palette does not work.
+- NOTES DON'T GET SAVED WHEN SAVING PROJECT
 
 
 SCRAPPED
@@ -47,7 +52,7 @@ on projects:
   - user clicks new project, and flask runs /newProject, rendering
     the template of a new project with default values.
   - user clicks save on form to save details, and flask runs /saveProject.
-    this redirects to /project/<projectID>, and should now have the 
+    this redirects to /project/projectID, and should now have the 
     correct information.
       - POSSIBLE BUG: project will only save if user saves info. However, 
         user has to save info to give the project a title.
@@ -55,3 +60,16 @@ on projects:
 
 OLD CODE
 display selected color palette
+
+
+DECOMPOSING INTO MICROSERVICES
+individual services:
+  - login
+  - projects
+
+
+DOCKER BUILD
+
+docker build . -t loop
+
+docker run -p 5000:5000 <name>

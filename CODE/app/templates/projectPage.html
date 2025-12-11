@@ -21,7 +21,6 @@
         <!-- javascript import -->
         <script src="/static/JAVASCRIPT/sidenav.js"></script>
         <script src="/static/JAVASCRIPT/tabs.js"></script>
-        <script src="/static/JAVASCRIPT/checkTab.js"></script>
 
         <title>
             {{projectTitle}} - {{projectID}}
@@ -187,7 +186,7 @@
                 <div class="twoBut">
                     <form class="theme">
                         <button class="themeBtn"
-                        type="submit" formaction="{{ url_for('theme2') }}">
+                        type="submit" formaction="{{ url_for('theme2'), projectID = project.id }}">
                             {{theme}}
                         </button>
                     </form>
@@ -195,12 +194,59 @@
             </div>
 
             <div class="tab">
-                <button id="home" class="tablinks active" onclick="openCity(event, 'Home')">Home</button>
-                <button id="counter" class="tablinks" onclick="openCity(event, 'Counter')">Counter</button>
+                 <button id="counter" class="tablinks active" onclick="openCity(event, 'Counter')">Counter</button>
+                <button id="home" class="tablinks" onclick="openCity(event, 'Home')">Home</button>
             </div>
 
-            <!-- Tab content -->
-            <div id="Home" class="tabcontent" style="display: flex;">
+            <!-- COUNTER TAB -->
+            <div id="Counter" class="tabcontent" 
+            style="display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: space-evenly;">
+                <div class="flex">
+                    <form class="counter">            
+                        <button formaction="{{ url_for('newCounter', projectID = project.id) }}" 
+                        type="submit" class="newC">
+                            <p>
+                                new counter +
+                            </p>
+                        </button>                   
+                    </form>
+                    {% for counter in counters %}
+                    <form>
+                        <div class="counter">
+                            <button formaction="{{ url_for('upCounter', counterID = counter.id, projectID = project.id) }}"
+                            type="submit" class="numN">
+                                <!-- MAX counter is 99999 -->
+                                <p>
+                                    {{ counter.value }}
+                                </p>
+                            </button>
+                            <div class="typeN">
+                                <p>
+                                    {{ counter.id }} <br>
+                                    linked: {{ counter.link }} <br>
+                                    loop: {{ counter.loop }}
+                                </p>
+                                <button type="button" class="burgerMenu" 
+                                    alt="menu for individual counter. Click to edit counter.">	
+                                        &equiv;
+                                </button>
+                            </div>
+                            <button formaction="{{ url_for('downCounter', counterID = counter.id, projectID = project.id) }}"
+                            type="submit" class="minus">
+                                &#65293;
+                            </button>
+                            <input type="hidden" value="{{ counter.project }}, {{ counter.id }}"> 
+                        </div>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- home content -->
+            <div id="Home" class="tabcontent">
                 <div class="flex">
                     <form class="forms" method="post">
                         <fieldset>
@@ -275,48 +321,7 @@
                 </div>
             </div>
 
-            <!-- COUNTER TAB -->
-            <div id="Counter" class="tabcontent">
-                <div class="flex">
-                    <form class="counter">            
-                        <button formaction="{{ url_for('newCounter', projectID = project.id) }}" 
-                        type="submit" class="newC"> <!-- pass projectID -->
-                            <p>
-                                new counter +
-                            </p>
-                        </button>                   
-                    </form>
-                    {% for counter in counters %}
-                    <form>
-                        <div class="counter">
-                            <button formaction="{{ url_for('upCounter', counterID = counter.id, projectID = project.id) }}"
-                            type="submit" class="numN">
-                                <!-- MAX counter is 99999 -->
-                                <p>
-                                    {{ counter.value }}
-                                </p>
-                            </button>
-                            <div class="typeN">
-                                <p>
-                                    {{ counter.id }} <br>
-                                    linked: {{ counter.link }} <br>
-                                    loop: {{ counter.loop }}
-                                </p>
-                                <button type="button" class="burgerMenu" 
-                                    alt="menu for individual counter. Click to edit counter.">	
-                                        &equiv;
-                                </button>
-                            </div>
-                            <button formaction="{{ url_for('downCounter', counterID = counter.id, projectID = project.id) }}"
-                            type="submit" class="minus">
-                                &#65293;
-                            </button>
-                            <input type="hidden" value="{{ counter.project }}, {{ counter.id }}"> 
-                        </div>
-                    </form>
-                    {% endfor %}
-                </div>
-            </div>
+            
         </div> 
 
     </body>

@@ -4,7 +4,7 @@ from flask import make_response, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from sqlalchemy import select
 
-from main import app
+from app import app
 from pythonFiles.database import db
 
 from pythonFiles.user import User
@@ -106,11 +106,11 @@ def project(projectID: int):
 
 # change from switch to selected theme if want more than two themes (for mvp we don't)
 
-@app.route("/clicked")
+@app.route("/clicked/<int:projectID>")
 @login_required
-def theme2():
+def theme2(projectID: int):
     theme = request.cookies.get("theme", "fall")
-    response = make_response(redirect('/project'))
+    response = make_response(redirect(url_for('project', projectID = projectID)))
     if theme == "light":
         response.set_cookie('theme', "fall",
                             expires=datetime.now() + timedelta(days=30))
@@ -160,7 +160,7 @@ def makeProject(projectID: int):
                     hookSize = "none added",
                     yarn = "none added",
                     pattern = "none added",
-                    counters = db.session.scalars(select(Counter)).all(),
+                    counters = project.counters,
                     projects = projects,
                     project = project)
 
