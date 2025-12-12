@@ -55,28 +55,29 @@
                     New Project +
                 </a>
 
-                {% for projects in project %}
-                <a href="{{ url_for('project') }}">
-                    <div class="split1">
-                        <h3 class="navHeading" >
-                            {{ project.title }}
-                        </h3>
-                    </div>
+                {% for project in projects %}
+                    {% if project.archived == False %}
+                    <a href="{{ url_for('project', projectID = project.id) }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                {{ project.title }}
+                            </h3>
+                        </div>
 
-                    <div class="split2" >
-                        <p class="details">
-                            Details
-                        </p>
-                        <p>
-                            counters: {{ project.counters }}
-                        </p>
-                        <p>
-                            last edited: {{ project.date }}
-                        </p>
-                    </div>
-                </a>
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: {{ project.counters|count }}
+                            </p>
+                            <p>
+                                last edited: {{ project.date }}
+                            </p>
+                        </div>
+                    </a>
+                    {% endif %}
                 {% endfor %}
-
             </div>
         </div>
 
@@ -112,7 +113,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a href="{{url_for('archive')}}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Archive

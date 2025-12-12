@@ -31,14 +31,9 @@
     <body alt="The main project page, with the project title and details,
                 such as hook size and counters in the tab-navigated main area. 
                 There's a button in the top left to open the navigation bar.">
-         <div id="mySidenav" class="sidenav">
+       <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                <!-- <button aria-label="edit projects list" type="button">
-                    edit
-                </button> -->
-                <!-- <button onclick=" " aria-label="add project" type="button">
-                    add
-                </button> -->
+                
                 <!-- NOTE!
                     button in link is probably not the right way. 
                     however, I couldn't get it to work with onclick, so.
@@ -71,27 +66,28 @@
                 </a>
 
                 {% for project in projects %}
-                <a href="{{ url_for('project', projectID = project.id) }}">
-                    <div class="split1">
-                        <h3 class="navHeading" >
-                            {{ project.title }}
-                        </h3>
-                    </div>
+                    {% if project.archived == False %}
+                    <a href="{{ url_for('project', projectID = project.id) }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                {{ project.title }}
+                            </h3>
+                        </div>
 
-                    <div class="split2" >
-                        <p class="details">
-                            Details
-                        </p>
-                        <p>
-                            counters: {{ project.counters|count }}
-                        </p>
-                        <p>
-                            last edited: {{ project.date }}
-                        </p>
-                    </div>
-                </a>
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: {{ project.counters|count }}
+                            </p>
+                            <p>
+                                last edited: {{ project.date }}
+                            </p>
+                        </div>
+                    </a>
+                    {% endif %}
                 {% endfor %}
-
             </div>
         </div>
 
@@ -127,7 +123,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a href="{{url_for('archive')}}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Archive
@@ -186,7 +182,7 @@
                 <div class="twoBut">
                     <form class="theme">
                         <button class="themeBtn"
-                        type="submit" formaction="{{ url_for('theme2'), projectID = project.id }}">
+                        type="submit" formaction="{{ url_for('theme2',  projectID = project.id) }}">
                             {{theme}}
                         </button>
                     </form>
@@ -200,10 +196,7 @@
 
             <!-- COUNTER TAB -->
             <div id="Counter" class="tabcontent" 
-            style="display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: space-evenly;">
+            style="display: block;">
                 <div class="flex">
                     <form class="counter">            
                         <button formaction="{{ url_for('newCounter', projectID = project.id) }}" 
@@ -296,26 +289,36 @@
                                 <button formaction="{{url_for('saveProject', projectID = project.id)}}" class="placeholder" type="submit">
                                     Save
                                 </button>
-                                <button class="placeholder" type="submit">
+                                <button formaction="{{url_for('archiveProject', projectID = project.id)}}" class="placeholder" type="submit">
                                     Archive
                                 </button>
                             </div>
                         </fieldset>
                     </form>
-                    <form class="forms" method="#">
+                    <!-- <form class="forms" method="#">
                         <fieldset>
-                            <legend>Notes To Self</legend> <!-- title in the box of it -->
-                                <textarea name="notes" class="noteSelf" name="notes"
-                                ></textarea>
-                            <input type="hidden" name="projectID" value="{{projectID}}" />
+                            <legend>Notes To Self</legend>
+                                <input name="notes" type="text" class="noteSelf">
                             <button class="placeholder" type="submit">
                                 Save Notes
                             </button>
                         </fieldset>
-                    </form>
-                    <div>
+                    </form> -->
+                    <div class="infoBlurb">
                         <p>
-                            obs! remember to save your project before starting
+                            Welcome to your project!
+                            Edit the details on the home tab, and remember to save them. <br> <br>
+                            Currently, if you click save without putting something in a text box,
+                            it's saved as empty. Meaning if you re-save (to, as an example, change the title) 
+                            you'll have to type in your other information again.
+                            <br>
+                            Also, as it stands, when you archive a project you can't edit it any longer. 
+                            We want to implement that ability, so we've left the options there, but if you 
+                            click save on an archived project, the page will crash.
+                            <br>
+                            We're working on fixing these bugs, but hope you can use our project meanwhile.
+                            <br>
+
                         </p>
                     </div>
                 </div>

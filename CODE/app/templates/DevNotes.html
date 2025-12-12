@@ -32,12 +32,7 @@
     <body>
         <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                <!-- <button aria-label="edit projects list" type="button">
-                    edit
-                </button> -->
-                <!-- <button onclick=" {{ url_for('project') }} " aria-label="add project" type="button">
-                    add
-                </button> -->
+                
                 <!-- NOTE!
                     button in link is probably not the right way. 
                     however, I couldn't get it to work with onclick, so.
@@ -69,8 +64,8 @@
                     New Project +
                 </a>
 
-                {% for projects in project %}
-                <a href="{{ url_for('project') }}">
+                {% for project in projects %}
+                <a href="{{ url_for('project', projectID = project.id) }}">
                     <div class="split1">
                         <h3 class="navHeading" >
                             {{ project.title }}
@@ -82,7 +77,7 @@
                             Details
                         </p>
                         <p>
-                            counters: {{ project.counters }}
+                            counters: {{ project.counters|count }}
                         </p>
                         <p>
                             last edited: {{ project.date }}

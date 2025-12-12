@@ -13,8 +13,6 @@ MVP
   - counters
     - a counter has to know which project its in
 
-- make code so counters actually work.
-
 - catch unique username error
   - somehow catch the mistake if two ppl with same username
   - and then somehow tell them
@@ -25,28 +23,33 @@ MVP
   - pass that to deletePallette view
   - use remove for the pallette with that name
 
-- add persistence on tabs 
-  - didn't do this but changed counters to be the main page
-  - problem: counters now change styles when adding counter or reloading.. welp
-
 BUGS
 - text in sidebar is pink on dev notes page
 - can't delete counters
-- theme button no longer works (apparently /clicked doesnt exist even tho im looking at it with my eyeballs.)
-  - sometimes the theme changes when adding a counter
-- adding a new project puts the counters from other projects in it
 - deleting a palette does not work.
-- NOTES DON'T GET SAVED WHEN SAVING PROJECT
+- FIX DISPLAYING NAME OF COLOR PALETTE
+- PROJECTS DON'T BELONG TO A USER.
+  - i assume this is a db.session.scalar().all problem. I need to filter by userID.
 
+REPORT:
 
-SCRAPPED
+scrapped
 - we scrapped devNotes
 - scrapped displaying the selected color palette in project
+  - now only display name
 - linked and looped counters
+  - find the ghosts of this in the code for part one. Left for possible future implementation
+- we scrapped note-taking : time constraint. 
+  - you'll find the remnants of it in the code for part one. left for possible future implementation
+
+general notes:
+- scrollbars are not styled, as most of the aesthetics were done on a firefox browser, where scrollbars collapse when not in use. If you're using edge or another browser with non-collapsing scroll-bars, I do apologize
+
+
+
 
 
 NOTE TO SELF:
-
 on projects:
   hopefully, it should work like this:
   - user clicks new project, and flask runs /newProject, rendering
@@ -57,6 +60,7 @@ on projects:
       - POSSIBLE BUG: project will only save if user saves info. However, 
         user has to save info to give the project a title.
   - user can now interact with their brand new project.
+
 
 OLD CODE
 display selected color palette

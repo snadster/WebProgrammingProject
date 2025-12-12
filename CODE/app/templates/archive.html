@@ -13,22 +13,23 @@
          <link rel="stylesheet" href="/static/CSS/navBarFall.css"> <!-- replace with {{template}} when integrated with flask -->
          <link rel="stylesheet" href="/static/CSS/defaultMainPage.css">
          <link rel="stylesheet" href="/static/CSS/defaultNavBar.css">
-         <link rel="stylesheet" href="/static/CSS/colorPalettes.css">
+         <link rel="stylesheet" href="/static/CSS/archive.css">
 
         <!-- javascript import -->
         <script src="/static/JAVASCRIPT/sidenav.js"></script>
-        <script src="/static/JAVASCRIPT/colorPalettes.js" defer></script>
 
 
         <title>
-            Color Palettes
+            Archive
         </title>
 
     </head>
     
-    <body alt="a geometric circle based color splash background. There's a button 
-                at the top left to open the side navigation bar.">
-        <div id="mySidenav" class="sidenav">
+    <body alt="Archive. A square in the middle of the screen
+                which contains old projects and their details.
+                There's a button at the top left to open the 
+                side navigation bar.">
+       <div id="mySidenav" class="sidenav">
             <div class="navTop">
                 
                 <!-- NOTE!
@@ -87,7 +88,6 @@
                 {% endfor %}
             </div>
         </div>
-
             <!-------------
                 Community
             --------------->
@@ -164,83 +164,51 @@
             </div>
         </div>
 
-        <!-- Use any element to open the sidenav -->
         <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
         <!-----------------------------------------------------------------------------
             main page
         ------------------------------------------------------------------------------->
         <div id="main">
-            <h1>
-                Color Palettes!
-            </h1>
-            <div class="flex">
-                <a class="newPalette" href="{{ url_for('newPalette') }}">
-                    <h3>
-                        New color palette +
-                    </h3>
-                </a>
-                <form class="forms">
-                    <label for="delPal">
-                        <b>Delete Palette?</b>
-                    </label>
-                    <input name="delPal" style="width: 30%;" 
-                    type="text" placeholder="palette name here" 
-                    name="delPal">
-                    <button formaction="{{ url_for('deletePalette') }}">
-                        delete!
-                    </button>
-                </form>
+            <div class="containText">
+                <h1>
+                    Archive
+                </h1>
+                <p>
+                    did you think we threw out your archived 
+                    projects? We would never. Here they all are!
+                </p>
             </div>
             
-            <div class="contain">
-                
-                <!-- palettes, I apologize for the state of the code.
-                     it likely does not work on account of the 
-                     database not working. alas, we go on
+            <div class="containProjects">
+                {% for project in projects %}
+                    {% if project.archived == True %}
+                    <a class="project" href="{{ url_for('project', projectID = project.id) }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                {{ project.title }}
+                            </h3>
+                        </div>
 
-                     hopefully should generate every palette
-                     saved in the database, and run the given
-                     js to make the background color the 
-                     one saved in the attribute. Excited 
-                     to see if this ectually works. I doubt it.
-                -->
-                {% for palette in palettes %}
-                <div class="fullPalette">
-                    <h3>
-                        {{ palette.name }}
-                    </h3>
-                    <div class="palette" alt="a color palette">
-                        <div id="color" class="color">
-                            {{ palette.color1 }}
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters:{{ project.counters|count }}
+                            </p>
+                            <p>
+                                last edited: {{ project.date }}
+                            </p>
                         </div>
-                        <div id="color" class="color">
-                            {{ palette.color2 }}
-                        </div>
-                        <div id="color" class="color">
-                            {{ palette.color3 }}
-                        </div>
-                        <div id="color" class="color">
-                            {{ palette.color4 }}
-                        </div>
-                        <div id="color" class="color">
-                            {{ palette.color5 }}
-                        </div>
-                        <div id="color" class="color">
-                            {{ palette.color6 }}
-                        </div>
-                        <div id="color" class="color">
-                            {{ palette.color7 }}
-                        </div>
-                        <div id="color" class="color">
-                            {{ palette.color8 }}
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                    {% endif %}
                 {% endfor %}
-
             </div>
-        </div> 
+        </div>
+
+    <!-- Use any element to open the sidenav -->
+    <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
     </body>
 </html>

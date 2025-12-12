@@ -53,7 +53,8 @@ def register():
 def profile():
     return render_template("profile.html", 
                            Username = current_user.username,
-                           mail = current_user.mail)
+                           mail = current_user.mail,
+                           projects = db.session.scalars(select(Project)).all())
 ##########################################################
 
 
@@ -79,7 +80,7 @@ def project(projectID: int):
                                 palette = palettes,
                                 date = project.date,
                                 counters = project.counters,
-                                notes = project.notes,
+                                # notes = project.notes,
                                 hookSize = project.hookSize,
                                 yarn = project.yarn,
                                 pattern = project.pattern,
@@ -96,7 +97,7 @@ def project(projectID: int):
                                 palette = palettes,
                                 date = project.date,
                                 counters = project.counters,
-                                notes = project.notes,
+                                # notes = project.notes,
                                 hookSize = project.hookSize,
                                 yarn = project.yarn,
                                 pattern = project.pattern,
@@ -130,14 +131,14 @@ def newProject():
     title = "My New Project!"
     archived = False
     counters = []
-    notes = ""
+    # notes = []
     hookSize = None
     yarn = None
     pattern = None
     palette = db.session.scalars(select(Palette)).all()
     print(user, type(user))
     project = Project(user, date_, title, archived, 
-                      counters, notes, hookSize, yarn, pattern, 
+                      counters, hookSize, yarn, pattern, 
                       palette)
     project.save()
     # my version of trying to get the project id
@@ -157,6 +158,7 @@ def makeProject(projectID: int):
                     theme = "Fall Theme",
                     projectTitle = project.title,
                     palettes = db.session.scalars(select(Palette)).all(),
+                    # notes = "",
                     hookSize = "none added",
                     yarn = "none added",
                     pattern = "none added",
@@ -167,7 +169,7 @@ def makeProject(projectID: int):
 
 # save the project to database with user input
 # make the ID the one it gets from makeProject
-@app.route('/saveProject/<int:projectID>', methods=['POST'])
+@app.route('/saveProject/<int:projectID>', methods=['POST', 'GET'])
 @login_required
 def saveProject(projectID: int):
     project = db.session.get(Project, projectID)
@@ -176,6 +178,7 @@ def saveProject(projectID: int):
     project.title = request.form["title"]
     project.archived = False
     project.counters = []
+    # project.notes = request.form.get("notes", default=[])
     project.hookSize = request.form.get("needle", default="")
     project.yarn = request.form.get("yarn", default="")
     project.pattern = request.form.get("pattern", default="")
@@ -183,15 +186,36 @@ def saveProject(projectID: int):
     project.save()
     return redirect(url_for('project', projectID=projectID))
 
-# @app.route('/saveNotes/<int: projectID>', methods=['POST', 'GET'])
-# def saveNotes():
-#     date = datetime.today().strftime('%Y-%m-%d')
-#     pass
+@app.route('/archive', methods=['POST', 'GET'])
+@login_required
+def archive():
+    return render_template("archive.html", 
+                           projects = db.session.scalars(select(Project)).all() )
 
+@app.route('/archiveProject/<int:projectID>', methods=['POST', 'GET'])
+@login_required
+def archiveProject(projectID: int):
+    project = db.session.get(Project, projectID)
+    project.user = current_user._get_current_object()
+    project.date_ = date.today()  # VALUE WE CHANGE
+    project.title = project.title
+    project.archived = True # VALUE WE CHANGE
+    project.counters = project.counters
+    # project.notes = request.form.get("notes", default=[])
+    project.hookSize = project.hookSize
+    project.yarn = project.yarn
+    project.pattern = project.pattern
+    project.palette = project.palette
+    project.save()
+    return redirect(url_for('archive'))
 
-# @app.route('/archiveProject', methods=['POST', 'GET'])
+# @app.route('/saveNotes/<int:projectID>', methods=['POST', 'GET'])
 # @login_required
-# def archiveProject():
+# def saveNotes(projectID: int):
+#     project = db.session.get(Project, projectID)
+#     project.notes.append = request.form.get("notes")
+#     project.save()
+#     return redirect(url_for('project', projectID=projectID))
 
 ##################################################################
 
