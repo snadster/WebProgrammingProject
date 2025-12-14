@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- 
+            CURENTLY SCRAPPED
+        -->
+        <!--------------------------------- 
+        |   fancy pants styling section   |
+        ----------------------------------->
+
+        <!-- stylesheets -->
+         <link rel="stylesheet" href="static/CSS/navBarFall.css">
+         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/defaultMainPage.css"> -->
+         <link rel="stylesheet" href="static/CSS/defaultNavBar.css">
+         <link rel="stylesheet" href="static/CSS/devNotes.css">
+
+        <!-- themes -->
+         <!-- <link rel="stylesheet" href="/CODE/app/static/CSS/navBarLight.css">
+         <link rel="stylesheet" href="/CODE/app/static/CSS/mainPageLight.css"> -->
+
+        <!-- javascript import -->
+        <script src="/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="/static/JAVASCRIPT/tabs.js"></script>
+
+        <title>
+            Development Notes
+        </title>
+
+    </head>
+
+    <body>
+        <div id="mySidenav" class="sidenav">
+            <div class="navTop">
+                
+                <!-- NOTE!
+                    button in link is probably not the right way. 
+                    however, I couldn't get it to work with onclick, so.
+                    styling directly to override other styles
+                -->
+                <a 
+                style="background-color: rgba(0, 0, 0, 0.001);
+                       padding: 0;" 
+                href="{{ url_for('logout') }}">
+                    <button aria-label="Log Out" type="button">
+                        log out
+                    </button>
+                </a>
+                
+            </div>
+            <div class="container">
+                <h1 class="blockTop">
+                    Project Overview
+                </h1>
+                <div class="scroll">
+                    <button  aria-label="Close Sidebar"
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()"> &#60; &#60;
+                </button>
+
+                <!-- for some reason no padding on this
+                     fix later i suppose -->
+                <a class="space" href="{{ url_for('newProject') }}">
+                    New Project +
+                </a>
+
+                {% for project in projects %}
+                <a href="{{ url_for('project', projectID = project.id) }}">
+                    <div class="split1">
+                        <h3 class="navHeading" >
+                            {{ project.title }}
+                        </h3>
+                    </div>
+
+                    <div class="split2" >
+                        <p class="details">
+                            Details
+                        </p>
+                        <p>
+                            counters: {{ project.counters|count }}
+                        </p>
+                        <p>
+                            last edited: {{ project.date }}
+                        </p>
+                    </div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+            <!-------------
+                Community
+            --------------->
+            <div class="container">
+                <h1 class="blockTop">
+                    Community
+                </h1>
+                <div class="scroll">
+                    <!-- <a 
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()">&#60; &#60;
+                    </a> -->
+                    <a href="{{ url_for('profile') }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Profile
+                            </h3>
+                            <p class="comDesc">
+                                Look at your profile
+                            </p>
+                        </div>
+                    </a>
+                    <a href="{{ url_for('palettes') }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Color Pallettes
+                            </h3>
+                            <p class="comDesc">
+                                Look at your saved palettes!
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Archive
+                            </h3>
+                            <p class="comDesc">
+                                Your old projects, nostalgia extreme
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming Soon: Development Notes!
+                            </h3>
+                            <p class="comDesc">
+                                have a bug? report it here!
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Inspiration!
+                            </h3>
+                            <p class="comDesc">
+                                Community board! Interact with other crafters.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Store!
+                            </h3>
+                            <p class="comDesc">
+                                Need an extra spool of yarn? Our linked affiliates can provide!
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+
+        <!-------------- 
+            main page
+        ---------------->
+        <div id="main">
+                        <h1>
+                Development notes
+            </h1>
+            <p class="desc">
+                Here you'll find current updates on the app! If you have 
+                any bugs, please let us know by writing an email detailing 
+                your problem, at loopLet@hotmail.com
+            </p>
+
+            <h2>
+                Future news!
+            </h2>
+            <div class="futureNews">
+                <div class="news">
+                    <p>
+                        We're working on the "Inspiration" page!
+                    </p>
+                    <p>
+                        as of [date here]
+                    </p>
+                </div>
+            </div>
+
+            <h2>
+                Bug fixes
+            </h2>
+            <p class="desc">
+                Every bug report will be fixed and the fix listed here.
+            </p>
+            <div class="bugFixes">
+                <div class="bug">
+                    <p>
+                        we fixed the bug!
+                    </p>
+                    <p>
+                        as of [date here]
+                    </p>
+                </div>
+            </div>
+        </div> 
+
+    </body>
+
+</html>

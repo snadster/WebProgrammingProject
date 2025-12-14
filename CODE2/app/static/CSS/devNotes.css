@@ -1,0 +1,55 @@
+body 
+{
+    /* background-color: rgba(147, 102, 44, 0.683); */
+    padding-left: 40px;
+    padding-right: 40px;
+
+    background-image: url(/CODE/abstractBG.jpg);
+}
+
+p,
+h1,
+h2
+{
+    color: rgb(126, 62, 73);
+}
+
+h2 
+{
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.desc
+{
+    margin: 0;
+}
+
+.closebtn
+{
+    border: 2px solid black;
+}
+
+.futureNews,
+.bugFixes
+{
+    /* border: 1px solid red; */
+    border: 3px inset rgba(255, 255, 255, 0.5);
+    height: 170px;
+    width: 100%;
+
+    overflow: scroll;
+}
+
+.news, 
+.bug
+{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+
+    border: 3px outset rgba(255, 255, 255, 0.5);
+    margin: 3px;
+
+    background-color: rgb(255, 197, 236);
+}

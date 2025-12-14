@@ -1,0 +1,100 @@
+
+
+ /* The side navigation menu */
+.sidenav 
+{
+  background-color:  #fdf5d1;
+}
+
+/* The navigation menu links */
+.sidenav a 
+{
+  background-color: #f8e596;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover 
+{   /*changed from color to background color*/
+    background-color: #fbefbb;
+}
+
+.sidenav a:active
+{
+    background-color: #f8e596;
+    border-color: #f8e596;
+}
+
+/* Position and style close button */
+.sidenav .closebtn 
+{
+    border-color: #f4dc72;
+
+    background-color: #f8e596;
+}
+
+
+/****************
+    top bar
+*****************/
+.navTop button
+{
+    border-color: #f4dc72;
+    background-color: #f8e596;
+}
+
+.navTop button:hover
+{
+    border-color: #f4dc72;
+    background-color: #f8e596;
+}
+
+.navTop button:active
+{
+    border-color: #f4dc72;
+    background-color: #f4dc72;
+}
+
+
+/*
+    individual blocks
+*/
+
+.blockTop
+{
+    /* border: 1px solid rgb(255, 0, 157); */
+    /* border: 2px outset #9e9875; */
+    background-color: #f8e596;
+}
+
+.container
+{
+    /* border: 1px solid rgb(255, 0, 0); */
+    border-color: #f4dc72;
+    background-color: #fbefbb;
+}
+
+.scroll a 
+{
+    /* border: 1px solid red; */
+    border-color: #f4dc72;
+}
+
+.navHeading
+{
+    /* border: 1px solid green; */
+    border-bottom-color: #f4dc72;
+}
+
+.split2
+{
+    border-color: #f4dc72;
+}
+
+.details
+{
+    border-bottom-color: #f4dc72;
+}
+
+/***************
+    community
+****************/
