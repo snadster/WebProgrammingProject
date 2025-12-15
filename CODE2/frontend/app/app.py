@@ -1,16 +1,47 @@
+##
+##  frontend renders templates and calls logic and db
+##
 from datetime import date, datetime, timedelta
 
-from flask import make_response, redirect, render_template, request, url_for
+from flask import make_response, redirect, render_template, request, url_for, Flask
 from flask_login import current_user, login_required, login_user, logout_user
 from sqlalchemy import select
 
 from app import app
-from pythonFiles.database import db
+from database.pythonFiles.database import db
+from logic.app import app
 
-from pythonFiles.user import User
-from pythonFiles.project import Project
-from pythonFiles.project import Palette
-from pythonFiles.project import Counter
+from database.pythonFiles.user import User
+from database.pythonFiles.project import Project
+from database.pythonFiles.project import Palette
+from database.pythonFiles.project import Counter
+
+import requests
+import os
+
+
+# Start flask
+app = Flask(__name__)
+app.secret_key = "secret"
+
+#for bugfixing yip
+# with app.app_context():
+#     db.drop_all()
+#     db.create_all()
+
+# logic and db
+LOGIC = os.getenv('/logic/app/app.py')
+DATA = os.getenv('/database')
+
+
+###############
+#   routes    #
+#################################################################
+#   everything from views got moved into the app file           #
+#   when decomposing to microservices, so there                 #
+#   was a more consistent look across the services.             #
+#   not my personal favorite setup, but in this context nicer   #
+#################################################################
 
 # front page 
 @app.route("/")
@@ -18,19 +49,23 @@ def frontpage():
     return render_template("frontPage.html")
 
 
-########################
-#   LOGIN AND PROFILE  #
-#########################################################
+
+#################
+#   profile     #
+###################################################################
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        user = User.get_by_username(username)
-        if user and user.password == password:
-            login_user(user)
-            return redirect( url_for("profile") )
-
+        user = requests.get(f"{DATA}/pythonFiles/user.py") # currently just all users i assume
+        response = user.login(username, password)
+        thing = response.json() if response.ok else [] #idk what this does
+        return redirect( url_for("profile") )
+        # if user and user.password == password:
+        #     login_user(user)
+        #     return redirect( url_for("profile") )
+    # if user doesn't exist
     return render_template("frontPage.html")
 
 @app.route("/logout")
@@ -55,12 +90,11 @@ def profile():
                            Username = current_user.username,
                            mail = current_user.mail,
                            projects = db.session.scalars(select(Project).where(Project.user == current_user)).all())
-##########################################################
 
 
-#################
-#   PROJECT     #
-#############################################################################
+################
+#   project    #
+###################################################################
 # project itself (it has a theme cookie)
 @app.route("/project/<int:projectID>", methods=["GET", "POST"])
 @login_required
@@ -107,9 +141,8 @@ def project(projectID: int):
                                 Counter = counter,
                                 projects = projects,
                                 project = project)
-
+    
 # change from switch to selected theme if want more than two themes (for mvp we don't)
-
 @app.route("/clicked/<int:projectID>")
 @login_required
 def theme2(projectID: int):
@@ -124,12 +157,11 @@ def theme2(projectID: int):
     return response
 
 
-# makes a project in the db with default values (html bugs otherwise)
+# makes a project in the db with default values
 @app.route('/newProject')
 @login_required
 def newProject():
     user = current_user._get_current_object()
-    #date = datetime.today().strftime('%Y-%m-%d')
     date_ = date.today()
     title = "My New Project!"
     archived = False
@@ -144,7 +176,6 @@ def newProject():
                       counters, hookSize, yarn, pattern, 
                       palette)
     project.save()
-    # my version of trying to get the project id
     projectID = project.id
     return redirect(url_for('makeProject',  projectID=projectID))
 
@@ -171,7 +202,6 @@ def makeProject(projectID: int):
 
 
 # save the project to database with user input
-# make the ID the one it gets from makeProject
 @app.route('/saveProject/<int:projectID>', methods=['POST', 'GET'])
 @login_required
 def saveProject(projectID: int):
@@ -189,12 +219,14 @@ def saveProject(projectID: int):
     project.save()
     return redirect(url_for('project', projectID=projectID))
 
+# render archive
 @app.route('/archive', methods=['POST', 'GET'])
 @login_required
 def archive():
     return render_template("archive.html", 
                            projects = db.session.scalars(select(Project).where(Project.user == current_user)).all() )
 
+# archive a project
 @app.route('/archiveProject/<int:projectID>', methods=['POST', 'GET'])
 @login_required
 def archiveProject(projectID: int):
@@ -220,12 +252,10 @@ def archiveProject(projectID: int):
 #     project.save()
 #     return redirect(url_for('project', projectID=projectID))
 
-##################################################################
-
 #################
-#   COUNTERS    #
-##################################################################
-
+#   counters    #
+###################################################################
+# make new counter
 @app.route('/newCounter/<int:projectID>', methods=['POST', 'GET'])
 @login_required
 def newCounter(projectID: int):
@@ -237,8 +267,6 @@ def newCounter(projectID: int):
     return redirect(url_for('project',  projectID=projectID))
 
 # add to counter and minus from counter. 
-# Yes they're basically the same code, no I couldn't 
-# as of this moment bother putting them into one function
 @app.route('/upCounter/<int:projectID>/<int:counterID>', methods=['POST', 'GET'])
 @login_required
 def upCounter(counterID: int, projectID: int):
@@ -261,26 +289,24 @@ def downCounter(counterID: int, projectID: int):
     counter.save()
     return redirect(url_for('project',  projectID=projectID))
 
-# @app.route('/linkCounter', methods=['POST', 'GET'])
-# def linkCounter(counterID, projectID):
 
-#     return redirect(url_for('project'), projectID)
-
-#####################
-# COLOR PALETTES    #
-##################################################################
+#######################
+#   color palettes    #
+###################################################################
+# render palettes page
 @app.route("/palettes")
 @login_required
 def palettes():
     palettes = db.session.scalars(select(Palette)).all()
     return render_template("colorPalettes.html",
                            palettes = palettes)
-
+# render make palette page
 @app.route("/newPalette")
 @login_required
 def newPalette():
     return render_template("makePalette.html")
 
+# save the palette to db
 @app.route("/savePalette", methods = ["POST"])
 @login_required
 def savePalette():
@@ -297,6 +323,7 @@ def savePalette():
     palette.save()
     return redirect(url_for('newPalette'))
 
+# delete palette ( non-functional )
 @app.route("/deletePalette", methods = ["POST", "GET"])
 @login_required
 def deletePalette():
@@ -308,7 +335,6 @@ def deletePalette():
             pal.deletePalette()
     return redirect(url_for('palettes'))
         
-
 
 #########################
 #   REMOVED FROM MVP    #

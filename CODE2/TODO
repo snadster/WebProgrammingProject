@@ -1,75 +1,23 @@
-fix phone combatability in sidebar.
-
-
-MVP
-- find way to keep navBar always on every page
-  - currenlty just copy-pasting
-
-- make the acessibility bulletproof 
-
-- !! make auto generating code for displaying items for:
-  - archive (MAYBE)
-    - steal the projects one but filter by archived==True
-  - counters
-    - a counter has to know which project its in
-
-- catch unique username error
-  - somehow catch the mistake if two ppl with same username
-  - and then somehow tell them
-  - idfk
-
-- delete pallete
-  - ask user for pallette name
-  - pass that to deletePallette view
-  - use remove for the pallette with that name
-
-BUGS
-- text in sidebar is pink on dev notes page
-- can't delete counters
-- deleting a palette does not work.
-- FIX DISPLAYING NAME OF COLOR PALETTE
-- PROJECTS DON'T BELONG TO A USER.
-  - i assume this is a db.session.scalar().all problem. I need to filter by userID.
-
-REPORT:
-
-scrapped
-- we scrapped devNotes
-- scrapped displaying the selected color palette in project
-  - now only display name
-- linked and looped counters
-  - find the ghosts of this in the code for part one. Left for possible future implementation
-- we scrapped note-taking : time constraint. 
-  - you'll find the remnants of it in the code for part one. left for possible future implementation
-
-general notes:
-- scrollbars are not styled, as most of the aesthetics were done on a firefox browser, where scrollbars collapse when not in use. If you're using edge or another browser with non-collapsing scroll-bars, I do apologize
-
-
-
-
-
-NOTE TO SELF:
-on projects:
-  hopefully, it should work like this:
-  - user clicks new project, and flask runs /newProject, rendering
-    the template of a new project with default values.
-  - user clicks save on form to save details, and flask runs /saveProject.
-    this redirects to /project/projectID, and should now have the 
-    correct information.
-      - POSSIBLE BUG: project will only save if user saves info. However, 
-        user has to save info to give the project a title.
-  - user can now interact with their brand new project.
-
-
-OLD CODE
-display selected color palette
-
-
 DECOMPOSING INTO MICROSERVICES
 individual services:
-  - login
-  - projects
+  - login (logic)
+  - projects (database)
+  - rendering (frontend)
+
+login
+  - flask can handle login so i don't understand why doing this
+  - possible thing;
+    - everytime we have to render something we need to check if user is logged in
+    - we can throw that to logic?
+
+projects
+  - obvs databse stuff here. But its much more than just projects
+  - everytime we need info from database, make call to here
+  - send information from here as well
+
+rendering
+  - frontend things, the actual views. problem is currently the views do everything and we need to decompose that so they mostly do calls to logic and db, and then rendering.
+  - essentially send out requests and get responses, and then based on those responses we either render or maybe throw error.
 
 
 DOCKER BUILD
