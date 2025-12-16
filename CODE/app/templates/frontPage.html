@@ -6,8 +6,6 @@
         ----------------------------------->
 
         <!-- stylesheets -->
-         <!-- <link rel="stylesheet" href="{{mainTheme}}">
-         <link rel="stylesheet" href="{{navBarTheme}}"> -->
          <link rel="stylesheet" href="/static/CSS/welcome.css">
 
         <!-- javascript import -->
@@ -19,7 +17,7 @@
 
     </head>
     
-    <body alt="The front page. Read our FAQ's and login">
+    <body alt="The front page. Register, login, read about us or FAQ's">
         <!-- header -->
         <div class="header">
             <img src="/static/IMG/loopletBig.png">
@@ -27,70 +25,66 @@
 
         <!-- filler -->
         <div class="filler">
-            <button class="login" 
+            <button aria-label="login" class="login" 
             onclick="document.getElementById('id01').style.display='block'" 
             style="width:auto;">
                 Login
             </button>
 
-            <div id="id01" class="modal">
+            <div alt="the login form" id="id01" class="modal">
                 <form class="modal-content animate forms" action="/login" method="post">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <div class="container">
-                        <label for="uname"><b>
+                        <label alt="username" for="uname"><b>
                             Username</b>
                         </label>
                         <input name="username" type="text" placeholder="Enter Username" name="uname" required>
 
-                        <label for="psw">
+                        <label alt="password" for="psw">
                             <b>Password</b>
                         </label>
                         <input name="password" type="password" placeholder="Enter Password" name="psw" required>
                             
-                        <button class="butt" type="submit">
+                        <button aria-label="login" class="butt" type="submit">
                             Login
                         </button>
-                        <!-- <label class="remember">
-                            <input type="checkbox" checked="checked" name="remember"> 
-                            Remember me
-                        </label> -->
                     </div>
 
                     <div class="container">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                        <span class="psw">
-                            <a href="#"> Forgot password?</a>
-                        </span>
+                        <button aria-label="cancel login" type="button" 
+                        onclick="document.getElementById('id01').style.display='none'" 
+                        class="cancelbtn">Cancel</button>
                     </div>
                 </form>
             </div>
   
-            <button class="login" 
+            <button aria-label="register"
+            class="login" 
             onclick="document.getElementById('id02').style.display='block'" 
             style="width:auto;">
                 Register
             </button>
 
-            <div id="id02" class="modal2">
+            <div alt="form to register" id="id02" class="modal2">
                 <form class="modal2-content animate forms" action="/register" method="post">
                     <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <div class="container">
-                        <label for="mail"><b>
+                        <label alt="email" for="mail"><b>
                             Email</b>
                         </label>
                         <input type="text" placeholder="Enter Email" name="mail" required>
 
-                        <label for="username"><b>
+                        <label alt="username" for="username"><b>
                             Username</b>
                         </label>
                         <input type="text" placeholder="Enter Username" name="username" required>
 
-                        <label for="password">
+                        <label alt="password" for="password">
                             <b>Password</b>
                         </label>
                         <input type="password" placeholder="Enter Password" name="password" required>
                             
-                        <button class="butt" type="submit">
+                        <button aria-label="confirm register" class="butt" type="submit">
                             Register
                         </button>
                     </div>
@@ -121,13 +115,13 @@
         <!-- content -->
         <div class="content">
             <div class="tab">
-                <button class="tablinks active" onclick="openCity(event, 'Welcome')">Welcome</button>
-                <button class="tablinks" onclick="openCity(event, 'FAQ')">FAQ</button>
-                <button class="tablinks" onclick="openCity(event, 'About')">About Us</button>
+                <button aria-label="open welcome" class="tablinks active" onclick="openTab(event, 'Welcome')">Welcome</button>
+                <button aria-label="open FAQ" class="tablinks" onclick="openTab(event, 'FAQ')">FAQ</button>
+                <button aria-label="open about us" class="tablinks" onclick="openTab(event, 'About')">About Us</button>
             </div>
 
             <!-- Tab content -->
-            <div id="Welcome" class="tabcontent" style="display: flex;">
+            <div alt="a welcome blurb" id="Welcome" class="tabcontent" style="display: flex;">
                 Welcome welcome! We're so happy to have you here!
                 LoopLet is currently a minimum viable product, 
                 with the main functionality being the ability to create a project 
@@ -145,11 +139,11 @@
                 on the left hand side. 
             </div>
 
-            <div id="FAQ" class="tabcontent">
+            <div alt="our FAQ's" id="FAQ" class="tabcontent">
                 Currently we have no FAQ's
             </div>
 
-            <div id="About" class="tabcontent">
+            <div alt="About us" id="About" class="tabcontent">
                 LoopLet is an application made for a web development project 
                 at sdu Odense. 
                 <br>

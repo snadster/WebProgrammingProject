@@ -16,7 +16,6 @@ from database.pythonFiles.project import Project
 from database.pythonFiles.project import Palette
 from database.pythonFiles.project import Counter
 
-import requests
 import os
 
 
@@ -58,9 +57,9 @@ def login():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        user = requests.get(f"{DATA}/pythonFiles/user.py") # currently just all users i assume
-        response = user.login(username, password)
-        thing = response.json() if response.ok else [] #idk what this does
+        # response = user.login(username, password)
+        #response = user.json() if user.ok else [] # response.json() gives me all the data in vague dictionary form, and goes [200]-all good
+        login(username, password) #login should exist in logic but currently has NO functionality
         return redirect( url_for("profile") )
         # if user and user.password == password:
         #     login_user(user)
@@ -161,6 +160,7 @@ def theme2(projectID: int):
 @app.route('/newProject')
 @login_required
 def newProject():
+    # make this communicate with database component or whatever
     user = current_user._get_current_object()
     date_ = date.today()
     title = "My New Project!"
@@ -184,6 +184,7 @@ def newProject():
 @app.route('/makeProject/<int:projectID>')
 @login_required
 def makeProject(projectID: int):
+    # i suppose get info from database via gets or whatever
     project = db.session.get(Project, projectID)
     projects = db.session.scalars(select(Project).where(Project.user == current_user)).all()
     return render_template("projectPage.html",
@@ -205,6 +206,7 @@ def makeProject(projectID: int):
 @app.route('/saveProject/<int:projectID>', methods=['POST', 'GET'])
 @login_required
 def saveProject(projectID: int):
+    # throw this to database via a post or something
     project = db.session.get(Project, projectID)
     project.user = current_user._get_current_object()
     project.date_ = date.today()
@@ -230,6 +232,7 @@ def archive():
 @app.route('/archiveProject/<int:projectID>', methods=['POST', 'GET'])
 @login_required
 def archiveProject(projectID: int):
+    # throw to database and fetch from database i guess
     project = db.session.get(Project, projectID)
     project.user = current_user._get_current_object()
     project.date_ = date.today()  # VALUE WE CHANGE
@@ -259,6 +262,7 @@ def archiveProject(projectID: int):
 @app.route('/newCounter/<int:projectID>', methods=['POST', 'GET'])
 @login_required
 def newCounter(projectID: int):
+    # need to make this thing in the db
     project = db.session.get(Project, projectID)
     value = 0
     counter = Counter(value, None, None, projectID)
@@ -270,6 +274,7 @@ def newCounter(projectID: int):
 @app.route('/upCounter/<int:projectID>/<int:counterID>', methods=['POST', 'GET'])
 @login_required
 def upCounter(counterID: int, projectID: int):
+    # this should be a post and get from db (once decomposed)
     counter = db.session.get(Counter, counterID)
     counter.id = counterID
     counter.value = counter.value+1
@@ -281,6 +286,7 @@ def upCounter(counterID: int, projectID: int):
 @app.route('/downCounter/<int:projectID>/<int:counterID>', methods=['POST', 'GET'])
 @login_required
 def downCounter(counterID: int, projectID: int):
+    # this should also be a post and get from db once decomposed
     counter = db.session.get(Counter, counterID)
     counter.id = counterID
     counter.value = counter.value-1
@@ -300,6 +306,7 @@ def palettes():
     palettes = db.session.scalars(select(Palette)).all()
     return render_template("colorPalettes.html",
                            palettes = palettes)
+
 # render make palette page
 @app.route("/newPalette")
 @login_required
@@ -310,6 +317,8 @@ def newPalette():
 @app.route("/savePalette", methods = ["POST"])
 @login_required
 def savePalette():
+    # post and get from db once decomposed
+    # i assume all the title=request stuff should go in the db? idk tho
     title = request.form["pTitle"]
     color1 = request.form["color1"]
     color2 = request.form["color2"]

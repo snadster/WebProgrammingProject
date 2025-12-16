@@ -10,7 +10,7 @@
         ----------------------------------->
 
         <!-- stylesheets -->
-         <link rel="stylesheet" href="/static/CSS/navBarFall.css"> <!-- replace with {{template}} when integrated with flask -->
+         <link rel="stylesheet" href="/static/CSS/navBarFall.css">
          <link rel="stylesheet" href="/static/CSS/defaultMainPage.css">
          <link rel="stylesheet" href="/static/CSS/defaultNavBar.css">
          <link rel="stylesheet" href="/static/CSS/colorPalettes.css">
@@ -26,25 +26,20 @@
 
     </head>
     
-    <body alt="a geometric circle based color splash background. There's a button 
+    <body alt="a geometric circle based color splash background.
+                There's a button to make a new palette, and a button 
                 at the top left to open the side navigation bar.">
         <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                
-                <!-- NOTE!
-                    button in link is probably not the right way. 
-                    however, I couldn't get it to work with onclick, so.
-                    styling directly to override other styles
-                -->
                 <a 
+                aria-label="log out"
                 style="background-color: rgba(0, 0, 0, 0.001);
                        padding: 0;" 
                 href="{{ url_for('logout') }}">
-                    <button aria-label="Log Out" type="button">
+                    <button type="button">
                         log out
                     </button>
                 </a>
-                
             </div>
             <div class="container">
                 <h1 class="blockTop">
@@ -54,17 +49,14 @@
                     <button  aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()"> &#60; &#60;
-                </button>
-
-                <!-- for some reason no padding on this
-                     fix later i suppose -->
-                <a class="space" href="{{ url_for('newProject') }}">
+                    </button>
+                <a aria-label="make new project" class="space" href="{{ url_for('newProject') }}">
                     New Project +
                 </a>
 
                 {% for project in projects %}
                     {% if project.archived == False %}
-                    <a href="{{ url_for('project', projectID = project.id) }}">
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project.id) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 {{ project.title }}
@@ -96,11 +88,7 @@
                     Community
                 </h1>
                 <div class="scroll">
-                    <!-- <a 
-                        href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()">&#60; &#60;
-                    </a> -->
-                    <a href="{{ url_for('profile') }}">
+                    <a aria-label="go to profile" href="{{ url_for('profile') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Profile
@@ -110,7 +98,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="{{ url_for('palettes') }}">
+                    <a aria-label="go to palettes" href="{{ url_for('palettes') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Color Pallettes
@@ -120,7 +108,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="{{url_for('archive')}}">
+                    <a aria-label="go to archive" href="{{url_for('archive')}}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Archive
@@ -130,7 +118,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming Soon: Development Notes!
@@ -140,7 +128,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming soon: Inspiration!
@@ -150,7 +138,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming soon: Store!
@@ -165,7 +153,7 @@
         </div>
 
         <!-- Use any element to open the sidenav -->
-        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+        <button aria-label="Open Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
         <!-----------------------------------------------------------------------------
             main page
@@ -175,7 +163,7 @@
                 Color Palettes!
             </h1>
             <div class="flex">
-                <a class="newPalette" href="{{ url_for('newPalette') }}">
+                <a aria-label="make new color palette" class="newPalette" href="{{ url_for('newPalette') }}">
                     <h3>
                         New color palette +
                     </h3>
@@ -193,18 +181,7 @@
                 </form>
             </div>
             
-            <div class="contain">
-                
-                <!-- palettes, I apologize for the state of the code.
-                     it likely does not work on account of the 
-                     database not working. alas, we go on
-
-                     hopefully should generate every palette
-                     saved in the database, and run the given
-                     js to make the background color the 
-                     one saved in the attribute. Excited 
-                     to see if this ectually works. I doubt it.
-                -->
+            <div alt="the saved palettes" class="contain">
                 {% for palette in palettes %}
                 <div class="fullPalette">
                     <h3>
@@ -238,7 +215,6 @@
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
         </div> 
 

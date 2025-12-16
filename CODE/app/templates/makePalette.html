@@ -2,15 +2,6 @@
 <html>
     <head>
 
-        <!-- 
-        TODO:
-            - make a deafult page for the main page
-            - make a way to show the correct project when
-              choosing a given project
-        
-        
-        
-        -->
         <!--------------------------------- 
         |   fancy pants styling section   |
         ----------------------------------->
@@ -26,7 +17,9 @@
     
     <body alt="a geometric circle based color splash background. 
                 Here you can make your own color palette. There's
-                a palette mock-up on the screen.">
+                a palette mock-up on the screen, where you select 
+                a color for each space in the palette. 
+                Default color is brown.">
         <h1>
             Color Palette Maker
         </h1>
@@ -42,9 +35,7 @@
             type it in manually in the lower right corner of the 
             pop-up
         </p>
-        <!-- method=post so we throw the data somewhere. 
-             still need to grab the data and put it in a databae -->
-        <form class="forms" method="post">
+        <form aria-label="actual color palette creation" class="forms" method="post">
             <div class="fullPalette">
                 <input name="pTitle" id="name" 
                        type="text"
@@ -142,10 +133,10 @@
                 </div>
             </div>
 
-            <button class="save" type="submit" formaction="{{ url_for('savePalette' )}}">
+            <button aria-label="save palette" class="save" type="submit" formaction="{{ url_for('savePalette' )}}">
                 Save Palette
             </button>
-            <a href="{{ url_for('palettes') }}">
+            <a aria-label="go back" href="{{ url_for('palettes') }}">
                 <button class="save" type="button">
                     go back
                 </button>

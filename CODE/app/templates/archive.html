@@ -10,7 +10,7 @@
         ----------------------------------->
 
         <!-- stylesheets -->
-         <link rel="stylesheet" href="/static/CSS/navBarFall.css"> <!-- replace with {{template}} when integrated with flask -->
+         <link rel="stylesheet" href="/static/CSS/navBarFall.css">
          <link rel="stylesheet" href="/static/CSS/defaultMainPage.css">
          <link rel="stylesheet" href="/static/CSS/defaultNavBar.css">
          <link rel="stylesheet" href="/static/CSS/archive.css">
@@ -31,13 +31,13 @@
                 side navigation bar.">
        <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                
                 <!-- NOTE!
                     button in link is probably not the right way. 
                     however, I couldn't get it to work with onclick, so.
-                    styling directly to override other styles
+                    I'm styling directly to override other styles
                 -->
                 <a 
+                aria-label="log out"
                 style="background-color: rgba(0, 0, 0, 0.001);
                        padding: 0;" 
                 href="{{ url_for('logout') }}">
@@ -57,21 +57,18 @@
                         onclick="closeNav()"> &#60; &#60;
                 </button>
 
-                <!-- for some reason no padding on this
-                     fix later i suppose -->
-                <a class="space" href="{{ url_for('newProject') }}">
+                <a aria-label="make new project" class="space" href="{{ url_for('newProject') }}">
                     New Project +
                 </a>
 
                 {% for project in projects %}
                     {% if project.archived == False %}
-                    <a href="{{ url_for('project', projectID = project.id) }}">
+                    <a aria-label="go to a project" href="{{ url_for('project', projectID = project.id) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 {{ project.title }}
                             </h3>
                         </div>
-
                         <div class="split2" >
                             <p class="details">
                                 Details
@@ -96,11 +93,7 @@
                     Community
                 </h1>
                 <div class="scroll">
-                    <!-- <a 
-                        href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()">&#60; &#60;
-                    </a> -->
-                    <a href="{{ url_for('profile') }}">
+                    <a aria-label="go to profile" href="{{ url_for('profile') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Profile
@@ -110,7 +103,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="{{ url_for('palettes') }}">
+                    <a aria-label="go to color palettes" href="{{ url_for('palettes') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Color Pallettes
@@ -120,7 +113,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="{{url_for('archive')}}">
+                    <a aria-label="go to archive" href="{{url_for('archive')}}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Archive
@@ -130,7 +123,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming Soon: Development Notes!
@@ -140,7 +133,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming soon: Inspiration!
@@ -150,7 +143,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming soon: Store!
@@ -164,7 +157,7 @@
             </div>
         </div>
 
-        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+        <button aria-label="Open Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
         <!-----------------------------------------------------------------------------
             main page
@@ -183,7 +176,7 @@
             <div class="containProjects">
                 {% for project in projects %}
                     {% if project.archived == True %}
-                    <a class="project" href="{{ url_for('project', projectID = project.id) }}">
+                    <a aria-label="old project" class="project" href="{{ url_for('project', projectID = project.id) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 {{ project.title }}
@@ -208,7 +201,7 @@
         </div>
 
     <!-- Use any element to open the sidenav -->
-    <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
     </body>
 </html>

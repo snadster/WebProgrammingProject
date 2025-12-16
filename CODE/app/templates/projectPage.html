@@ -2,12 +2,6 @@
 <html>
     <head>
 
-        <!-- 
-        TODO:
-            - make a deafult page for the main page
-            - make a way to show the correct project when
-              choosing a given project
-        -->
         <!--------------------------------- 
         |   fancy pants styling section   |
         ----------------------------------->
@@ -33,17 +27,17 @@
                 There's a button in the top left to open the navigation bar.">
        <div id="mySidenav" class="sidenav">
             <div class="navTop">
-                
                 <!-- NOTE!
                     button in link is probably not the right way. 
                     however, I couldn't get it to work with onclick, so.
                     styling directly to override other styles
                 -->
                 <a 
+                aria-label="Log Out"
                 style="background-color: rgba(0, 0, 0, 0.001);
                        padding: 0;" 
                 href="{{ url_for('logout') }}">
-                    <button aria-label="Log Out" type="button">
+                    <button type="button">
                         log out
                     </button>
                 </a>
@@ -54,20 +48,17 @@
                     Project Overview
                 </h1>
                 <div class="scroll">
-                    <button  aria-label="Close Sidebar"
+                    <button aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()"> &#60; &#60;
                 </button>
-
-                <!-- for some reason no padding on this
-                     fix later i suppose -->
-                <a class="space" href="{{ url_for('newProject') }}">
+                <a aria-label="make new project" class="space" href="{{ url_for('newProject') }}">
                     New Project +
                 </a>
 
                 {% for project in projects %}
                     {% if project.archived == False %}
-                    <a href="{{ url_for('project', projectID = project.id) }}">
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project.id) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 {{ project.title }}
@@ -99,11 +90,7 @@
                     Community
                 </h1>
                 <div class="scroll">
-                    <!-- <a 
-                        href="javascript:void(0)" class="closebtn" 
-                        onclick="closeNav()">&#60; &#60;
-                    </a> -->
-                    <a href="{{ url_for('profile') }}">
+                    <a aria-label="go to profile" href="{{ url_for('profile') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Profile
@@ -113,7 +100,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="{{ url_for('palettes') }}">
+                    <a aria-label="go to color palettes" href="{{ url_for('palettes') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Color Pallettes
@@ -123,7 +110,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="{{url_for('archive')}}">
+                    <a aria-label="go to archive" href="{{url_for('archive')}}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Archive
@@ -133,7 +120,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming Soon: Development Notes!
@@ -143,7 +130,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming soon: Inspiration!
@@ -153,7 +140,7 @@
                             </p>
                         </div>
                     </a>
-                    <a href="#">
+                    <a aria-label="non-functional link" href="#">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Coming soon: Store!
@@ -168,7 +155,7 @@
         </div>
 
         <!-- Use any element to open the sidenav -->
-        <button aria-label="Close Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+        <button aria-label="Open Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
 
 
 <!------------------------------------------------------------------------------- 
@@ -181,7 +168,7 @@
                 </h1>
                 <div class="twoBut">
                     <form class="theme">
-                        <button class="themeBtn"
+                        <button aria-label="change theme" class="themeBtn"
                         type="submit" formaction="{{ url_for('theme2',  projectID = project.id) }}">
                             {{theme}}
                         </button>
@@ -190,16 +177,16 @@
             </div>
 
             <div class="tab">
-                 <button id="counter" class="tablinks active" onclick="openCity(event, 'Counter')">Counter</button>
-                <button id="home" class="tablinks" onclick="openCity(event, 'Home')">Home</button>
+                 <button aria-label="open counter tab" id="counter" class="tablinks active" onclick="openTab(event, 'Counter')">Counter</button>
+                <button aria-label="open home tab" id="home" class="tablinks" onclick="openTab(event, 'Home')">Home</button>
             </div>
 
             <!-- COUNTER TAB -->
-            <div id="Counter" class="tabcontent" 
+            <div alt="all your counters" id="Counter" class="tabcontent" 
             style="display: block;">
                 <div class="flex">
                     <form class="counter">            
-                        <button formaction="{{ url_for('newCounter', projectID = project.id) }}" 
+                        <button aria-label="make new counter" formaction="{{ url_for('newCounter', projectID = project.id) }}" 
                         type="submit" class="newC">
                             <p>
                                 new counter +
@@ -208,8 +195,8 @@
                     </form>
                     {% for counter in counters %}
                     <form>
-                        <div class="counter">
-                            <button formaction="{{ url_for('upCounter', counterID = counter.id, projectID = project.id) }}"
+                        <div alt="a counter" class="counter">
+                            <button aria-label="add to counter" formaction="{{ url_for('upCounter', counterID = counter.id, projectID = project.id) }}"
                             type="submit" class="numN">
                                 <!-- MAX counter is 99999 -->
                                 <p>
@@ -222,12 +209,13 @@
                                     linked: {{ counter.link }} <br>
                                     loop: {{ counter.loop }}
                                 </p>
-                                <button type="button" class="burgerMenu" 
+                                <button aria-label="non-functional button" type="button" class="burgerMenu" 
                                     alt="menu for individual counter. Click to edit counter.">	
                                         &equiv;
                                 </button>
                             </div>
-                            <button formaction="{{ url_for('downCounter', counterID = counter.id, projectID = project.id) }}"
+                            <button aria-label="subtract from counter" 
+                            formaction="{{ url_for('downCounter', counterID = counter.id, projectID = project.id) }}"
                             type="submit" class="minus">
                                 &#65293;
                             </button>
@@ -239,9 +227,9 @@
             </div>
 
             <!-- home content -->
-            <div id="Home" class="tabcontent">
+            <div alt="home content" id="Home" class="tabcontent">
                 <div class="flex">
-                    <form class="forms" method="post">
+                    <form alt="form to type in information" class="forms" method="post">
                         <fieldset>
                             <legend>Information</legend> <!-- title in the box of it -->
                             <div>
@@ -295,15 +283,6 @@
                             </div>
                         </fieldset>
                     </form>
-                    <!-- <form class="forms" method="#">
-                        <fieldset>
-                            <legend>Notes To Self</legend>
-                                <input name="notes" type="text" class="noteSelf">
-                            <button class="placeholder" type="submit">
-                                Save Notes
-                            </button>
-                        </fieldset>
-                    </form> -->
                     <div class="infoBlurb">
                         <p>
                             Welcome to your project!
@@ -322,10 +301,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
-
-            
+            </div> 
         </div> 
-
     </body>
 </html>

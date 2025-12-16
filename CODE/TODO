@@ -2,16 +2,9 @@ fix phone combatability in sidebar.
 
 
 MVP
-- find way to keep navBar always on every page
-  - currenlty just copy-pasting
-
 - make the acessibility bulletproof 
 
-- !! make auto generating code for displaying items for:
-  - archive (MAYBE)
-    - steal the projects one but filter by archived==True
-  - counters
-    - a counter has to know which project its in
+- MAKE DIAGRAM FOR STRUCTURE OF CODE
 
 - catch unique username error
   - somehow catch the mistake if two ppl with same username
@@ -31,8 +24,8 @@ BUGS
 - PROJECTS DON'T BELONG TO A USER.
   - i assume this is a db.session.scalar().all problem. I need to filter by userID.
 
-REPORT:
 
+REPORT:
 scrapped
 - we scrapped devNotes
 - scrapped displaying the selected color palette in project
