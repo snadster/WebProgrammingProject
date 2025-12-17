@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!--------------------------------- 
+        |   fancy pants styling section   |
+        ----------------------------------->
+
+        <!-- stylesheets -->
+         <link rel="stylesheet" href="{{mainTheme}}">
+         <link rel="stylesheet" href="{{navBarTheme}}">
+         <link rel="stylesheet" href="/static/CSS/defaultMainPage.css">
+         <link rel="stylesheet" href="/static/CSS/defaultNavBar.css">
+
+        <!-- javascript import -->
+        <script src="/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="/static/JAVASCRIPT/tabs.js"></script>
+
+        <title>
+            {{projectTitle}} - {{projectID}}
+        </title>
+
+    </head>
+    
+    <body alt="The main project page, with the project title and details,
+                such as hook size and counters in the tab-navigated main area. 
+                There's a button in the top left to open the navigation bar.">
+       <div id="mySidenav" class="sidenav">
+            <div class="navTop">
+                <!-- NOTE!
+                    button in link is probably not the right way. 
+                    however, I couldn't get it to work with onclick, so.
+                    styling directly to override other styles
+                -->
+                <a 
+                aria-label="Log Out"
+                style="background-color: rgba(0, 0, 0, 0.001);
+                       padding: 0;" 
+                href="{{ url_for('logout') }}">
+                    <button type="button">
+                        log out
+                    </button>
+                </a>
+                
+            </div>
+            <div class="container">
+                <h1 class="blockTop">
+                    Project Overview
+                </h1>
+                <div class="scroll">
+                    <button aria-label="Close Sidebar"
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()"> &#60; &#60;
+                </button>
+                <a aria-label="make new project" class="space" href="{{ url_for('newProject') }}">
+                    New Project +
+                </a>
+
+                {% for project in projects %}
+                    {% if project.archived == False %}
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project.id) }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                {{ project.title }}
+                            </h3>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: {{ project.counters|count }}
+                            </p>
+                            <p>
+                                last edited: {{ project.date }}
+                            </p>
+                        </div>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+            <!-------------
+                Community
+            --------------->
+            <div class="container">
+                <h1 class="blockTop">
+                    Community
+                </h1>
+                <div class="scroll">
+                    <a aria-label="go to profile" href="{{ url_for('profile') }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Profile
+                            </h3>
+                            <p class="comDesc">
+                                Look at your profile
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="go to color palettes" href="{{ url_for('palettes') }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Color Pallettes
+                            </h3>
+                            <p class="comDesc">
+                                Look at your saved palettes!
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="go to archive" href="{{url_for('archive')}}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Archive
+                            </h3>
+                            <p class="comDesc">
+                                Your old projects, nostalgia extreme
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="non-functional link" href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming Soon: Development Notes!
+                            </h3>
+                            <p class="comDesc">
+                                have a bug? report it here!
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="non-functional link" href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Inspiration!
+                            </h3>
+                            <p class="comDesc">
+                                Community board! Interact with other crafters.
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="non-functional link" href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Store!
+                            </h3>
+                            <p class="comDesc">
+                                Need an extra spool of yarn? Our linked affiliates can provide!
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+        <button aria-label="Open Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+
+
+<!------------------------------------------------------------------------------- 
+            main page
+--------------------------------------------------------------------------------->
+        <div id="main">
+            <div class="header">
+                <h1>
+                    {{ projectTitle }}
+                </h1>
+                <div class="twoBut">
+                    <form class="theme">
+                        <button aria-label="change theme" class="themeBtn"
+                        type="submit" formaction="{{ url_for('theme2',  projectID = project.id) }}">
+                            {{theme}}
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="tab">
+                 <button aria-label="open counter tab" id="counter" class="tablinks active" onclick="openTab(event, 'Counter')">Counter</button>
+                <button aria-label="open home tab" id="home" class="tablinks" onclick="openTab(event, 'Home')">Home</button>
+            </div>
+
+            <!-- COUNTER TAB -->
+            <div alt="all your counters" id="Counter" class="tabcontent" 
+            style="display: block;">
+                <div class="flex">
+                    <form class="counter">            
+                        <button aria-label="make new counter" formaction="{{ url_for('newCounter', projectID = project.id) }}" 
+                        type="submit" class="newC">
+                            <p>
+                                new counter +
+                            </p>
+                        </button>                   
+                    </form>
+                    {% for counter in counters %}
+                    <form>
+                        <div alt="a counter" class="counter">
+                            <button aria-label="add to counter" formaction="{{ url_for('upCounter', counterID = counter.id, projectID = project.id) }}"
+                            type="submit" class="numN">
+                                <!-- MAX counter is 99999 -->
+                                <p>
+                                    {{ counter.value }}
+                                </p>
+                            </button>
+                            <div class="typeN">
+                                <p>
+                                    {{ counter.id }} <br>
+                                    linked: {{ counter.link }} <br>
+                                    loop: {{ counter.loop }}
+                                </p>
+                                <button aria-label="non-functional button" type="button" class="burgerMenu" 
+                                    alt="menu for individual counter. Click to edit counter.">	
+                                        &equiv;
+                                </button>
+                            </div>
+                            <button aria-label="subtract from counter" 
+                            formaction="{{ url_for('downCounter', counterID = counter.id, projectID = project.id) }}"
+                            type="submit" class="minus">
+                                &#65293;
+                            </button>
+                            <input type="hidden" value="{{ counter.project }}, {{ counter.id }}"> 
+                        </div>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- home content -->
+            <div alt="home content" id="Home" class="tabcontent">
+                <div class="flex">
+                    <form alt="form to type in information" class="forms" method="post">
+                        <fieldset>
+                            <legend>Information</legend> <!-- title in the box of it -->
+                            <div>
+                                <div>
+                                    Title: {{ projectTitle }}
+                                </div>
+                                <label for="title">
+                                    <b>Project Title</b>
+                                </label>
+                                <input name="title" class="space" type="text" placeholder="Edit title here" name="title">
+                
+                                <div>
+                                    Yarn: {{ yarn }}
+                                </div>
+                                <label for="yarn">
+                                    <b>Yarn</b>
+                                </label>
+                                <input name="yarn" class="space" type="text" placeholder="Yarn type / brand" name="yarn">
+                                
+                                <div>
+                                    hook/needle size: {{ hookSize }}
+                                </div>
+                                <label for="needle">
+                                    <b>Size</b>
+                                </label>
+                                <input class="space" type="text" placeholder="hook/needle size" name="needle">
+                                
+                                <div>
+                                    Pattern: {{ pattern }}
+                                </div>
+                                <label for="pattern">
+                                    <b>Pattern</b>
+                                </label>
+                                <input class="space" type="text" placeholder="link to pattern (optional)" name="pattern">
+
+                                <label for="ColorPalette">
+                                    <b>Color Palette </b>
+                                </label>
+                                <select name="ColorPalette" class="space">
+                                    {% for palette in palettes %}
+                                    <!-- actually where is this value attribute saved. -->
+                                    <option name="paletteOp" id="pOption" value="{{ palette.name }}"> {{ palette.name }} </option>
+                                    {% endfor %}
+                                </select>
+                                <button formaction="{{url_for('saveProject', projectID = project.id)}}" class="placeholder" type="submit">
+                                    Save
+                                </button>
+                                <button formaction="{{url_for('archiveProject', projectID = project.id)}}" class="placeholder" type="submit">
+                                    Archive
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="infoBlurb">
+                        <p>
+                            Welcome to your project!
+                            Edit the details on the home tab, and remember to save them. <br> <br>
+                            Currently, if you click save without putting something in a text box,
+                            it's saved as empty. Meaning if you re-save (to, as an example, change the title) 
+                            you'll have to type in your other information again.
+                            <br>
+                            Also, as it stands, when you archive a project you can't edit it any longer. 
+                            We want to implement that ability, so we've left the options there, but if you 
+                            click save on an archived project, the page will crash.
+                            <br>
+                            We're working on fixing these bugs, but hope you can use our project meanwhile.
+                            <br>
+
+                        </p>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </body>
+</html>

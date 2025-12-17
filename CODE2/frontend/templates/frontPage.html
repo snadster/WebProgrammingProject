@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--------------------------------- 
+        |   fancy pants styling section   |
+        ----------------------------------->
+
+        <!-- stylesheets -->
+         <link rel="stylesheet" href="/static/CSS/welcome.css">
+
+        <!-- javascript import -->
+        <script src="/static/JAVASCRIPT/tabs.js"></script>
+
+        <title>
+            LoopLet - Counter app
+        </title>
+
+    </head>
+    
+    <body alt="The front page. Register, login, read about us or FAQ's">
+        <!-- header -->
+        <div class="header">
+            <img src="/static/IMG/loopletBig.png">
+        </div>
+
+        <!-- filler -->
+        <div class="filler">
+            <button aria-label="login" class="login" 
+            onclick="document.getElementById('id01').style.display='block'" 
+            style="width:auto;">
+                Login
+            </button>
+
+            <div alt="the login form" id="id01" class="modal">
+                <form class="modal-content animate forms" action="/login" method="post">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <div class="container">
+                        <label alt="username" for="uname"><b>
+                            Username</b>
+                        </label>
+                        <input name="username" type="text" placeholder="Enter Username" name="uname" required>
+
+                        <label alt="password" for="psw">
+                            <b>Password</b>
+                        </label>
+                        <input name="password" type="password" placeholder="Enter Password" name="psw" required>
+                            
+                        <button aria-label="login" class="butt" type="submit">
+                            Login
+                        </button>
+                    </div>
+
+                    <div class="container">
+                        <button aria-label="cancel login" type="button" 
+                        onclick="document.getElementById('id01').style.display='none'" 
+                        class="cancelbtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+  
+            <button aria-label="register"
+            class="login" 
+            onclick="document.getElementById('id02').style.display='block'" 
+            style="width:auto;">
+                Register
+            </button>
+
+            <div alt="form to register" id="id02" class="modal2">
+                <form class="modal2-content animate forms" action="/register" method="post">
+                    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <div class="container">
+                        <label alt="email" for="mail"><b>
+                            Email</b>
+                        </label>
+                        <input type="text" placeholder="Enter Email" name="mail" required>
+
+                        <label alt="username" for="username"><b>
+                            Username</b>
+                        </label>
+                        <input type="text" placeholder="Enter Username" name="username" required>
+
+                        <label alt="password" for="password">
+                            <b>Password</b>
+                        </label>
+                        <input type="password" placeholder="Enter Password" name="password" required>
+                            
+                        <button aria-label="confirm register" class="butt" type="submit">
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <h1>
+                    Affiliate
+                </h1>
+                <p>
+                    Here's where we would place ads for our sponsors, 
+                    if we had any. But, as this is a 
+                    mvp for university and not an actual application,
+                    we don't have any sponsors.
+                </p>
+            </div>
+           
+            <div>
+                shops
+            </div>
+            <div>
+                here we would link to shops we had deals with, but just 
+                like in the above paragraph, this is an mvp. not an actual product.
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <div class="tab">
+                <button aria-label="open welcome" class="tablinks active" onclick="openTab(event, 'Welcome')">Welcome</button>
+                <button aria-label="open FAQ" class="tablinks" onclick="openTab(event, 'FAQ')">FAQ</button>
+                <button aria-label="open about us" class="tablinks" onclick="openTab(event, 'About')">About Us</button>
+            </div>
+
+            <!-- Tab content -->
+            <div alt="a welcome blurb" id="Welcome" class="tabcontent" style="display: flex;">
+                Welcome welcome! We're so happy to have you here!
+                LoopLet is currently a minimum viable product, 
+                with the main functionality being the ability to create a project 
+                and add counters to it, to keep track of projects, their details,
+                and their counters. 
+                We hope you enjoy the experience of using our product.
+                <br>
+                In the interest of data fairness, this application is intended to
+                be free, and we intend to do this by selling information such as 
+                color palettes, yarn types, and pattern links to advertisers, 
+                so that they can see what things are trending within the 
+                crafting world.
+                <br>
+                Create a profile and login using the buttons
+                on the left hand side. 
+            </div>
+
+            <div alt="our FAQ's" id="FAQ" class="tabcontent">
+                Currently we have no FAQ's
+            </div>
+
+            <div alt="About us" id="About" class="tabcontent">
+                LoopLet is an application made for a web development project 
+                at sdu Odense. 
+                <br>
+                The creators, Sofie and Sandra, are passionate crafters and noticed
+                a hole in the market.
+                <br>
+                <div>
+                    blurb about sofie
+                </div>
+                <div>
+                    blurb about sandra
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+            <div class="empty1"></div>
+            <div class="product"> 
+                <h3>
+                    Product
+                </h3>
+                <p>
+                    FAQ
+                </p>
+                <p>
+                    What IS LoopLet
+                </p>
+            </div>
+            <div class="company">
+                <h3>
+                    Company
+                </h3>
+                <p>
+                    Who are We?
+                </p>
+                <p>
+                    Finances
+                </p>
+            </div>
+            <div class="empty2"></div>
+        </div>
+        
+    </body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- 
+        
+        -->
+        <!--------------------------------- 
+        |   fancy pants styling section   |
+        ----------------------------------->
+
+        <!-- stylesheets -->
+         <link rel="stylesheet" href="/static/CSS/navBarFall.css">
+         <link rel="stylesheet" href="/static/CSS/defaultMainPage.css">
+         <link rel="stylesheet" href="/static/CSS/defaultNavBar.css">
+         <link rel="stylesheet" href="/static/CSS/colorPalettes.css">
+
+        <!-- javascript import -->
+        <script src="/static/JAVASCRIPT/sidenav.js"></script>
+        <script src="/static/JAVASCRIPT/colorPalettes.js" defer></script>
+
+
+        <title>
+            Color Palettes
+        </title>
+
+    </head>
+    
+    <body alt="a geometric circle based color splash background.
+                There's a button to make a new palette, and a button 
+                at the top left to open the side navigation bar.">
+        <div id="mySidenav" class="sidenav">
+            <div class="navTop">
+                <a 
+                aria-label="log out"
+                style="background-color: rgba(0, 0, 0, 0.001);
+                       padding: 0;" 
+                href="{{ url_for('logout') }}">
+                    <button type="button">
+                        log out
+                    </button>
+                </a>
+            </div>
+            <div class="container">
+                <h1 class="blockTop">
+                    Project Overview
+                </h1>
+                <div class="scroll">
+                    <button  aria-label="Close Sidebar"
+                        href="javascript:void(0)" class="closebtn" 
+                        onclick="closeNav()"> &#60; &#60;
+                    </button>
+                <a aria-label="make new project" class="space" href="{{ url_for('newProject') }}">
+                    New Project +
+                </a>
+
+                {% for project in projects %}
+                    {% if project.archived == False %}
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project.id) }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                {{ project.title }}
+                            </h3>
+                        </div>
+
+                        <div class="split2" >
+                            <p class="details">
+                                Details
+                            </p>
+                            <p>
+                                counters: {{ project.counters|count }}
+                            </p>
+                            <p>
+                                last edited: {{ project.date }}
+                            </p>
+                        </div>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+            <!-------------
+                Community
+            --------------->
+            <div class="container">
+                <h1 class="blockTop">
+                    Community
+                </h1>
+                <div class="scroll">
+                    <a aria-label="go to profile" href="{{ url_for('profile') }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Profile
+                            </h3>
+                            <p class="comDesc">
+                                Look at your profile
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="go to palettes" href="{{ url_for('palettes') }}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Color Pallettes
+                            </h3>
+                            <p class="comDesc">
+                                Look at your saved palettes!
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="go to archive" href="{{url_for('archive')}}">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Archive
+                            </h3>
+                            <p class="comDesc">
+                                Your old projects, nostalgia extreme
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="non-functional link" href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming Soon: Development Notes!
+                            </h3>
+                            <p class="comDesc">
+                                have a bug? report it here!
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="non-functional link" href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Inspiration!
+                            </h3>
+                            <p class="comDesc">
+                                Community board! Interact with other crafters.
+                            </p>
+                        </div>
+                    </a>
+                    <a aria-label="non-functional link" href="#">
+                        <div class="split1">
+                            <h3 class="navHeading" >
+                                Coming soon: Store!
+                            </h3>
+                            <p class="comDesc">
+                                Need an extra spool of yarn? Our linked affiliates can provide!
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+        <button aria-label="Open Sidebar" class="openNav" onclick="openNav()">&#60; &#60;</button>
+
+        <!-----------------------------------------------------------------------------
+            main page
+        ------------------------------------------------------------------------------->
+        <div id="main">
+            <h1>
+                Color Palettes!
+            </h1>
+            <div class="flex">
+                <a aria-label="make new color palette" class="newPalette" href="{{ url_for('newPalette') }}">
+                    <h3>
+                        New color palette +
+                    </h3>
+                </a>
+            </div>
+            
+            <div alt="the saved palettes" class="contain">
+                {% for palette in palettes %}
+                <div class="fullPalette">
+                    <h3>
+                        {{ palette.name }}
+                    </h3>
+                    <div class="palette" alt="a color palette">
+                        <div id="color" class="color">
+                            {{ palette.color1 }}
+                        </div>
+                        <div id="color" class="color">
+                            {{ palette.color2 }}
+                        </div>
+                        <div id="color" class="color">
+                            {{ palette.color3 }}
+                        </div>
+                        <div id="color" class="color">
+                            {{ palette.color4 }}
+                        </div>
+                        <div id="color" class="color">
+                            {{ palette.color5 }}
+                        </div>
+                        <div id="color" class="color">
+                            {{ palette.color6 }}
+                        </div>
+                        <div id="color" class="color">
+                            {{ palette.color7 }}
+                        </div>
+                        <div id="color" class="color">
+                            {{ palette.color8 }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div> 
+
+    </body>
+</html>
