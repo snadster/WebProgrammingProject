@@ -6,17 +6,12 @@ from datetime import date  # use this to get todays date
 
 from database import db
 from counter import Counter
-from palettes.palette import Palette
-from project_to_palette import project_to_palette_table
-from users import user
-
 
 class Project(db.Model):
     __tablename__ = "project"
 
     id: Mapped[int] = mapped_column(primary_key=True, init=False) #maybe init=false
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"), init=False)
-    user: Mapped[user.User] = relationship()
     date: Mapped[date] = mapped_column() #how do this
     title: Mapped[str] = mapped_column(default="New Project")
     archived: Mapped[bool] = mapped_column(default=False)
@@ -25,8 +20,7 @@ class Project(db.Model):
     hookSize: Mapped[str | None] = mapped_column(default=None)
     yarn: Mapped[str | None] = mapped_column(default=None)
     pattern: Mapped[str | None] = mapped_column(default=None)
-    palette: Mapped[list[Palette]] = relationship(secondary=project_to_palette_table,
-                                                  default_factory=list)
+    paletteID: Mapped[int | None] = mapped_column(default=None)
 
     #################
     #    Methods    #
@@ -37,6 +31,4 @@ class Project(db.Model):
         db.session.commit()
 
 
-#########################
-## things we maybe need:
-## - addCounter() here or elsewhere? currently in counter
+### make a thing to get user by user id TODO

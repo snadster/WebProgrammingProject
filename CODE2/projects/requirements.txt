@@ -4,3 +4,5 @@ Flask-WTF==1.2.1
 Flask-SQLAlchemy==3.1.1
 Flask-Login
 SQLAlchemy
+requests
+DateTime

@@ -1,5 +1,5 @@
 
-from flask import Flask
+from flask import Flask, session
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, MappedAsDataclass
@@ -7,6 +7,7 @@ from sqlalchemy.orm import DeclarativeBase, MappedAsDataclass
 import database
 from database import db
 
+import requests
 # Start flask
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -22,19 +23,17 @@ database.setup_db(app)
 
 from datetime import date, datetime, timedelta
 from flask import jsonify, make_response, redirect, request, url_for
-from flask_login import current_user, login_required
 from sqlalchemy import select
 from database import db
 
-# TODO
-# not allowed to import from microservices. Do https gets. FIX EVERYWHERE.
+from project import Project
+from counter import Counter
 
 #################
 #   PROJECT     #
 #############################################################################
 
 @app.route("/clicked/<int:projectID>")
-@login_required
 def theme2(projectID: int):
     theme = request.cookies.get("theme", "fall")
     response = make_response(redirect(url_for('project', projectID = projectID)))
@@ -47,12 +46,9 @@ def theme2(projectID: int):
     return response
 
 
-# makes a project in the db with default values (html bugs otherwise)
 @app.route('/newProject')
-@login_required
 def newProject():
     user = current_user._get_current_object()
-    #date = datetime.today().strftime('%Y-%m-%d')
     date_ = date.today()
     title = "My New Project!"
     archived = False
@@ -61,40 +57,55 @@ def newProject():
     hookSize = None
     yarn = None
     pattern = None
-    palette = db.session.scalars(select(Palette)).all()
-    print(user, type(user))
+    response2 = requests.get("HTTP://palettes:5000/database")
+    palettes = response2.json() if response2.ok else[]
+
     project = Project(user, date_, title, archived, 
                       counters, hookSize, yarn, pattern, 
-                      palette)
+                      palettes)
     project.save()
     # my version of trying to get the project id
-    projectID = project.id
-    return redirect(url_for('makeProject',  projectID=projectID))
+    return jsonify([{
+                "id": p.id, "user_id": p.user_id,
+                "user": p.user, "date": p.date,
+                "title": p.title, "archived": p.archived,
+                "counters": p.counters, "hookSize": p.hookSize,
+                "yarn": p.yarn, "pattern": p.pattern,
+                "palette": p.palette} 
+                for p in project])
+
 
 # save the project to database with user input
 # make the ID the one it gets from makeProject
-@app.route('/saveProject/<int:projectID>', methods=['POST', 'GET'])
-@login_required
-def saveProject(projectID: int):
-    project = db.session.get(Project, projectID)
+@app.route('/saveProject', methods=['POST', 'GET'])
+def saveProject():
+    data = request.form
+    project = db.session.get(Project, data.projectID)
     project.user = current_user._get_current_object()
     project.date_ = date.today()
-    project.title = request.form["title"]
+    project.title = data["title"]
     project.archived = False
     project.counters = []
     # project.notes = request.form.get("notes", default=[])
-    project.hookSize = request.form.get("needle", default="")
-    project.yarn = request.form.get("yarn", default="")
-    project.pattern = request.form.get("pattern", default="")
-    project.palette = request.form.get("paletteOp", default=[])
+    project.hookSize = data["hookSize"]
+    project.yarn = data["yarn"]
+    project.pattern = data["pattern"]
+    project.palette = data["palette"]
     project.save()
-    return redirect(url_for('project', projectID=projectID))
+    return jsonify([{
+                "id": p.id, "user_id": p.user_id,
+                "user": p.user, "date": p.date,
+                "title": p.title, "archived": p.archived,
+                "counters": p.counters, "hookSize": p.hookSize,
+                "yarn": p.yarn, "pattern": p.pattern,
+                "palette": p.palette} 
+                for p in project])
 
 
-@app.route('/archiveProject/<int:projectID>', methods=['POST', 'GET'])
-@login_required
-def archiveProject(projectID: int):
-    project = db.session.get(Project, projectID)
+@app.route('/archiveProject', methods=['POST', 'GET'])
+def archiveProject():
+    projectID = request.form
+    project = db.session.get(Project, projectID["projectID"])
     project.user = current_user._get_current_object()
     project.date_ = date.today()  # VALUE WE CHANGE
     project.title = project.title
@@ -106,21 +117,23 @@ def archiveProject(projectID: int):
     project.pattern = project.pattern
     project.palette = project.palette
     project.save()
-    return redirect(url_for('archive'))
+    return jsonify([{
+                "id": p.id, "user_id": p.user_id,
+                "user": p.user, "date": p.date,
+                "title": p.title, "archived": p.archived,
+                "counters": p.counters, "hookSize": p.hookSize,
+                "yarn": p.yarn, "pattern": p.pattern,
+                "palette": p.palette} 
+                for p in project])
 
-#######################################
-##  ACTUAL CORRRECT ROUTE I THINK     #
-#######################################
-# TODO
-## db
 
 # all projects for this user
 @app.route('/database', methods=['GET'])
 def getProjects():
-    project = db.session.scalars(select(Project).where(Project.user == current_user)).all()
+    project = db.session.scalars(select(Project).where(Project.user_id == session.keys())).all()
     return jsonify([{
                 "id": p.id, "user_id": p.user_id,
-                "user": p.user, "date": p.date,
+                "date": p.date,
                 "title": p.title, "archived": p.archived,
                 "counters": p.counters, "hookSize": p.hookSize,
                 "yarn": p.yarn, "pattern": p.pattern,
@@ -132,8 +145,8 @@ def getProjects():
 def projectByID(projectID: int):
     project = db.session.scalars(select(Project).where(Project.id == projectID)).all()
     return jsonify([{
-                "id": p.id, "user_id": p.user_id,
-                "user": p.user, "date": p.date,
+                "id": p.id, "user_id": p.user_id, 
+                "date": p.date,
                 "title": p.title, "archived": p.archived,
                 "counters": p.counters, "hookSize": p.hookSize,
                 "yarn": p.yarn, "pattern": p.pattern,
@@ -155,7 +168,7 @@ def getCounters():
 #################
 #   COUNTERS    #
 ##################################################################
-
+# TODO FIX THE RETURNS ON THIS
 @app.route('/newCounter/<int:projectID>', methods=['POST', 'GET'])
 def newCounter(projectID: int):
     project = db.session.get(Project, projectID)
@@ -187,3 +200,7 @@ def downCounter(counterID: int, projectID: int):
     counter.loop = None
     counter.save()
     return redirect(url_for('project',  projectID=projectID))
+
+#################
+#   palettes    #
+##################################################

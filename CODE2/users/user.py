@@ -11,7 +11,7 @@ from database import db
 class User(db.Model, UserMixin):
     __tablename__ = "user"
 
-    id: Mapped[int] = mapped_column(primary_key=True, init=False) #maybe init=false
+    id: Mapped[int] = mapped_column(primary_key=True, init=False)
     username: Mapped[str] = mapped_column(unique=True)
     password: Mapped[str] = mapped_column()
     mail: Mapped[str] = mapped_column()

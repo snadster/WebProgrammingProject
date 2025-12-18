@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Engine, ForeignKey
-from database import Base
 
 
 from database import db
@@ -9,6 +8,7 @@ class Palette(db.Model):
     __tablename__ = "palette"
 
     id: Mapped[int] = mapped_column(primary_key=True, init=False)
+    userID: Mapped[int] = mapped_column()
     name: Mapped[str] = mapped_column() # palette title
     color1: Mapped[str | None] = mapped_column() #hopefully a hex or rgb but idk yet
     color2: Mapped[str | None] = mapped_column()
@@ -20,9 +20,8 @@ class Palette(db.Model):
     color8: Mapped[str | None] = mapped_column()
 
 
-#Base.metadata.drop_all(engine, [table], checkfirst=True)
     def deletePalette(self):
-        Base.metadata.drop_all(self)
+        db.metadata.drop_all(self)
 
     def save(self):
         db.session.add(self)
