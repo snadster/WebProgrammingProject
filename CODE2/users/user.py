@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from sqlalchemy import select
 from sqlalchemy.orm import Mapped, mapped_column
 
-from pythonFiles.database import db # previosuly circular import
+from database import db
 
 # this should by and large work.
 

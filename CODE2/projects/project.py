@@ -6,7 +6,7 @@ from datetime import date  # use this to get todays date
 
 from database import db
 from counter import Counter
-from CODE2.palettes import Palette
+from palettes.palette import Palette
 from project_to_palette import project_to_palette_table
 from users import user
 
@@ -16,7 +16,7 @@ class Project(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True, init=False) #maybe init=false
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"), init=False)
-    user: Mapped[pythonFiles.user.User] = relationship()
+    user: Mapped[user.User] = relationship()
     date: Mapped[date] = mapped_column() #how do this
     title: Mapped[str] = mapped_column(default="New Project")
     archived: Mapped[bool] = mapped_column(default=False)

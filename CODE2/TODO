@@ -35,6 +35,8 @@ scrapped
 - we scrapped note-taking : time constraint. 
   - you'll find the remnants of it in the code for part one. left for possible future implementation
 
+- design choice for microservices: moved routes into app as there's not much logic per service.
+
 general notes:
 - scrollbars are not styled, as most of the aesthetics were done on a firefox browser, where scrollbars collapse when not in use. If you're using edge or another browser with non-collapsing scroll-bars, I do apologize
 

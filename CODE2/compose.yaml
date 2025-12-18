@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5000:5000"
+  palettes:
+    build: ./palettes
+  projects:
+    build: ./projects
+  users:
+    build: ./users

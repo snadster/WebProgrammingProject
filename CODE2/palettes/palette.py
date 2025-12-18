@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Engine, ForeignKey
-from pythonFiles.database import Base
+from database import Base
 
 
-from pythonFiles.database import db
+from database import db
 
 class Palette(db.Model):
     __tablename__ = "palette"
