@@ -140,7 +140,6 @@ def newProject():
     yarn = None
     pattern = None
     palette = db.session.scalars(select(Palette)).all()
-    print(user, type(user))
     project = Project(user, date_, title, archived, 
                       counters, hookSize, yarn, pattern, 
                       palette)

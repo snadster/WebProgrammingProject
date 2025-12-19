@@ -12,6 +12,10 @@ class Counter(db.Model):
     loop: Mapped[int | None] = mapped_column()
     project: Mapped[int] = mapped_column(ForeignKey("project.id")) # the project it belongs to, hopefully
 
+    def toDict(self):
+        return {"id": self.id, "value": self.value,
+                "link": self.link, "loop": self.loop,
+                "project": self.project}
 
     def save(self):
         db.session.add(self)

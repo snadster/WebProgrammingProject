@@ -39,7 +39,7 @@
                     Project Overview
                 </h1>
                 <div class="scroll">
-                    <button  aria-label="Close Sidebar"
+                    <button aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()"> &#60; &#60;
                 </button>
@@ -48,11 +48,11 @@
                 </a>
 
                 {% for project in projects %}
-                    {% if project.archived == False %}
-                    <a aria-label="a project" href="{{ url_for('project', projectID = project.id) }}">
+                    {% if project['archived'] == False %}
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project['id']) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                {{ project.title }}
+                                {{ project['title'] }}
                             </h3>
                         </div>
 
@@ -61,10 +61,10 @@
                                 Details
                             </p>
                             <p>
-                                counters: {{ project.counters|count }}
+                                counters: {{ project['counters']|count }}
                             </p>
                             <p>
-                                last edited: {{ project.date }}
+                                last edited: {{ project['date'] }}
                             </p>
                         </div>
                     </a>
@@ -91,7 +91,7 @@
                             </p>
                         </div>
                     </a>
-                    <a aria-label="go to palettes" href="{{ url_for('palettes') }}">
+                    <a aria-label="go to color palettes" href="{{ url_for('palettes') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Color Pallettes

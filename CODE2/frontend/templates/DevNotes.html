@@ -61,10 +61,10 @@
                 </a>
 
                 {% for project in projects %}
-                <a href="{{ url_for('project', projectID = project.id) }}">
+                <a href="{{ url_for('project', projectID = project['id']) }}">
                     <div class="split1">
                         <h3 class="navHeading" >
-                            {{ project.title }}
+                            {{ project['title'] }}
                         </h3>
                     </div>
 
@@ -73,10 +73,10 @@
                             Details
                         </p>
                         <p>
-                            counters: {{ project.counters|count }}
+                            counters: {{ project['counters']|count }}
                         </p>
                         <p>
-                            last edited: {{ project.date }}
+                            last edited: {{ project['date'] }}
                         </p>
                     </div>
                 </a>

@@ -11,7 +11,7 @@ class Project(db.Model):
     __tablename__ = "project"
 
     id: Mapped[int] = mapped_column(primary_key=True, init=False) #maybe init=false
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"), init=False)
+    userID: Mapped[int] = mapped_column()
     date: Mapped[date] = mapped_column() #how do this
     title: Mapped[str] = mapped_column(default="New Project")
     archived: Mapped[bool] = mapped_column(default=False)
@@ -26,9 +26,13 @@ class Project(db.Model):
     #    Methods    #
     #################
 
+    def toDict(self):
+        return {"id": self.id, "userID": self.userID, "date": self.date,
+                "title": self.title, "archived": self.archived,
+                "counters": self.counters, "hookSize": self.hookSize,
+                "yarn": self.yarn, "pattern": self.pattern,
+                "paletteID": self.paletteID}
+
     def save(self):
         db.session.add(self)
         db.session.commit()
-
-
-### make a thing to get user by user id TODO

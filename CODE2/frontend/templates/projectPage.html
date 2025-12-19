@@ -57,11 +57,11 @@
                 </a>
 
                 {% for project in projects %}
-                    {% if project.archived == False %}
-                    <a aria-label="a project" href="{{ url_for('project', projectID = project.id) }}">
+                    {% if project['archived'] == False %}
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project['id']) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                {{ project.title }}
+                                {{ project['title'] }}
                             </h3>
                         </div>
 
@@ -70,10 +70,10 @@
                                 Details
                             </p>
                             <p>
-                                counters: {{ project.counters|count }}
+                                counters: {{ project['counters']|count }}
                             </p>
                             <p>
-                                last edited: {{ project.date }}
+                                last edited: {{ project['date'] }}
                             </p>
                         </div>
                     </a>
@@ -169,7 +169,7 @@
                 <div class="twoBut">
                     <form class="theme">
                         <button aria-label="change theme" class="themeBtn"
-                        type="submit" formaction="{{ url_for('theme2',  projectID = project.id) }}">
+                        type="submit" formaction="{{ url_for('theme2',  projectID = project['id']) }}">
                             {{theme}}
                         </button>
                     </form>
@@ -186,7 +186,7 @@
             style="display: block;">
                 <div class="flex">
                     <form class="counter">            
-                        <button aria-label="make new counter" formaction="{{ url_for('newCounter', projectID = project.id) }}" 
+                        <button aria-label="make new counter" formaction="{{ url_for('newCounter', projectID = project['id']) }}" 
                         type="submit" class="newC">
                             <p>
                                 new counter +
@@ -196,18 +196,18 @@
                     {% for counter in counters %}
                     <form>
                         <div alt="a counter" class="counter">
-                            <button aria-label="add to counter" formaction="{{ url_for('upCounter', counterID = counter.id, projectID = project.id) }}"
+                            <button aria-label="add to counter" formaction="{{ url_for('upCounter', counterID = counter['id'], projectID = project['id']) }}"
                             type="submit" class="numN">
                                 <!-- MAX counter is 99999 -->
                                 <p>
-                                    {{ counter.value }}
+                                    {{ counter['value'] }}
                                 </p>
                             </button>
                             <div class="typeN">
                                 <p>
-                                    {{ counter.id }} <br>
-                                    linked: {{ counter.link }} <br>
-                                    loop: {{ counter.loop }}
+                                    {{ counter['id'] }} <br>
+                                    linked: {{ counter['link'] }} <br>
+                                    loop: {{ counter['loop'] }}
                                 </p>
                                 <button aria-label="non-functional button" type="button" class="burgerMenu" 
                                     alt="menu for individual counter. Click to edit counter.">	
@@ -215,11 +215,11 @@
                                 </button>
                             </div>
                             <button aria-label="subtract from counter" 
-                            formaction="{{ url_for('downCounter', counterID = counter.id, projectID = project.id) }}"
+                            formaction="{{ url_for('downCounter', counterID = counter['id'], projectID = project['id']) }}"
                             type="submit" class="minus">
                                 &#65293;
                             </button>
-                            <input type="hidden" value="{{ counter.project }}, {{ counter.id }}"> 
+                            <input type="hidden" value="{{ counter['project'] }}, {{ counter['id'] }}"> 
                         </div>
                     </form>
                     {% endfor %}
@@ -270,14 +270,13 @@
                                 </label>
                                 <select name="ColorPalette" class="space">
                                     {% for palette in palettes %}
-                                    <!-- actually where is this value attribute saved. -->
-                                    <option name="paletteOp" id="pOption" value="{{ palette.name }}"> {{ palette.name }} </option>
+                                    <option name="paletteOp" id="pOption" value="{{ palette['id']}}"> {{ palette['name'] }} </option>
                                     {% endfor %}
                                 </select>
-                                <button formaction="{{url_for('saveProject', projectID = project.id)}}" class="placeholder" type="submit">
+                                <button formaction="{{url_for('saveProject', projectID = project['id'])}}" class="placeholder" type="submit">
                                     Save
                                 </button>
-                                <button formaction="{{url_for('archiveProject', projectID = project.id)}}" class="placeholder" type="submit">
+                                <button formaction="{{url_for('archiveProject', projectID = project['id'])}}" class="placeholder" type="submit">
                                     Archive
                                 </button>
                             </div>

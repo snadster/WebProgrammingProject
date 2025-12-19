@@ -17,3 +17,5 @@ EXPOSE 5000
 
 # run Flask App
 ENTRYPOINT ["flask", "run", "--host", "0.0.0.0"]
+
+ENV PYTHONUNBUFFERED=1

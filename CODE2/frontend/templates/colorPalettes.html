@@ -32,7 +32,7 @@
         <div id="mySidenav" class="sidenav">
             <div class="navTop">
                 <a 
-                aria-label="log out"
+                aria-label="Log Out"
                 style="background-color: rgba(0, 0, 0, 0.001);
                        padding: 0;" 
                 href="{{ url_for('logout') }}">
@@ -40,26 +40,27 @@
                         log out
                     </button>
                 </a>
+                
             </div>
             <div class="container">
                 <h1 class="blockTop">
                     Project Overview
                 </h1>
                 <div class="scroll">
-                    <button  aria-label="Close Sidebar"
+                    <button aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()"> &#60; &#60;
-                    </button>
+                </button>
                 <a aria-label="make new project" class="space" href="{{ url_for('newProject') }}">
                     New Project +
                 </a>
 
                 {% for project in projects %}
-                    {% if project.archived == False %}
-                    <a aria-label="a project" href="{{ url_for('project', projectID = project.id) }}">
+                    {% if project['archived'] == False %}
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project['id']) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                {{ project.title }}
+                                {{ project['title'] }}
                             </h3>
                         </div>
 
@@ -68,10 +69,10 @@
                                 Details
                             </p>
                             <p>
-                                counters: {{ project.counters|count }}
+                                counters: {{ project['counters']|count }}
                             </p>
                             <p>
-                                last edited: {{ project.date }}
+                                last edited: {{ project['date'] }}
                             </p>
                         </div>
                     </a>
@@ -98,7 +99,7 @@
                             </p>
                         </div>
                     </a>
-                    <a aria-label="go to palettes" href="{{ url_for('palettes') }}">
+                    <a aria-label="go to color palettes" href="{{ url_for('palettes') }}">
                         <div class="split1">
                             <h3 class="navHeading" >
                                 Color Pallettes
@@ -174,32 +175,32 @@
                 {% for palette in palettes %}
                 <div class="fullPalette">
                     <h3>
-                        {{ palette.name }}
+                        {{ palette['name'] }}
                     </h3>
                     <div class="palette" alt="a color palette">
                         <div id="color" class="color">
-                            {{ palette.color1 }}
+                            {{ palette['color1'] }}
                         </div>
                         <div id="color" class="color">
-                            {{ palette.color2 }}
+                            {{ palette['color2']}}
                         </div>
                         <div id="color" class="color">
-                            {{ palette.color3 }}
+                            {{ palette['color3'] }}
                         </div>
                         <div id="color" class="color">
-                            {{ palette.color4 }}
+                            {{ palette['color4'] }}
                         </div>
                         <div id="color" class="color">
-                            {{ palette.color5 }}
+                            {{ palette['color5'] }}
                         </div>
                         <div id="color" class="color">
-                            {{ palette.color6 }}
+                            {{ palette['color6'] }}
                         </div>
                         <div id="color" class="color">
-                            {{ palette.color7 }}
+                            {{ palette['color7'] }}
                         </div>
                         <div id="color" class="color">
-                            {{ palette.color8 }}
+                            {{ palette['color8'] }}
                         </div>
                     </div>
                 </div>

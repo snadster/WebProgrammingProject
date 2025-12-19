@@ -34,14 +34,14 @@
                 <!-- NOTE!
                     button in link is probably not the right way. 
                     however, I couldn't get it to work with onclick, so.
-                    I'm styling directly to override other styles
+                    styling directly to override other styles
                 -->
                 <a 
-                aria-label="log out"
+                aria-label="Log Out"
                 style="background-color: rgba(0, 0, 0, 0.001);
                        padding: 0;" 
                 href="{{ url_for('logout') }}">
-                    <button aria-label="Log Out" type="button">
+                    <button type="button">
                         log out
                     </button>
                 </a>
@@ -52,32 +52,32 @@
                     Project Overview
                 </h1>
                 <div class="scroll">
-                    <button  aria-label="Close Sidebar"
+                    <button aria-label="Close Sidebar"
                         href="javascript:void(0)" class="closebtn" 
                         onclick="closeNav()"> &#60; &#60;
                 </button>
-
                 <a aria-label="make new project" class="space" href="{{ url_for('newProject') }}">
                     New Project +
                 </a>
 
                 {% for project in projects %}
-                    {% if project.archived == False %}
-                    <a aria-label="go to a project" href="{{ url_for('project', projectID = project.id) }}">
+                    {% if project['archived'] == False %}
+                    <a aria-label="a project" href="{{ url_for('project', projectID = project['id']) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                {{ project.title }}
+                                {{ project['title'] }}
                             </h3>
                         </div>
+
                         <div class="split2" >
                             <p class="details">
                                 Details
                             </p>
                             <p>
-                                counters: {{ project.counters|count }}
+                                counters: {{ project['counters']|count }}
                             </p>
                             <p>
-                                last edited: {{ project.date }}
+                                last edited: {{ project['date'] }}
                             </p>
                         </div>
                     </a>
@@ -85,6 +85,7 @@
                 {% endfor %}
             </div>
         </div>
+
             <!-------------
                 Community
             --------------->
@@ -175,11 +176,11 @@
             
             <div class="containProjects">
                 {% for project in projects %}
-                    {% if project.archived == True %}
-                    <a aria-label="old project" class="project" href="{{ url_for('project', projectID = project.id) }}">
+                    {% if project['archived'] == True %}
+                    <a aria-label="old project" class="project" href="{{ url_for('project', projectID = project['id']) }}">
                         <div class="split1">
                             <h3 class="navHeading" >
-                                {{ project.title }}
+                                {{ project['title'] }}
                             </h3>
                         </div>
 
@@ -188,10 +189,10 @@
                                 Details
                             </p>
                             <p>
-                                counters:{{ project.counters|count }}
+                                counters:{{ project['counters']|count }}
                             </p>
                             <p>
-                                last edited: {{ project.date }}
+                                last edited: {{ project['date'] }}
                             </p>
                         </div>
                     </a>
