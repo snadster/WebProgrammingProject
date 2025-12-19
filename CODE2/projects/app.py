@@ -67,7 +67,7 @@ def saveProject():
 def archiveProject():
     data = request.json
     project = db.session.get(Project, data["projectID"])
-    project.date_ = data["date"]  # VALUE WE CHANGE
+    project.date_ = date.fromisoformat(data["date"])  # VALUE WE CHANGE
     project.archived = True # VALUE WE CHANGE
     project.save()
     return {"ok": True}

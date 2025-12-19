@@ -23,6 +23,7 @@ BUGS
 - FIX DISPLAYING NAME OF COLOR PALETTE
 - PROJECTS DON'T BELONG TO A USER.
   - i assume this is a db.session.scalar().all problem. I need to filter by userID.
+- time is supposed to be adate but is also the time 000000000
 
 
 REPORT:

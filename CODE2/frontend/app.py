@@ -224,26 +224,13 @@ def saveProject(projectID: int):
         return redirect(url_for('frontpage'))
 
 
-@app.route('/archiveProject/<int:projectID>')
+@app.route('/archiveProject/<int:projectID>', methods=["POST"])
 def archiveProject(projectID: int):
     if userLoggedIn():
-        userID = session["userID"]
-        response = requests.get(f"HTTP://projects:5000//projects/{userID}/{projectID}")
-        project = response.json() if response.ok else[]
-        userID = session["userID"]
-        date_ = datetime.today
-        title = request.form["title"]
-        counters = project["counters"]
-        hookSize = request.form.get("needle", default="")
-        yarn = request.form.get("yarn", default="")
-        pattern = request.form.get("pattern", default="")
-        palette = request.form.get("paletteOp", default=[])
+        date_ = date.today().isoformat()
 
-        # TODO: Do you want to send all of this??
-        payload = {"projectID":projectID, "userID": userID , "date": date_, "title":title,
-                    "counters": counters,"hookSize":hookSize, "yarn":yarn, 
-                    "pattern": pattern, "palette":palette}
-        requests.get("HTTP://projects:5000/archiveProject", json = payload)
+        payload = {"projectID": projectID, "date": date_}
+        requests.post("HTTP://projects:5000/archiveProject", json = payload)
         return redirect(url_for('archive'))
     else:
         return redirect(url_for('frontpage'))
